@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Sidebar from '../components/Sidebar.astro'
+import ApartmentDetails from '../components/ApartmentDetails.jsx'
+import '@/styles/globals.css'
+import type { Apartment } from '@/types/apartment'
+
+const storgatan: Apartment = {
+  id: 101,
+  address: 'Storgatan 1',
+  city: 'Stockholm',
+  rooms: 3,
+  size: 75,
+  rent: 10000,
+  images: [{ id: 1, url: '/storgatan.jpg' }],
+  tenants: [{
+      id: 1, name: 'Alice', email: 'alice@example.com',
+      leaseStart: new Date('2021-01-01'),
+  }],
+  description: 'En fin lägenhet på Storgatan 1 i Stockholm. Lägenheten har 3 rum och är 75 kvadratmeter stor. Hyran är 10000 kr per månad.',
+  number: '101',
+  issues: []
+}
+
+---
+<Layout title="Lägenhetshantering Dashboard">
+  <ApartmentDetails apartment={storgatan}/>
+</Layout>
