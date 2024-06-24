@@ -1,12 +1,8 @@
-import Link from 'next/link'
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu'
@@ -20,16 +16,7 @@ import {
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import {
-  BuildingIcon,
-  CopyIcon,
-  FileIcon,
-  HomeIcon,
-  LayoutPanelLeftIcon,
-  MoveVerticalIcon,
-  PanelLeftIcon,
-  SearchIcon,
-} from 'lucide-react'
+import { CopyIcon, FileIcon, MoveVerticalIcon } from 'lucide-react'
 import type { Apartment } from '@/types/apartment'
 
 export default function ApartmentDetails({
