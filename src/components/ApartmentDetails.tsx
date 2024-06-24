@@ -34,6 +34,8 @@ export default function ApartmentDetails({
               {apartment.description}
             </CardDescription>
           </CardHeader>
+        </Card>
+        <Card className="sm:col-span-1 p-6" x-chunk="dashboard-05-chunk-0">
           <Tabs defaultValue="details">
             <TabsList>
               <TabsTrigger value="details">Detaljer</TabsTrigger>
@@ -130,7 +132,10 @@ export default function ApartmentDetails({
         </Card>
       </div>
       <div>
-        <Card className="overflow-hidden" x-chunk="dashboard-05-chunk-4">
+        <Card
+          className="overflow-hidden lg:col-span-2"
+          x-chunk="dashboard-05-chunk-4"
+        >
           <CardHeader className="flex flex-row items-start bg-muted/50">
             <div className="grid gap-0.5">
               <CardTitle className="group flex items-center gap-2 text-lg">
@@ -204,7 +209,7 @@ export default function ApartmentDetails({
               <div className="font-semibold">Hyresgästinformation</div>
               <dl className="grid gap-3">
                 <div className="flex items-center justify-between">
-                  <dt className="text-m/></div></dl></div></CardContent></Card></div></main></div></div>); }/></></></></></></></></></>);" />
+                  <dt className="text-m" />
                 </div>
               </dl>
             </div>

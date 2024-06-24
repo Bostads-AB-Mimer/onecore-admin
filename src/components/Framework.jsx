@@ -24,7 +24,7 @@ export default function Framework({ children }) {
       <aside className="fixed inset-y-0 left-0 z-10 flex w-64 flex-col border-r bg-background sm:flex">
         <nav className="flex flex-col gap-4 px-4 py-6">
           <Link
-            href="#"
+            href="/#"
             className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
             prefetch={false}
           >
@@ -75,7 +75,7 @@ export default function Framework({ children }) {
                 Lägenheter
               </div>
               <Link
-                href="#"
+                href="/apartment#101"
                 className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
                 prefetch={false}
               >
@@ -83,7 +83,7 @@ export default function Framework({ children }) {
                 <span>Lägenhet 101</span>
               </Link>
               <Link
-                href="#"
+                href="/apartment#102"
                 className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
                 prefetch={false}
               >
@@ -91,7 +91,7 @@ export default function Framework({ children }) {
                 <span>Lägenhet 102</span>
               </Link>
               <Link
-                href="#"
+                href="/apartment#103"
                 className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
                 prefetch={false}
               >
