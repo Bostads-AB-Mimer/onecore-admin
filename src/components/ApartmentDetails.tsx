@@ -26,8 +26,8 @@ export default function ApartmentDetails({
 }) {
   return (
     <>
-      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:grid-cols-3">
-        <Card className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
+      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:grid-cols-1">
+        <Card className="w-full" x-chunk="dashboard-05-chunk-0">
           <CardHeader className="pb-3">
             <CardTitle>Lägenhet {apartment.number}</CardTitle>
             <CardDescription className="max-w-lg text-balance leading-relaxed">
@@ -35,7 +35,51 @@ export default function ApartmentDetails({
             </CardDescription>
           </CardHeader>
         </Card>
-        <Card className="sm:col-span-1 p-6" x-chunk="dashboard-05-chunk-0">
+      </div>
+      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:grid-cols-2">
+        <Card className="w-full" x-chunk="dashboard-05-chunk-4">
+          <CardContent className="p-6 text-sm">
+            <div className="grid gap-3">
+              <div className="font-semibold">Lägenhetsinformation</div>
+              <ul className="grid gap-3">
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Adress</span>
+                  <span>{apartment.address}, {apartment.city}</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Storlek</span>
+                  <span>{apartment.size} m²</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Sovrum</span>
+                  <span>{apartment.rooms}</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Badrum</span>
+                  <span>{apartment.bathrooms}</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Hyra</span>
+                  <span>12 000 kr/månad</span>
+                </li>
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Deposition</span>
+                  <span>20 000 kr</span>
+                </li>
+              </ul>
+            </div>
+            <Separator className="my-4" />
+            <div className="grid gap-3">
+              <div className="font-semibold">Hyresgästinformation</div>
+              <dl className="grid gap-3">
+                <div className="flex items-center justify-between">
+                  <dt className="text-m" />
+                </div>
+              </dl>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="w-full p-6" x-chunk="dashboard-05-chunk-0">
           <Tabs defaultValue="details">
             <TabsList>
               <TabsTrigger value="details">Detaljer</TabsTrigger>
@@ -129,91 +173,6 @@ export default function ApartmentDetails({
               </div>
             </TabsContent>
           </Tabs>
-        </Card>
-      </div>
-      <div>
-        <Card
-          className="overflow-hidden lg:col-span-2"
-          x-chunk="dashboard-05-chunk-4"
-        >
-          <CardHeader className="flex flex-row items-start bg-muted/50">
-            <div className="grid gap-0.5">
-              <CardTitle className="group flex items-center gap-2 text-lg">
-                Lägenhet 101
-                <Button
-                  size="icon"
-                  variant="outline"
-                  className="h-6 w-6 opacity-0 transition-opacity group-hover:opacity-100"
-                >
-                  <CopyIcon className="h-3 w-3" />
-                  <span className="sr-only">Kopiera Lägenhetsnummer</span>
-                </Button>
-              </CardTitle>
-              <CardDescription>Acme Lägenheter</CardDescription>
-            </div>
-            <div className="ml-auto flex items-center gap-1">
-              <Button size="sm" variant="outline" className="h-8 gap-1">
-                <FileIcon className="h-3.5 w-3.5" />
-                <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
-                  Visa Problem
-                </span>
-              </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button size="icon" variant="outline" className="h-8 w-8">
-                    <MoveVerticalIcon className="h-3.5 w-3.5" />
-                    <span className="sr-only">Mer</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Redigera</DropdownMenuItem>
-                  <DropdownMenuItem>Hyresgäster</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Ta bort</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </CardHeader>
-          <CardContent className="p-6 text-sm">
-            <div className="grid gap-3">
-              <div className="font-semibold">Lägenhetsinformation</div>
-              <ul className="grid gap-3">
-                <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Adress</span>
-                  <span>Huvudgatan 123, Västerås</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Storlek</span>
-                  <span>111 m²</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Sovrum</span>
-                  <span>2</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Badrum</span>
-                  <span>1.5</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Hyra</span>
-                  <span>12 000 kr/månad</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Deposition</span>
-                  <span>20 000 kr</span>
-                </li>
-              </ul>
-            </div>
-            <Separator className="my-4" />
-            <div className="grid gap-3">
-              <div className="font-semibold">Hyresgästinformation</div>
-              <dl className="grid gap-3">
-                <div className="flex items-center justify-between">
-                  <dt className="text-m" />
-                </div>
-              </dl>
-            </div>
-          </CardContent>
         </Card>
       </div>
     </>
