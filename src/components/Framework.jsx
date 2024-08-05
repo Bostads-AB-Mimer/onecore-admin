@@ -22,7 +22,7 @@ import {
 export default function Framework({ children }) {
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
-      <aside className="fixed inset-y-0 left-0 z-10 flex w-64 flex-col border-r bg-sidebar sm:flex">
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">
         <nav className="flex flex-col gap-4 px-4 py-6">
           <Link
             href="/#"
