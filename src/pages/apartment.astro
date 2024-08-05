@@ -4,33 +4,68 @@ import Sidebar from '../components/Sidebar.astro'
 import ApartmentDetails from '../components/ApartmentDetails.jsx'
 import '@/styles/globals.css'
 import type { Apartment } from '@/types/apartment'
+import { useEffect, useState } from 'react'
 
-const storgatan: Apartment = {
-  id: 101,
-  address: 'Storgatan 1',
-  city: 'Stockholm',
-  rooms: 3,
-  bathrooms: 1,
-  size: 75,
-  rent: 10000,
-  images: [{ id: 1, url: '/storgatan.jpg' }],
-  tenants: [{
-      id: 1, name: 'Alice', email: 'alice@example.com',
-      leaseStart: new Date('2021-01-01'),
-  }],
-  description: 'En fin lägenhet på Storgatan 1 i Stockholm. Lägenheten har 3 rum och är 75 kvadratmeter stor. Hyran är 10000 kr per månad.',
-  number: '101',
-  issues: []
+const apartments: Apartment[] = [
+  {
+    id: 101,
+    address: 'Storgatan 1',
+    city: 'Stockholm',
+    rooms: 3,
+    bathrooms: 1,
+    size: 75,
+    rent: 10000,
+    images: [{ id: 1, url: '/storgatan.jpg' }],
+    tenants: [{
+        id: 1, name: 'Alice', email: 'alice@example.com',
+        leaseStart: new Date('2021-01-01'),
+    }],
+    description: 'En fin lägenhet på Storgatan 1 i Stockholm. Lägenheten har 3 rum och är 75 kvadratmeter stor. Hyran är 10000 kr per månad.',
+    number: '101',
+    issues: []
+  },
+  {
+    id: 102,
+    address: 'Lillgatan 2',
+    city: 'Göteborg',
+    rooms: 2,
+    bathrooms: 1,
+    size: 60,
+    rent: 8000,
+    images: [{ id: 2, url: '/lillgatan.jpg' }],
+    tenants: [{
+        id: 2, name: 'Bob', email: 'bob@example.com',
+        leaseStart: new Date('2022-02-01'),
+    }],
+    description: 'En mysig lägenhet på Lillgatan 2 i Göteborg. Lägenheten har 2 rum och är 60 kvadratmeter stor. Hyran är 8000 kr per månad.',
+    number: '102',
+    issues: []
+  }
+]
+
+export default function ApartmentPage() {
+  const [apartment, setApartment] = useState<Apartment | null>(null)
+
+  useEffect(() => {
+    const hash = window.location.hash.substring(1)
+    const foundApartment = apartments.find(apartment => apartment.number === hash)
+    setApartment(foundApartment || null)
+  }, [])
+
+  return (
+    <Layout title="Lägenhetshantering Dashboard">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div class="lg:col-span-2">
+          {apartment ? (
+            <ApartmentDetails apartment={apartment} client:load/>
+          ) : (
+            <p>Lägenhet ej hittad</p>
+          )}
+        </div>
+        <div class="lg:col-span-1">
+          <Sidebar />
+        </div>
+      </div>
+    </Layout>
+  )
 }
-
----
-<Layout title="Lägenhetshantering Dashboard">
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-    <div class="lg:col-span-2">
-      <ApartmentDetails apartment={storgatan} client:load/>
-    </div>
-    <div class="lg:col-span-1">
-      <Sidebar />
-    </div>
-  </div>
-</Layout>

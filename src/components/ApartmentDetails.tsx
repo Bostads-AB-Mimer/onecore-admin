@@ -53,7 +53,7 @@ export default function ApartmentDetails({
                 </li>
                 <li className="flex items-center justify-between">
                   <span className="text-muted-foreground">Hyra</span>
-                  <span>12 000 kr/månad</span>
+                  <span>{apartment.rent} kr/månad</span>
                 </li>
                 <li className="flex items-center justify-between">
                   <span className="text-muted-foreground">Deposition</span>
