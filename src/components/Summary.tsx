@@ -13,7 +13,7 @@ import Link from 'next/link'
 export default function Summary() {
   return (
     <div>
-      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
+      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2 lg:col-start-4">
         <Card className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
           <CardHeader className="pb-3">
             <CardTitle>Pågående ärenden</CardTitle>
@@ -77,7 +77,7 @@ export default function Summary() {
           </div>
         </Card>
       </div>
-      <div>
+      <div className="lg:col-span-1 lg:col-start-4">
         <Card
           className="overflow-hidden lg:col-span-1"
           x-chunk="dashboard-05-chunk-4"
