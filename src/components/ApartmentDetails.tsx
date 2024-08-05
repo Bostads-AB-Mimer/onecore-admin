@@ -160,7 +160,7 @@ export default function ApartmentDetails({
                 <div className="flex items-center justify-between">
                   <div className="font-medium">Jane Smith</div>
                   <div className="text-sm text-muted-foreground">
-                    Hyresavtal utgår: 31/12/2023
+                    Hyresavtal utgår: {new Date(apartment.leaseEndDate).toLocaleDateString('sv-SE')}
                   </div>
                 </div>
               </div>

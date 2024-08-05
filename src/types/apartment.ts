@@ -11,7 +11,8 @@ export type Apartment = {
   images: {
     id: number
     url: string
-  }[]
+  }[],
+  leaseEndDate: Date
   issues: {
     id: number
     title: string
