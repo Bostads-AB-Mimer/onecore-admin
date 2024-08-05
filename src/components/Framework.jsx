@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { apartments } from '../data/apartments';
+import { apartments } from '../data/apartments'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -75,10 +75,10 @@ export default function Framework({ children }) {
               <div className="text-sm font-medium text-muted-foreground">
                 Lägenheter
               </div>
-              {apartments.map(apartment => (
+              {apartments.map((apartment) => (
                 <Link
                   key={apartment.id}
-                  href={`/apartment/${apartment.number}`}
+                  href={`/apartments/${apartment.number}`}
                   className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
                   prefetch={false}
                 >
