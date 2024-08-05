@@ -58,7 +58,7 @@ export default function Framework({ children }) {
                       {floor.apartments.map((apartment) => (
                         <Link
                           key={apartment.id}
-                          href={`/apartments/${apartment.number}`}
+                          href={`/apartments/${property.id}/${apartment.number}`}
                           className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
                           prefetch={false}
                         >
@@ -75,7 +75,7 @@ export default function Framework({ children }) {
                   <ul>
                     {searchResults.map((apartment) => (
                       <li key={apartment.id} className="p-2 hover:bg-gray-200">
-                        <Link href={`/apartments/${apartment.number}`}>
+                        <Link href={`/apartments/${apartment.propertyId}/${apartment.number}`}>
                           {apartment.number} - {apartment.address}, {apartment.city}
                         </Link>
                       </li>
