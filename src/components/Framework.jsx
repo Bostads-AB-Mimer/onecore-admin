@@ -1,8 +1,11 @@
 import Link from 'next/link'
-import { apartments } from '../data/apartments'
+import { getProperties, getApartments, searchApartments } from '../data/db'
+
+const properties = getProperties()
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import React, { useState } from 'react'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -20,6 +23,14 @@ import {
 } from 'lucide-react'
 
 export default function Framework({ children }) {
+  const [searchResults, setSearchResults] = useState([])
+
+  const handleSearch = (event) => {
+    const query = event.target.value
+    const results = searchApartments(query)
+    setSearchResults(results)
+  }
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">
@@ -34,58 +45,50 @@ export default function Framework({ children }) {
           </Link>
           <div className="flex-1 overflow-auto">
             <div className="grid gap-2">
-              <div className="text-sm font-medium text-muted-foreground">
-                Fastigheter
-              </div>
-              <Link
-                href="#"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <HomeIcon className="h-4 w-4" />
-                <span>Acme Lägenheter</span>
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <HomeIcon className="h-4 w-4" />
-                <span>Skyline Residences</span>
-              </Link>
-              <div className="text-sm font-medium text-muted-foreground">
-                Våningar
-              </div>
-              <Link
-                href="#"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <LayoutPanelLeftIcon className="h-4 w-4" />
-                <span>1:a Våningen</span>
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <LayoutPanelLeftIcon className="h-4 w-4" />
-                <span>2:a Våningen</span>
-              </Link>
-              <div className="text-sm font-medium text-muted-foreground">
-                Lägenheter
-              </div>
-              {apartments.map((apartment) => (
-                <Link
-                  key={apartment.id}
-                  href={`/apartments/${apartment.number}`}
-                  className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                  prefetch={false}
-                >
-                  <HomeIcon className="h-4 w-4" />
-                  <span>Lägenhet {apartment.number}</span>
-                </Link>
+              {properties.map((property) => (
+                <div key={property.id}>
+                  <div className="text-sm font-medium text-muted-foreground">
+                    {property.name}
+                  </div>
+                  {property.floors.map((floor) => (
+                    <div key={floor} className="ml-4">
+                      <div
+                        key={floor.id}
+                        className="text-sm font-medium text-muted-foreground"
+                      >
+                        {floor.name}
+                      </div>
+                      {floor.apartments.map((apartment) => (
+                        <Link
+                          key={apartment.id}
+                          href={`/apartments/${property.id}-${apartment.id}`}
+                          className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
+                          prefetch={false}
+                        >
+                          <HomeIcon className="h-4 w-4" />
+                          <span>Lägenhet {apartment.number}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               ))}
+              {searchResults.length > 0 && (
+                <div className="absolute z-10 mt-2 w-full bg-white shadow-lg">
+                  <ul>
+                    {searchResults.map((apartment) => (
+                      <li key={apartment.id} className="p-2 hover:bg-gray-200">
+                        <Link
+                          href={`/apartments/${apartment.propertyId}-${apartment.number}`}
+                        >
+                          {apartment.number} - {apartment.address},{' '}
+                          {apartment.city}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </nav>
@@ -142,6 +145,7 @@ export default function Framework({ children }) {
               type="search"
               placeholder="Sök i OneCore..."
               className="w-full rounded-lg bg-input pl-8 md:w-[200px] lg:w-[336px]"
+              onChange={handleSearch}
             />
           </div>
           <DropdownMenu>
