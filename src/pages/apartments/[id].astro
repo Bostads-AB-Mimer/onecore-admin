@@ -7,13 +7,15 @@ import { apartments } from '../../data/apartments';
 const { id } = Astro.params;
 const apartment = apartments.find(apartment => apartment.number === id);
 
+const themeClass = 'dark'; // This should be dynamically set based on user preferences or default settings
+
 export async function getStaticPaths() {
   return apartments.map(apartment => ({
     params: { id: apartment.number }
   }));
 }
 ---
----
+<body class={themeClass}>
 <Layout title="Lägenhetshantering Dashboard">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
     <div class="lg:col-span-2">
@@ -28,3 +30,4 @@ export async function getStaticPaths() {
     </div>
   </div>
 </Layout>
+</body>
