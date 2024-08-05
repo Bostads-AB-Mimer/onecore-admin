@@ -3,19 +3,15 @@ import Layout from '@/layouts/Layout.astro';
 import ApartmentDetails from '@/components/ApartmentDetails.tsx';
 import { getProperties } from '@/data/db';
 import '@/styles/globals.css';
+import { getApartment } from '@/data/db';
 
 const { propId, apartmentId } = Astro.params;
-const propertyId = parseInt(propId);
-const apartmentNumber = apartmentId;
-const properties = getProperties();
-const apartment = properties
-  .flatMap(property => property.floors.flatMap(floor => floor.apartments))
-  .find(apartment => apartment.propertyId === propertyId && apartment.number.toString() === apartmentNumber);
+const apartment = getApartment(parseInt(apartmentId))
 
 export async function getStaticPaths() {
   const properties = getProperties();
   return properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).map(apartment => ({
-    params: { propId: apartment.propertyId.toString(), apartmentId: apartment.number }
+    params: { propId: apartment.propertyId.toString(), apartmentId: apartment.id.toString() }
   }));
 }
 ---

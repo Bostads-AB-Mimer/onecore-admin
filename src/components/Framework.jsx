@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getProperties, getApartments, searchApartments } from '../data/db'
 
-const properties = getProperties();
+const properties = getProperties()
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -23,13 +23,13 @@ import {
 } from 'lucide-react'
 
 export default function Framework({ children }) {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([])
 
   const handleSearch = (event) => {
-    const query = event.target.value;
-    const results = searchApartments(query);
-    setSearchResults(results);
-  };
+    const query = event.target.value
+    const results = searchApartments(query)
+    setSearchResults(results)
+  }
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
@@ -52,13 +52,16 @@ export default function Framework({ children }) {
                   </div>
                   {property.floors.map((floor) => (
                     <div key={floor} className="ml-4">
-                      <div key={floor.id} className="text-sm font-medium text-muted-foreground">
+                      <div
+                        key={floor.id}
+                        className="text-sm font-medium text-muted-foreground"
+                      >
                         {floor.name}
                       </div>
                       {floor.apartments.map((apartment) => (
                         <Link
                           key={apartment.id}
-                          href={`/apartments/${property.id}-${apartment.number}`}
+                          href={`/apartments/${property.id}-${apartment.id}`}
                           className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
                           prefetch={false}
                         >
@@ -75,15 +78,18 @@ export default function Framework({ children }) {
                   <ul>
                     {searchResults.map((apartment) => (
                       <li key={apartment.id} className="p-2 hover:bg-gray-200">
-                        <Link href={`/apartments/${apartment.propertyId}-${apartment.number}`}>
-                          {apartment.number} - {apartment.address}, {apartment.city}
+                        <Link
+                          href={`/apartments/${apartment.propertyId}-${apartment.number}`}
+                        >
+                          {apartment.number} - {apartment.address},{' '}
+                          {apartment.city}
                         </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
-            </div> 
+            </div>
           </div>
         </nav>
       </aside>

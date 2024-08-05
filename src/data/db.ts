@@ -12,7 +12,6 @@ export type Floor = {
 
 export type Apartment = {
   id: number
-  number: string
   status: string
   propertyId: string
   floor: string
@@ -39,7 +38,6 @@ const properties: Property[] = [
         apartments: [
           {
             id: 101,
-            number: '101',
             status: 'Uthyrd',
             propertyId: '1',
             floor: 'Våning 1',
@@ -70,7 +68,6 @@ const properties: Property[] = [
           },
           {
             id: 102,
-            number: '102',
             status: 'Ledig',
             propertyId: '1',
             floor: 'Våning 1',
@@ -101,7 +98,6 @@ const properties: Property[] = [
         apartments: [
           {
             id: 201,
-            number: '201',
             status: 'Uthyrd',
             propertyId: '1',
             floor: 'Våning 2',
@@ -132,7 +128,6 @@ const properties: Property[] = [
           },
           {
             id: 202,
-            number: '202',
             status: 'Ledig',
             propertyId: '1',
             floor: 'Våning 2',
@@ -169,7 +164,6 @@ const properties: Property[] = [
         apartments: [
           {
             id: 301,
-            number: '301',
             status: 'Uthyrd',
             propertyId: '2',
             floor: 'Våning 1',
@@ -194,7 +188,6 @@ const properties: Property[] = [
           },
           {
             id: 302,
-            number: '302',
             status: 'Ledig',
             propertyId: '2',
             floor: 'Våning 1',
@@ -218,7 +211,6 @@ const properties: Property[] = [
         apartments: [
           {
             id: 401,
-            number: '401',
             status: 'Uthyrd',
             propertyId: '2',
             floor: 'Våning 2',
@@ -243,7 +235,6 @@ const properties: Property[] = [
           },
           {
             id: 402,
-            number: '402',
             status: 'Ledig',
             propertyId: '2',
             floor: 'Våning 2',
@@ -273,7 +264,6 @@ const properties: Property[] = [
         apartments: [
           {
             id: 501,
-            number: '501',
             status: 'Uthyrd',
             propertyId: '3',
             floor: 'Våning 1',
@@ -298,7 +288,6 @@ const properties: Property[] = [
           },
           {
             id: 502,
-            number: '502',
             status: 'Ledig',
             propertyId: '3',
             floor: 'Våning 1',
@@ -322,7 +311,6 @@ const properties: Property[] = [
         apartments: [
           {
             id: 601,
-            number: '601',
             status: 'Uthyrd',
             propertyId: '3',
             floor: 'Våning 2',
@@ -347,7 +335,6 @@ const properties: Property[] = [
           },
           {
             id: 602,
-            number: '602',
             status: 'Ledig',
             propertyId: '3',
             floor: 'Våning 2',
@@ -373,6 +360,10 @@ export function getProperties() {
   return properties
 }
 
+export function getProperty(id: number) {
+  return properties.find((property) => property.id === id)
+}
+
 export function getApartments(propertyId?: number) {
   if (propertyId !== undefined) {
     const property = properties.find((p) => p.id === propertyId)
@@ -385,6 +376,10 @@ export function getApartments(propertyId?: number) {
   return properties.flatMap((property) =>
     property.floors.flatMap((floor) => floor.apartments)
   )
+}
+
+export function getApartment(id: number) {
+  return getApartments().find((apartment) => apartment.id === id)
 }
 
 export function searchApartments(query: string) {
