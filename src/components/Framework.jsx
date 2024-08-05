@@ -78,7 +78,7 @@ export default function Framework({ children }) {
               {apartments.map(apartment => (
                 <Link
                   key={apartment.id}
-                  href={`/apartment?apartment=${apartment.number}`}
+                  href={`/apartment/${apartment.number}`}
                   className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
                   prefetch={false}
                 >

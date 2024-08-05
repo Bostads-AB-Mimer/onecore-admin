@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import Sidebar from '../components/Sidebar.astro'
 import ApartmentDetails from '../components/ApartmentDetails.jsx'
 import { apartments } from '../data/apartments';
-const apartmentNumber = Astro.url.searchParams.get('apartment');
+const apartmentNumber = Astro.url.pathname.split('/').pop();
 const apartment = apartments.find(apartment => apartment.number === apartmentNumber);
 ---
 <Layout title="Lägenhetshantering Dashboard">
