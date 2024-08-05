@@ -8,7 +8,7 @@ const { propId, apartmentId } = Astro.params;
 const propertyId = parseInt(propId);
 const apartmentNumber = apartmentId;
 const properties = getProperties();
-const apartment = properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).find(apartment => apartment.propertyId === parseInt(propertyId) && apartment.number === apartmentNumber);
+const apartment = properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).find(apartment => apartment.propertyId === propertyId && apartment.number === apartmentNumber);
 
 export async function getStaticPaths() {
   const properties = getProperties();
