@@ -4,7 +4,6 @@ import Sidebar from '../components/Sidebar.astro'
 import ApartmentDetails from '../components/ApartmentDetails.jsx'
 import '@/styles/globals.css'
 import type { Apartment } from '@/types/apartment'
-import { parse } from 'querystring'
 
 const apartments: Apartment[] = [
   {
@@ -42,7 +41,8 @@ const apartments: Apartment[] = [
     issues: []
   }
 ]
-const query = Astro.request.url.searchParams
+const url = new URL(Astro.request.url)
+const query = url.searchParams
 const apartmentNumber = query.get('apartment')
 const apartment = apartments.find(apartment => apartment.number === apartmentNumber)
 ---
