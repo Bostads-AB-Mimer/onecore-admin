@@ -21,7 +21,7 @@ export default function ApartmentDetails({
         <Card className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
           <CardHeader className="pb-3">
             <CardTitle>Lägenhet {apartment.number}</CardTitle>
-            <CardDescription className="max-w-lg text-balance leading-relaxed">
+            <CardDescription className="max-w-lg text-balance leading-relaxed text-foreground">
               {apartment.description}
             </CardDescription>
           </CardHeader>
@@ -34,29 +34,29 @@ export default function ApartmentDetails({
               <div className="font-semibold">Lägenhetsinformation</div>
               <ul className="grid gap-3">
                 <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Adress</span>
+                  <span className="text-muted">Adress</span>
                   <span>
                     {apartment.address}, {apartment.city}
                   </span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Storlek</span>
+                  <span className="text-muted">Storlek</span>
                   <span>{apartment.size} m²</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Sovrum</span>
+                  <span className="text-muted">Sovrum</span>
                   <span>{apartment.rooms}</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Badrum</span>
+                  <span className="text-muted">Badrum</span>
                   <span>{apartment.bathrooms}</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Hyra</span>
+                  <span className="text-muted">Hyra</span>
                   <span>{apartment.rent} kr/månad</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Deposition</span>
+                  <span className="text-muted">Deposition</span>
                   <span>20 000 kr</span>
                 </li>
               </ul>
@@ -83,7 +83,7 @@ export default function ApartmentDetails({
               <div className="grid gap-4 p-5">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <div className="text-sm font-medium text-muted-foreground">
+                    <div className="text-sm font-medium text-muted">
                       Adress
                     </div>
                     <div>
@@ -91,7 +91,7 @@ export default function ApartmentDetails({
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-muted-foreground">
+                    <div className="text-sm font-medium text-muted">
                       Storlek
                     </div>
                     <div>{apartment.size} m²</div>
@@ -99,13 +99,13 @@ export default function ApartmentDetails({
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <div className="text-sm font-medium text-muted-foreground">
+                    <div className="text-sm font-medium text-muted">
                       Antal rum
                     </div>
                     <div>{apartment.rooms}</div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-muted-foreground">
+                    <div className="text-sm font-medium text-muted">
                       Antal badrum
                     </div>
                     <div>{apartment.bathrooms}</div>
@@ -113,7 +113,7 @@ export default function ApartmentDetails({
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <div className="text-sm font-medium text-muted-foreground">
+                    <div className="text-sm font-medium text-muted">
                       Hyra
                     </div>
                     <div>{apartment.rent} kr/månad</div>
