@@ -13,7 +13,7 @@ const apartment = properties.flatMap(property => property.floors.flatMap(floor =
 export async function getStaticPaths() {
   const properties = getProperties();
   return properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).map(apartment => ({
-    params: { propId: apartment.propertyId?.toString() || '', apartmentId: apartment.number || '' }
+    params: { propId: apartment.propertyId.toString(), apartmentId: apartment.number }
   }));
 }
 ---
