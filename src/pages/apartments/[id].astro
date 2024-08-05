@@ -9,6 +9,7 @@ const properties = getProperties();
 const apartment = properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).find(apartment => apartment.number === id);
 
 export async function getStaticPaths() {
+  const properties = getProperties();
   return properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).map(apartment => ({
     params: { id: `${apartment.propertyId}/${apartment.number}` }
   }));
