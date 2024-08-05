@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { apartments } from '../pages/apartment.astro';
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -74,30 +75,17 @@ export default function Framework({ children }) {
               <div className="text-sm font-medium text-muted-foreground">
                 Lägenheter
               </div>
-              <Link
-                href="/apartment#101"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <HomeIcon className="h-4 w-4" />
-                <span>Lägenhet 101</span>
-              </Link>
-              <Link
-                href="/apartment#102"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <HomeIcon className="h-4 w-4" />
-                <span>Lägenhet 102</span>
-              </Link>
-              <Link
-                href="/apartment#103"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <HomeIcon className="h-4 w-4" />
-                <span>Lägenhet 103</span>
-              </Link>
+              {apartments.map(apartment => (
+                <Link
+                  key={apartment.id}
+                  href={`/apartment?apartment=${apartment.number}`}
+                  className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
+                  prefetch={false}
+                >
+                  <HomeIcon className="h-4 w-4" />
+                  <span>Lägenhet {apartment.number}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </nav>
