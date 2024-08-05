@@ -34,57 +34,36 @@ export default function Framework({ children }) {
           </Link>
           <div className="flex-1 overflow-auto">
             <div className="grid gap-2">
-              <div className="text-sm font-medium text-muted-foreground">
-                Fastigheter
-              </div>
-              <Link
-                href="#"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <HomeIcon className="h-4 w-4" />
-                <span>Acme Lägenheter</span>
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <HomeIcon className="h-4 w-4" />
-                <span>Skyline Residences</span>
-              </Link>
-              <div className="text-sm font-medium text-muted-foreground">
-                Våningar
-              </div>
-              <Link
-                href="#"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <LayoutPanelLeftIcon className="h-4 w-4" />
-                <span>1:a Våningen</span>
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                prefetch={false}
-              >
-                <LayoutPanelLeftIcon className="h-4 w-4" />
-                <span>2:a Våningen</span>
-              </Link>
-              <div className="text-sm font-medium text-muted-foreground">
-                Lägenheter
-              </div>
-              {apartments.map((apartment) => (
-                <Link
-                  key={apartment.id}
-                  href={`/apartments/${apartment.number}`}
-                  className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                  prefetch={false}
-                >
-                  <HomeIcon className="h-4 w-4" />
-                  <span>Lägenhet {apartment.number}</span>
-                </Link>
+              {['Fastighet 1'].map((property) => (
+                <div key={property}>
+                  <div className="text-sm font-medium text-muted-foreground">
+                    {property}
+                  </div>
+                  {['Våning 1', 'Våning 2'].map((floor) => (
+                    <div key={floor} className="ml-4">
+                      <div className="text-sm font-medium text-muted-foreground">
+                        {floor}
+                      </div>
+                      {apartments
+                        .filter(
+                          (apartment) =>
+                            apartment.property === property &&
+                            apartment.floor === floor
+                        )
+                        .map((apartment) => (
+                          <Link
+                            key={apartment.id}
+                            href={`/apartments/${apartment.number}`}
+                            className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
+                            prefetch={false}
+                          >
+                            <HomeIcon className="h-4 w-4" />
+                            <span>Lägenhet {apartment.number}</span>
+                          </Link>
+                        ))}
+                    </div>
+                  ))}
+                </div>
               ))}
             </div>
           </div>

@@ -3,6 +3,8 @@ import type { Apartment } from '@/types/apartment';
 export const apartments: Apartment[] = [
   {
     id: 101,
+    property: 'Fastighet 1',
+    floor: 'Våning 1',
     address: 'Storgatan 1',
     city: 'Västerås',
     rooms: 3,
@@ -24,6 +26,8 @@ export const apartments: Apartment[] = [
   },
   {
     id: 102,
+    property: 'Fastighet 1',
+    floor: 'Våning 2',
     address: 'Lillgatan 2',
     city: 'Västerås',
     rooms: 2,
