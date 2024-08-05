@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { getApartments, searchApartments } from '../data/db'
+import { getProperties, getApartments, searchApartments } from '../data/db'
 
-const apartments = getApartments();
+const properties = getProperties();
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -45,34 +45,27 @@ export default function Framework({ children }) {
           </Link>
           <div className="flex-1 overflow-auto">
             <div className="grid gap-2">
-              {['Fastighet 1'].map((property) => (
+              {properties.map((property) => (
                 <div key={property}>
                   <div className="text-sm font-medium text-muted-foreground">
                     {property}
                   </div>
-                  {['Våning 1', 'Våning 2'].map((floor) => (
+                  {property.floors.map((floor) => (
                     <div key={floor} className="ml-4">
                       <div className="text-sm font-medium text-muted-foreground">
                         {floor}
                       </div>
-                      {apartments &&
-                        apartments
-                          .filter(
-                            (apartment) =>
-                              apartment.property === property &&
-                              apartment.floor === floor
-                          )
-                          .map((apartment) => (
-                            <Link
-                              key={apartment.id}
-                              href={`/apartments/${apartment.number}`}
-                              className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                              prefetch={false}
-                            >
-                              <HomeIcon className="h-4 w-4" />
-                              <span>Lägenhet {apartment.number}</span>
-                            </Link>
-                          ))}
+                      {floor.apartments.map((apartment) => (
+                        <Link
+                          key={apartment.id}
+                          href={`/apartments/${apartment.number}`}
+                          className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
+                          prefetch={false}
+                        >
+                          <HomeIcon className="h-4 w-4" />
+                          <span>Lägenhet {apartment.number}</span>
+                        </Link>
+                      ))}
                     </div>
                   ))}
                 </div>
