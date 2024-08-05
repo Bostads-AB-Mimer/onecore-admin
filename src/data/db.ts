@@ -131,7 +131,15 @@ export function getProperties() {
   return properties;
 }
 
-export function getApartments() {
+export function getApartments(propertyId?: number) {
+  if (propertyId !== undefined) {
+    const property = properties.find(p => p.id === propertyId);
+    if (property) {
+      return property.floors.flatMap(floor => floor.apartments);
+    } else {
+      return [];
+    }
+  }
   return properties.flatMap(property => property.floors.flatMap(floor => floor.apartments));
 }
 
