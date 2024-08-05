@@ -13,6 +13,10 @@ export const apartments: Apartment[] = [
     tenants: [{
         id: 1, name: 'Alice', email: 'alice@example.com',
         leaseStart: new Date('2021-01-01'),
+    },
+    {
+        id: 3, name: 'Charlie', email: 'charlie@example.com',
+        leaseStart: new Date('2023-03-01'),
     }],
     description: 'En fin lägenhet på Storgatan 1 i Stockholm. Lägenheten har 3 rum och är 75 kvadratmeter stor. Hyran är 10000 kr per månad.',
     number: '101',
