@@ -138,7 +138,11 @@ export default function Framework({ children }) {
           </Sheet>
           <div className="relative ml-auto flex-1 md:grow-0">
             <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input type="search" placeholder="Sök i OneCore..." className="w-full rounded-lg bg-input pl-8 md:w-[200px] lg:w-[336px]" />
+            <Input
+              type="search"
+              placeholder="Sök i OneCore..."
+              className="w-full rounded-lg bg-input pl-8 md:w-[200px] lg:w-[336px]"
+            />
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
