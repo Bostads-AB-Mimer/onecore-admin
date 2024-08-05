@@ -42,30 +42,20 @@ const apartments: Apartment[] = [
     issues: []
   }
 ]
-
-export default function ApartmentPage() {
-  const [apartment, setApartment] = useState<Apartment | null>(null)
-
-  useEffect(() => {
-    const hash = window.location.hash.substring(1)
-    const foundApartment = apartments.find(apartment => apartment.number === hash)
-    setApartment(foundApartment || null)
-  }, [])
-
-  return (
-    <Layout title="Lägenhetshantering Dashboard">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div class="lg:col-span-2">
-          {apartment ? (
-            <ApartmentDetails apartment={apartment} client:load/>
-          ) : (
-            <p>Lägenhet ej hittad</p>
-          )}
-        </div>
-        <div class="lg:col-span-1">
-          <Sidebar />
-        </div>
-      </div>
-    </Layout>
-  )
-}
+const hash = window.location.hash.substring(1)
+const apartment = apartments.find(apartment => apartment.number === hash)
+---
+<Layout title="Lägenhetshantering Dashboard">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="lg:col-span-2">
+      {apartment ? (
+        <ApartmentDetails apartment={apartment} client:load/>
+      ) : (
+        <p>Lägenhet ej hittad</p>
+      )}
+    </div>
+    <div class="lg:col-span-1">
+      <Sidebar />
+    </div>
+  </div>
+</Layout>
