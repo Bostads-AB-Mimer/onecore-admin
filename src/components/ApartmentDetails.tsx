@@ -1,11 +1,3 @@
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuSeparator,
-  DropdownMenuItem,
-} from '@/components/ui/dropdown-menu'
 import {
   Card,
   CardHeader,
@@ -16,7 +8,6 @@ import {
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { CopyIcon, FileIcon, MoveVerticalIcon } from 'lucide-react'
 import type { Apartment } from '@/types/apartment'
 
 export default function ApartmentDetails({
@@ -44,7 +35,9 @@ export default function ApartmentDetails({
               <ul className="grid gap-3">
                 <li className="flex items-center justify-between">
                   <span className="text-muted-foreground">Adress</span>
-                  <span>{apartment.address}, {apartment.city}</span>
+                  <span>
+                    {apartment.address}, {apartment.city}
+                  </span>
                 </li>
                 <li className="flex items-center justify-between">
                   <span className="text-muted-foreground">Storlek</span>
