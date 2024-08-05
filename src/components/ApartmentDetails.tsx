@@ -116,7 +116,7 @@ export default function ApartmentDetails({
                     <div className="text-sm font-medium text-muted-foreground">
                       Hyra
                     </div>
-                    <div>12 000 kr/månad</div>
+                    <div>{apartment.rent} kr/månad</div>
                   </div>
                   <div>
                     <div className="text-sm font-medium text-muted-foreground">
