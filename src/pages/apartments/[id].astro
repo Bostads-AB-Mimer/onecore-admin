@@ -1,8 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import Sidebar from '../../components/Sidebar.astro'
-import ApartmentDetails from '../../components/ApartmentDetails.jsx'
-import { apartments } from '../../data/apartments';
+import Layout from '@/layouts/Layout.astro';
+import Sidebar from '@/components/Sidebar.astro';
+import ApartmentDetails from '@/components/ApartmentDetails.jsx';
+import { apartments } from '@/data/apartments';
 
 const { id } = Astro.params;
 const apartment = apartments.find(apartment => apartment.number === id);
