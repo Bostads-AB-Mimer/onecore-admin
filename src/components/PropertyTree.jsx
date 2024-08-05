@@ -33,7 +33,7 @@ export default function PropertyTree({ properties }) {
     ))
 
   return (
-    <Accordion type="multiple" className="mt-4">
+    <Accordion type="multiple" className="mt-4 lg:col-span-1">
       {properties.map((property) => (
         <AccordionItem key={property.id} value={`property-${property.id}`}>
           <AccordionTrigger>{property.name}</AccordionTrigger>
