@@ -28,7 +28,7 @@ export default function ApartmentDetails({
           </CardHeader>
         </Card>
       </div>
-      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:grid-cols-2 lg:gap-x-6">
+      <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:grid-cols-2 lg:gap-x-6 lg:gap-y-6">
         <Card className="w-full" x-chunk="dashboard-05-chunk-4">
           <CardContent className="p-6 text-sm">
             <div className="grid gap-3">
