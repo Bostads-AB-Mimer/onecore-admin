@@ -160,7 +160,7 @@ export default function ApartmentDetails({
                 <div className="flex items-center justify-between">
                   <div className="font-medium">Jane Smith</div>
                   <div className="text-sm text-muted-foreground">
-                    Hyresavtal utgår: {new Date(apartment.tenants.find(tenant => tenant.name === "Jane Smith")?.leaseEnd || apartment.leaseEndDate).toLocaleDateString('sv-SE')}
+                    Hyresavtal utgår: {new Date(apartment.tenants.sort((a, b) => new Date(b.leaseEnd || 0).getTime() - new Date(a.leaseEnd || 0).getTime())[0]?.leaseEnd || apartment.leaseEndDate).toLocaleDateString('sv-SE')}
                   </div>
                 </div>
               </div>
