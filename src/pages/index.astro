@@ -3,10 +3,8 @@ import Summary from '@/components/Summary';
 import Layout from '../layouts/Layout.astro';
 import 'app/globals.css'
 
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-const themeClass = prefersDark ? 'dark' : 'light';
 ---
-<Layout title="Welcome to Astro." class={`bg-background text-foreground ${themeClass}`}>
+<Layout title="Welcome to Astro.">
 	<main>
 		<Summary />
 	</main>
