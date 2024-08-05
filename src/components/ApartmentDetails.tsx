@@ -151,18 +151,14 @@ export default function ApartmentDetails({
             </TabsContent>
             <TabsContent value="tenants">
               <div className="grid gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="font-medium">John Doe</div>
-                  <div className="text-sm text-muted-foreground">
-                    Hyresavtal utgår: 30/06/2024
+                {apartment.tenants.map((tenant) => (
+                  <div key={tenant.id} className="flex items-center justify-between">
+                    <div className="font-medium">{tenant.name}</div>
+                    <div className="text-sm text-muted-foreground">
+                      Hyresavtal utgår: {tenant.leaseEnd ? new Date(tenant.leaseEnd).toLocaleDateString('sv-SE') : 'Ingen slutdatum'}
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="font-medium">Jane Smith</div>
-                  <div className="text-sm text-muted-foreground">
-                    Hyresavtal utgår: 31/12/2023
-                  </div>
-                </div>
+                ))}
               </div>
             </TabsContent>
           </Tabs>
