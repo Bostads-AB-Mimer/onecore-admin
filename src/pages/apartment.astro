@@ -3,10 +3,8 @@ import Layout from '../layouts/Layout.astro'
 import Sidebar from '../components/Sidebar.astro'
 import ApartmentDetails from '../components/ApartmentDetails.jsx'
 import { apartments } from '../data/apartments';
-const url = new URL(Astro.request.url);
-const query = url.searchParams
-const apartmentNumber = query.get('apartment')
-const apartment = apartments.find(apartment => apartment.number === apartmentNumber)
+const apartmentNumber = Astro.url.searchParams.get('apartment');
+const apartment = apartments.find(apartment => apartment.number === apartmentNumber);
 ---
 <Layout title="Lägenhetshantering Dashboard">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
