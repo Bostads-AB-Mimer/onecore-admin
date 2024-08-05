@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Sidebar from '@/components/Sidebar.astro';
 import ApartmentDetails from '@/components/ApartmentDetails.jsx';
 import { apartments } from '@/data/apartments';
+import '@/styles/globals.css';
 
 const { id } = Astro.params;
 const apartment = apartments.find(apartment => apartment.number === id);
@@ -13,11 +14,11 @@ export async function getStaticPaths() {
   }));
 }
 ---
-<Layout title="Lägenhetshantering Dashboard" themeClass="dark">
+<Layout title="Lägenhetshantering Dashboard">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <div class="lg:col-span-2">
         {apartment ? (
-          <ApartmentDetails apartment={apartment} />
+          <ApartmentDetails apartment={apartment} client:load/>
         ) : (
           <p>Lägenhet ej hittad</p>
         )}
