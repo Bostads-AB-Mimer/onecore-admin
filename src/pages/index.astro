@@ -1,18 +1,13 @@
 ---
 import Summary from '@/components/Summary';
 import Layout from '@/layouts/Layout.astro';
-import Sidebar from '@/components/Sidebar.astro';
 import '@/styles/globals.css';
-import { themeClass } from '@/lib/utils';
 
 ---
 <Layout title="OneCore startsida">
     <main class="grid grid-cols-1 lg:grid-cols-4 gap-4">
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-4">
         <Summary />
-      </div>
-      <div class="lg:col-span-1">
-        <Sidebar />
       </div>
     </main>
 </Layout>

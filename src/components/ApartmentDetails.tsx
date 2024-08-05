@@ -9,6 +9,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import type { Apartment } from '@/types/apartment'
+import { Label } from '@radix-ui/react-dropdown-menu'
 
 export default function ApartmentDetails({
   apartment,
@@ -34,29 +35,29 @@ export default function ApartmentDetails({
               <div className="font-semibold">Lägenhetsinformation</div>
               <ul className="grid gap-3">
                 <li className="flex items-center justify-between">
-                  <span className="text-muted">Adress</span>
+                  <Label>Adress</Label>
                   <span>
                     {apartment.address}, {apartment.city}
                   </span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted">Storlek</span>
+                  <Label>Storlek</Label>
                   <span>{apartment.size} m²</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted">Sovrum</span>
+                  <Label>Sovrum</Label>
                   <span>{apartment.rooms}</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted">Badrum</span>
+                  <Label>Badrum</Label>
                   <span>{apartment.bathrooms}</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted">Hyra</span>
+                  <Label>Hyra</Label>
                   <span>{apartment.rent} kr/månad</span>
                 </li>
                 <li className="flex items-center justify-between">
-                  <span className="text-muted">Deposition</span>
+                  <Label>Deposition</Label>
                   <span>20 000 kr</span>
                 </li>
               </ul>
@@ -83,39 +84,29 @@ export default function ApartmentDetails({
               <div className="grid gap-4 p-5">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <div className="text-sm font-medium text-muted">
-                      Adress
-                    </div>
+                    <Label>Adress</Label>
                     <div>
                       {apartment.address}, {apartment.city}
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-muted">
-                      Storlek
-                    </div>
+                    <Label>Storlek</Label>
                     <div>{apartment.size} m²</div>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <div className="text-sm font-medium text-muted">
-                      Antal rum
-                    </div>
+                    <Label>Antal rum</Label>
                     <div>{apartment.rooms}</div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-muted">
-                      Antal badrum
-                    </div>
+                    <Label>Antal badrum</Label>
                     <div>{apartment.bathrooms}</div>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <div className="text-sm font-medium text-muted">
-                      Hyra
-                    </div>
+                    <Label>Hyra</Label>
                     <div>{apartment.rent} kr/månad</div>
                   </div>
                   <div>
@@ -152,10 +143,16 @@ export default function ApartmentDetails({
             <TabsContent value="tenants">
               <div className="grid gap-4">
                 {apartment.tenants.map((tenant) => (
-                  <div key={tenant.id} className="flex items-center justify-between">
+                  <div
+                    key={tenant.id}
+                    className="flex items-center justify-between"
+                  >
                     <div className="font-medium">{tenant.name}</div>
                     <div className="text-sm text-muted">
-                      Hyresavtal utgår: {tenant.leaseEnd ? new Date(tenant.leaseEnd).toLocaleDateString('sv-SE') : 'Ingen slutdatum'}
+                      Hyresavtal utgår:{' '}
+                      {tenant.leaseEnd
+                        ? new Date(tenant.leaseEnd).toLocaleDateString('sv-SE')
+                        : 'Ingen slutdatum'}
                     </div>
                   </div>
                 ))}
