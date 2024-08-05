@@ -5,7 +5,7 @@ const apartments = getApartments();
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -23,6 +23,13 @@ import {
 } from 'lucide-react'
 
 export default function Framework({ children }) {
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = (event) => {
+    const results = searchApartments(event.target.value);
+    setSearchResults(results);
+  };
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">
@@ -69,7 +76,20 @@ export default function Framework({ children }) {
                   ))}
                 </div>
               ))}
-            </div>
+              {searchResults.length > 0 && (
+                <div className="absolute z-10 mt-2 w-full bg-white shadow-lg">
+                  <ul>
+                    {searchResults.map((apartment) => (
+                      <li key={apartment.id} className="p-2 hover:bg-gray-200">
+                        <Link href={`/apartments/${apartment.number}`}>
+                          {apartment.number} - {apartment.address}, {apartment.city}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div> 
           </div>
         </nav>
       </aside>
@@ -125,10 +145,7 @@ export default function Framework({ children }) {
               type="search"
               placeholder="Sök i OneCore..."
               className="w-full rounded-lg bg-input pl-8 md:w-[200px] lg:w-[336px]"
-              onChange={(e) => {
-                const results = searchApartments(e.target.value);
-                console.log(results); // You can replace this with actual display logic
-              }}
+              onChange={handleSearch}
             />
           </div>
           <DropdownMenu>
