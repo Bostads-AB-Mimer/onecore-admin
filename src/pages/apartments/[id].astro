@@ -1,10 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Sidebar from '../components/Sidebar.astro'
-import ApartmentDetails from '../components/ApartmentDetails.jsx'
-import { apartments } from '../data/apartments';
-const apartmentNumber = Astro.url.pathname.split('/').pop();
-const apartment = apartments.find(apartment => apartment.number === apartmentNumber);
+import Layout from '../../layouts/Layout.astro'
+import Sidebar from '../../components/Sidebar.astro'
+import ApartmentDetails from '../../components/ApartmentDetails.jsx'
+import { apartments } from '../../data/apartments';
+
+const { id } = Astro.params;
+const apartment = apartments.find(apartment => apartment.number === id);
+
+export async function getStaticPaths() {
+  return apartments.map(apartment => ({
+    params: { id: apartment.number }
+  }));
+}
 ---
 <Layout title="Lägenhetshantering Dashboard">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
