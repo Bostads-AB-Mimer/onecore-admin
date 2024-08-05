@@ -46,14 +46,14 @@ export default function Framework({ children }) {
           <div className="flex-1 overflow-auto">
             <div className="grid gap-2">
               {properties.map((property) => (
-                <div key={property}>
+                <div key={property.id}>
                   <div className="text-sm font-medium text-muted-foreground">
-                    {property}
+                    {property.name}
                   </div>
                   {property.floors.map((floor) => (
                     <div key={floor} className="ml-4">
-                      <div className="text-sm font-medium text-muted-foreground">
-                        {floor}
+                      <div key={floor.id} className="text-sm font-medium text-muted-foreground">
+                        {floor.name}
                       </div>
                       {floor.apartments.map((apartment) => (
                         <Link
