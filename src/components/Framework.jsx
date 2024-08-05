@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { apartments } from '../pages/apartment.astro';
+import { apartments } from '../data/apartments';
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
