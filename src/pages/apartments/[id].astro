@@ -5,8 +5,9 @@ import { getProperties } from '@/data/db';
 import '@/styles/globals.css';
 
 const { id } = Astro.params;
+const [propertyId, apartmentNumber] = id.split('/');
 const properties = getProperties();
-const apartment = properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).find(apartment => apartment.number === id);
+const apartment = properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).find(apartment => apartment.propertyId === parseInt(propertyId) && apartment.number === apartmentNumber);
 
 export async function getStaticPaths() {
   const properties = getProperties();
