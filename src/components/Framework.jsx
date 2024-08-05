@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import { apartments } from '../data/apartments'
+import { apartments, searchApartments } from '../data/db'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useState } from 'react'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -121,6 +122,10 @@ export default function Framework({ children }) {
               type="search"
               placeholder="Sök i OneCore..."
               className="w-full rounded-lg bg-input pl-8 md:w-[200px] lg:w-[336px]"
+              onChange={(e) => {
+                const results = searchApartments(e.target.value);
+                console.log(results); // You can replace this with actual display logic
+              }}
             />
           </div>
           <DropdownMenu>
