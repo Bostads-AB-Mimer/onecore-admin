@@ -82,7 +82,7 @@ export default function ApartmentDetails({
             </TabsList>
             <TabsContent value="details">
               <div className="grid gap-4 p-5">
-                <div className="grid grid-cols-2 gap-4 lg:gap-x-6">
+                <div className="grid grid-cols-2 gap-4 lg:gap-x-6 lg:gap-y-6">
                   <div>
                     <Label>Adress</Label>
                     <div>
@@ -94,7 +94,7 @@ export default function ApartmentDetails({
                     <div>{apartment.size} m²</div>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 lg:gap-x-6">
+                <div className="grid grid-cols-2 gap-4 lg:gap-x-6 lg:gap-y-6">
                   <div>
                     <Label>Antal rum</Label>
                     <div>{apartment.rooms}</div>
@@ -104,7 +104,7 @@ export default function ApartmentDetails({
                     <div>{apartment.bathrooms}</div>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 lg:gap-x-6">
+                <div className="grid grid-cols-2 gap-4 lg:gap-x-6 lg:gap-y-6">
                   <div>
                     <Label>Hyra</Label>
                     <div>{apartment.rent} kr/månad</div>
