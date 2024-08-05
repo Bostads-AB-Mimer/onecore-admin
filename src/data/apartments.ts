@@ -4,7 +4,7 @@ export const apartments: Apartment[] = [
   {
     id: 101,
     address: 'Storgatan 1',
-    city: 'Stockholm',
+    city: 'Västerås',
     rooms: 3,
     bathrooms: 1,
     size: 75,
@@ -25,7 +25,7 @@ export const apartments: Apartment[] = [
   {
     id: 102,
     address: 'Lillgatan 2',
-    city: 'Göteborg',
+    city: 'Västerås',
     rooms: 2,
     bathrooms: 1,
     size: 60,
