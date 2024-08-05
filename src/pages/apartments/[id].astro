@@ -3,7 +3,6 @@ import Layout from '@/layouts/Layout.astro';
 import ApartmentDetails from '@/components/ApartmentDetails.jsx';
 import { getProperties } from '@/data/db';
 import '@/styles/globals.css';
-import { themeClass } from '@/lib/utils';
 
 const { id } = Astro.params;
 const properties = getProperties();
