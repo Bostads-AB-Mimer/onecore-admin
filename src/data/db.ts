@@ -125,7 +125,6 @@ const properties: Property[] = [
       },
     ],
   },
-  },
   {
     id: 2,
     name: 'Fastighet 2',
