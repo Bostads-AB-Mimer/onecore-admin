@@ -134,3 +134,12 @@ export function getProperties() {
 export function getApartments() {
   return properties.flatMap(property => property.floors.flatMap(floor => floor.apartments));
 }
+
+export function searchApartments(query: string) {
+  const lowerCaseQuery = query.toLowerCase();
+  return getApartments().filter(apartment => 
+    apartment.address.toLowerCase().includes(lowerCaseQuery) ||
+    apartment.city.toLowerCase().includes(lowerCaseQuery) ||
+    apartment.number.includes(query)
+  );
+}
