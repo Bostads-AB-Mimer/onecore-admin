@@ -14,16 +14,18 @@ export async function getStaticPaths() {
 }
 ---
 <Layout title="Lägenhetshantering Dashboard">
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-    <div class="lg:col-span-2">
-      {apartment ? (
-        <ApartmentDetails apartment={apartment} client:load/>
-      ) : (
-        <p>Lägenhet ej hittad</p>
-      )}
+  <body class={themeClass}>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="lg:col-span-2">
+        {apartment ? (
+          <ApartmentDetails apartment={apartment} client:load/>
+        ) : (
+          <p>Lägenhet ej hittad</p>
+        )}
+      </div>
+      <div class="lg:col-span-1">
+        <Sidebar />
+      </div>
     </div>
-    <div class="lg:col-span-1">
-      <Sidebar />
-    </div>
-  </div>
+  </body>
 </Layout>
