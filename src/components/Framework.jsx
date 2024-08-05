@@ -26,7 +26,8 @@ export default function Framework({ children }) {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = (event) => {
-    const results = searchApartments(event.target.value);
+    const query = event.target.value;
+    const results = searchApartments(query);
     setSearchResults(results);
   };
 

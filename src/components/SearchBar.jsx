@@ -7,7 +7,9 @@ export default function SearchBar() {
   const [results, setResults] = useState([]);
 
   const handleSearch = (event) => {
-    const searchResults = searchApartments(event.target.value);
+    const query = event.target.value;
+    setQuery(query);
+    const searchResults = searchApartments(query);
     setResults(searchResults);
   };
 
@@ -18,19 +20,21 @@ export default function SearchBar() {
         placeholder="Sök lägenheter..."
         onChange={handleSearch}
       />
-      <div>
-        {results.length > 0 ? (
-          <ul>
-            {results.map((apartment) => (
-              <li key={apartment.id}>
-                {apartment.number} - {apartment.address}, {apartment.city}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          query && <p>Inga resultat hittades</p>
-        )}
-      </div>
+      {query && (
+        <div className="absolute z-10 mt-2 w-full bg-white shadow-lg">
+          {results.length > 0 ? (
+            <ul>
+              {results.map((apartment) => (
+                <li key={apartment.id} className="p-2 hover:bg-gray-200">
+                  {apartment.number} - {apartment.address}, {apartment.city}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="p-2">Inga resultat hittades</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
