@@ -10,7 +10,7 @@ import {
   LayoutPanelLeftIcon,
 } from 'lucide-react'
 
-export default function Framework({ children }) {
+export default function Framework({ children = null }) {
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
       <Header />
