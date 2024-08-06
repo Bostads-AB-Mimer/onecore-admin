@@ -9,11 +9,11 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import type { Apartment } from '@/types/apartment'
-import { Label } from '@radix-ui/react-dropdown-menu'
 import ApartmentInfoTab from './tabs/ApartmentInfoTab'
 import IssuesTab from './tabs/IssuesTab'
 import EconomyTab from './tabs/EconomyTab'
 import HistoryTab from './tabs/HistoryTab'
+import { Label } from './ui/label'
 
 export default function ApartmentDetails({
   apartment,
@@ -33,71 +33,27 @@ export default function ApartmentDetails({
         </Card>
       </div>
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:grid-cols-2 lg:gap-x-6 lg:gap-y-6">
-        <Card className="w-full" x-chunk="dashboard-05-chunk-4">
-          <CardContent className="p-6 text-sm">
-            <div className="grid gap-3">
-              <div className="font-semibold">Lägenhetsinformation</div>
-              <ul className="grid gap-3">
-                <li className="flex items-center justify-between">
-                  <Label>Adress</Label>
-                  <span>
-                    {apartment.address}, {apartment.city}
-                  </span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <Label>Storlek</Label>
-                  <span>{apartment.size} m²</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <Label>Sovrum</Label>
-                  <span>{apartment.rooms}</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <Label>Badrum</Label>
-                  <span>{apartment.bathrooms}</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <Label>Hyra</Label>
-                  <span>{apartment.rent} kr/månad</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <Label>Deposition</Label>
-                  <span>20 000 kr</span>
-                </li>
-              </ul>
-            </div>
-            <Separator className="my-4" />
-            <div className="grid gap-3">
-              <div className="font-semibold">Hyresgästinformation</div>
-              <dl className="grid gap-3">
-                <div className="flex items-center justify-between">
-                  <dt className="text-muted" />
-                </div>
-              </dl>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="w-full p-6" x-chunk="dashboard-05-chunk-0">
-          <Tabs defaultValue="details">
-            <TabsList>
-              <TabsTrigger value="apartmentInfo">Lägenhetsinformation</TabsTrigger>
-              <TabsTrigger value="economy">Ekonomi</TabsTrigger>
-              <TabsTrigger value="history">Historik</TabsTrigger>
-            </TabsList>
-            <TabsContent value="apartmentInfo">
-              <ApartmentInfoTab apartment={apartment} />
-            </TabsContent>
-            <TabsContent value="issues">
-              <IssuesTab apartment={apartment} />
-            </TabsContent>
-            <TabsContent value="economy">
-              <EconomyTab apartment={apartment} />
-            </TabsContent>
-            <TabsContent value="history">
-              <HistoryTab apartment={apartment} />
-            </TabsContent>
-          </Tabs>
-        </Card>
+        <Tabs defaultValue="details">
+          <TabsList>
+            <TabsTrigger value="apartmentInfo">
+              Lägenhetsinformation
+            </TabsTrigger>
+            <TabsTrigger value="economy">Ekonomi</TabsTrigger>
+            <TabsTrigger value="history">Historik</TabsTrigger>
+          </TabsList>
+          <TabsContent value="apartmentInfo">
+            <ApartmentInfoTab apartment={apartment} />
+          </TabsContent>
+          <TabsContent value="issues">
+            <IssuesTab apartment={apartment} />
+          </TabsContent>
+          <TabsContent value="economy">
+            <EconomyTab apartment={apartment} />
+          </TabsContent>
+          <TabsContent value="history">
+            <HistoryTab apartment={apartment} />
+          </TabsContent>
+        </Tabs>
       </div>
     </>
   )
