@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ChevronRightIcon, CopyIcon } from 'lucide-react'
-import Link from 'next/link'
 
 export default function Summary() {
   return (
@@ -100,38 +99,34 @@ export default function Summary() {
           </CardHeader>
           <CardContent className="p-6 text-sm">
             <div className="grid gap-3">
-              <Link
+              <a
                 href="#"
                 className="flex items-center justify-between hover:bg-muted rounded-md p-2"
-                prefetch={false}
               >
                 <span>Lägenheter</span>
                 <ChevronRightIcon className="h-5 w-5" />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#"
                 className="flex items-center justify-between hover:bg-muted rounded-md p-2"
-                prefetch={false}
               >
                 <span>Hyresgäster</span>
                 <ChevronRightIcon className="h-5 w-5" />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#"
                 className="flex items-center justify-between hover:bg-muted rounded-md p-2"
-                prefetch={false}
               >
                 <span>Ärenden</span>
                 <ChevronRightIcon className="h-5 w-5" />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#"
                 className="flex items-center justify-between hover:bg-muted rounded-md p-2"
-                prefetch={false}
               >
                 <span>Rapporter</span>
                 <ChevronRightIcon className="h-5 w-5" />
-              </Link>
+              </a>
             </div>
           </CardContent>
         </Card>
