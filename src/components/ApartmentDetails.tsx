@@ -3,17 +3,13 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
 } from '@/components/ui/card'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
 import type { Apartment } from '@/types/apartment'
 import ApartmentInfoTab from './tabs/ApartmentInfoTab'
 import IssuesTab from './tabs/IssuesTab'
 import EconomyTab from './tabs/EconomyTab'
 import HistoryTab from './tabs/HistoryTab'
-import { Label } from './ui/label'
 
 export default function ApartmentDetails({
   apartment,
@@ -23,7 +19,7 @@ export default function ApartmentDetails({
   return (
     <>
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
-        <Card className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
+        <Card className="sm:col-span-2">
           <CardHeader className="pb-3">
             <CardTitle>Lägenhet {apartment.number}</CardTitle>
             <CardDescription className="max-w-lg text-balance leading-relaxed text-foreground">
@@ -40,6 +36,7 @@ export default function ApartmentDetails({
             </TabsTrigger>
             <TabsTrigger value="economy">Ekonomi</TabsTrigger>
             <TabsTrigger value="history">Historik</TabsTrigger>
+            <TabsTrigger value="issues">Ärenden</TabsTrigger>
           </TabsList>
           <TabsContent value="apartmentInfo">
             <ApartmentInfoTab apartment={apartment} />
