@@ -16,8 +16,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import {
   BuildingIcon,
+  CircleUserIcon,
   HomeIcon,
   LayoutPanelLeftIcon,
+  MenuIcon,
+  Package2Icon,
   PanelLeftIcon,
   SearchIcon,
 } from 'lucide-react'
@@ -33,6 +36,136 @@ export default function Framework({ children }) {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
+      <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+          <Link
+            href="#"
+            className="flex items-center gap-2 text-lg font-semibold md:text-base"
+            prefetch={false}
+          >
+            <Package2Icon className="h-6 w-6" />
+            <span className="sr-only">Acme Inc</span>
+          </Link>
+          <Link
+            href="#"
+            className="text-foreground transition-colors hover:text-foreground"
+            prefetch={false}
+          >
+            Lägenheter
+          </Link>
+          <Link
+            href="#"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            prefetch={false}
+          >
+            Annonser
+          </Link>
+          <Link
+            href="#"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            prefetch={false}
+          >
+            Hyresgäster
+          </Link>
+          <Link
+            href="#"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            prefetch={false}
+          >
+            Underhåll
+          </Link>
+          <Link
+            href="#"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            prefetch={false}
+          >
+            Analys
+          </Link>
+        </nav>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="shrink-0 md:hidden"
+            >
+              <MenuIcon className="h-5 w-5" />
+              <span className="sr-only">Växla navigeringsmeny</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav className="grid gap-6 text-lg font-medium">
+              <Link
+                href="#"
+                className="flex items-center gap-2 text-lg font-semibold"
+                prefetch={false}
+              >
+                <Package2Icon className="h-6 w-6" />
+                <span className="sr-only">Acme Inc</span>
+              </Link>
+              <Link href="#" className="hover:text-foreground" prefetch={false}>
+                Lägenheter
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-foreground"
+                prefetch={false}
+              >
+                Annonser
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-foreground"
+                prefetch={false}
+              >
+                Hyresgäster
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-foreground"
+                prefetch={false}
+              >
+                Underhåll
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-foreground"
+                prefetch={false}
+              >
+                Analys
+              </Link>
+            </nav>
+          </SheetContent>
+        </Sheet>
+        <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+          <form className="ml-auto flex-1 sm:flex-initial">
+            <div className="relative">
+              <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Sök i OneCore..."
+                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+              />
+            </div>
+          </form>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="secondary" size="icon" className="rounded-full">
+                <CircleUserIcon className="h-5 w-5" />
+                <span className="sr-only">Växla användarmeny</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Mitt konto</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Inställningar</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Logga ut</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </header>
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">
         <nav className="flex flex-col gap-4 px-4 py-6">
           <Link
@@ -139,34 +272,6 @@ export default function Framework({ children }) {
               </nav>
             </SheetContent>
           </Sheet>
-          <div className="relative ml-auto flex-1 md:grow-0">
-            <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Sök i OneCore..."
-              className="w-full rounded-lg bg-input pl-8 md:w-[200px] lg:w-[336px]"
-              onChange={handleSearch}
-            />
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className="overflow-hidden rounded-full bg-button"
-              >
-                <SearchIcon className="h-5 w-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Mitt Konto</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Inställningar</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logga ut</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-2 xl:grid-cols-2 bg-main">
           <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
