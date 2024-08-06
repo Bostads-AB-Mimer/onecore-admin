@@ -33,7 +33,20 @@ export default function SearchBar() {
     }
   }, [searchRef])
 
-  return (
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.metaKey && event.key === 'k') {
+        event.preventDefault()
+        setIsSearchVisible(true)
+        searchRef.current?.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
     <div className="relative w-full max-w-md">
       <Command className="rounded-lg border shadow-md w-full">
         <CommandInput
