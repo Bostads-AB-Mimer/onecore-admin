@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import SearchBar from '@/components/SearchBar'
@@ -16,49 +15,43 @@ export default function Header() {
   return (
     <header className="sticky top-0 flex h-16 items-center justify-between border-b bg-background px-4 md:px-6 z-30">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 flex-1">
-        <Link
+        <a
           href="#"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
-          prefetch={false}
         >
           <Package2Icon className="h-6 w-6" />
           <span className="sr-only">Acme Inc</span>
-        </Link>
-        <Link
+        </a>
+        <a
           href="#"
           className="text-foreground transition-colors hover:text-foreground"
-          prefetch={false}
         >
           Lägenheter
-        </Link>
-        <Link
+        </a>
+        <a
           href="#"
           className="text-muted-foreground transition-colors hover:text-foreground"
-          prefetch={false}
         >
           Annonser
-        </Link>
-        <Link
+        </a>
+        <a
           href="#"
           className="text-muted-foreground transition-colors hover:text-foreground"
-          prefetch={false}
         >
           Hyresgäster
-        </Link>
-        <Link
+        </a>
+        <a
           href="#"
           className="text-muted-foreground transition-colors hover:text-foreground"
-          prefetch={false}
         >
           Underhåll
-        </Link>
-        <Link
+        </a>
+        <a
           href="#"
           className="text-muted-foreground transition-colors hover:text-foreground"
-          prefetch={false}
         >
           Analys
-        </Link>
+        </a>
       </nav>
       <Sheet>
         <SheetTrigger asChild>
@@ -69,45 +62,40 @@ export default function Header() {
         </SheetTrigger>
         <SheetContent side="left">
           <nav className="grid gap-6 text-lg font-medium">
-            <Link
+            <a
               href="#"
               className="flex items-center gap-2 text-lg font-semibold"
-              prefetch={false}
             >
               <Package2Icon className="h-6 w-6" />
               <span className="sr-only">Acme Inc</span>
-            </Link>
-            <Link href="#" className="hover:text-foreground" prefetch={false}>
+            </a>
+            <a href="#" className="hover:text-foreground">
               Lägenheter
-            </Link>
-            <Link
+            </a>
+            <a
               href="#"
               className="text-muted-foreground hover:text-foreground"
-              prefetch={false}
             >
               Annonser
-            </Link>
-            <Link
+            </a>
+            <a
               href="#"
               className="text-muted-foreground hover:text-foreground"
-              prefetch={false}
             >
               Hyresgäster
-            </Link>
-            <Link
+            </a>
+            <a
               href="#"
               className="text-muted-foreground hover:text-foreground"
-              prefetch={false}
             >
               Underhåll
-            </Link>
-            <Link
+            </a>
+            <a
               href="#"
               className="text-muted-foreground hover:text-foreground"
-              prefetch={false}
             >
               Analys
-            </Link>
+            </a>
           </nav>
         </SheetContent>
       </Sheet>
