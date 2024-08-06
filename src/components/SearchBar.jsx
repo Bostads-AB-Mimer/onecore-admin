@@ -51,7 +51,7 @@ export default function SearchBar() {
   }
 
   return (
-    <Command className="relative rounded-lg border shadow-md">
+    <Command className="relative rounded-lg border shadow-md w-full max-w-md">
       <CommandInput
         placeholder="Sök i OneCore..."
         onValueChange={handleSearch}
