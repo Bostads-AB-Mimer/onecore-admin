@@ -181,8 +181,8 @@ export default function Framework({ children }) {
                 onValueChange={handleSearch}
                 className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
               />
-              {searchQuery && (
-                <CommandList>
+              <CommandList>
+                {searchQuery ? (
                   <CommandEmpty>Inga resultat funna.</CommandEmpty>
                   <CommandGroup heading="Lägenheter">
                     {searchResults.apartments?.map((apartment) => (
@@ -213,8 +213,10 @@ export default function Framework({ children }) {
                       </CommandItem>
                     ))}
                   </CommandGroup>
-                </CommandList>
-              )}
+                ) : (
+                  <CommandEmpty>Inga resultat funna.</CommandEmpty>
+                )}
+              </CommandList>
             </Command>
           </div>
           <DropdownMenu>
