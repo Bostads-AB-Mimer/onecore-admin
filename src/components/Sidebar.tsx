@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 
-export default function Sidebar() {
+export default function Sidebar({ selectedApartment, setSelectedApartment }) {
   const properties = getProperties()
   const [selectedProperty, setSelectedProperty] = useState<string | null>(null)
 
@@ -48,7 +48,10 @@ export default function Sidebar() {
                             key={apartment.id}
                             href={`/apartments/${property.id}-${apartment.id}`}
                             className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                            onClick={() => setSelectedProperty(`property-${property.id}`)}
+                            onClick={() => {
+                              setSelectedProperty(`property-${property.id}`)
+                              setSelectedApartment(apartment.id)
+                            }}
                           >
                             <HomeIcon className="h-4 w-4" />
                             <span>{apartment.id}</span>

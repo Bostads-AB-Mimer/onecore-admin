@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
@@ -12,7 +12,18 @@ import {
 } from 'lucide-react'
 
 export default function Framework({ children }) {
+  const [selectedApartment, setSelectedApartment] = useState<string | null>(null)
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const apartmentId = urlParams.get('apartment')
+    if (apartmentId) {
+      setSelectedApartment(apartmentId)
+    }
+  }, [])
+
   return (
+    <Sidebar selectedApartment={selectedApartment} setSelectedApartment={setSelectedApartment} />
     <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
       <Header />
       <Sidebar />
