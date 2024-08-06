@@ -17,7 +17,7 @@ export default function ApartmentDetails({
   apartment: Apartment
 }) {
   return (
-    <>
+    <div>
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
         <Card className="sm:col-span-2">
           <CardHeader className="pb-3">
@@ -52,6 +52,6 @@ export default function ApartmentDetails({
           </TabsContent>
         </Tabs>
       </div>
-    </>
+    </div>
   )
 }
