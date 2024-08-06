@@ -31,8 +31,8 @@ export default function Framework({ children }) {
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
-      <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+      <header className="sticky top-0 flex h-16 items-center justify-between border-b bg-background px-4 md:px-6">
+        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 flex-1">
           <Link
             href="#"
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
@@ -132,7 +132,7 @@ export default function Framework({ children }) {
             </nav>
           </SheetContent>
         </Sheet>
-        <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+        <div className="flex items-center gap-4 md:gap-2 lg:gap-4">
           <SearchBar />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
