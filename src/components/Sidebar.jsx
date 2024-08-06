@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { BuildingIcon, HomeIcon } from 'lucide-react';
-import { getProperties } from '@/data/db';
+import Link from 'next/link'
+import { BuildingIcon, HomeIcon } from 'lucide-react'
+import { getProperties } from '@/data/db'
 
-const properties = getProperties();
+const properties = getProperties()
 
 export default function Sidebar() {
   return (
@@ -50,5 +50,5 @@ export default function Sidebar() {
         </div>
       </nav>
     </aside>
-  );
+  )
 }

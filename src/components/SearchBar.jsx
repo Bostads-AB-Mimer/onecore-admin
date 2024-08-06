@@ -38,6 +38,7 @@ export default function SearchBar() {
 
   const handleSearch = (query) => {
     setSearchQuery(query)
+    console.log('query', query)
     if (query) {
       const results = searchApartments(query)
       setSearchResults({

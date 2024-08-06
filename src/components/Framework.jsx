@@ -12,8 +12,6 @@ import {
 } from 'lucide-react'
 
 export default function Framework({ children }) {
-  const [searchResults, setSearchResults] = useState([])
-
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
       <Header />
