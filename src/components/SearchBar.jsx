@@ -32,7 +32,7 @@ export default function SearchBar() {
   }, [searchRef])
 
   return (
-    <Command className="relative rounded-lg border shadow-md w-full max-w-md align-top">
+    <Command className="relative rounded-lg border shadow-md w-full max-w-md">
       <CommandInput
         placeholder="Sök i OneCore..."
         className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
@@ -44,7 +44,7 @@ export default function SearchBar() {
       />
       <CommandList
         ref={searchRef}
-        className={isSearchVisible ? 'inline' : 'hidden'}
+        className={`absolute top-full left-0 right-0 mt-1 rounded-lg border shadow-md bg-white ${isSearchVisible ? 'block' : 'hidden'}`}
       >
         <CommandEmpty>Inga sökträffar</CommandEmpty>
         <CommandGroup heading="Lägenheter">
