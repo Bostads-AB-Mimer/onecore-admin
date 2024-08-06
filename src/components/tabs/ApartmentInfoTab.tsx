@@ -1,17 +1,25 @@
-import { Label } from '@/components/ui/label.tsx'
+import { Label } from '@/components/ui/label'
 import type { Apartment } from '@/types/apartment'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 
-export default function ApartmentInfoTab({ apartment }: { apartment: Apartment }) {
+export default function ApartmentInfoTab({
+  apartment,
+}: {
+  apartment: Apartment
+}) {
   return (
     <Card className="w-full p-6">
       <CardHeader>
         <CardTitle>Lägenhetsinformation</CardTitle>
-        <CardDescription>
-          Detaljerad information om lägenheten.
-        </CardDescription>
+        <CardDescription>Detaljerad information om lägenheten.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
         <div className="grid gap-3">
@@ -50,7 +58,7 @@ export default function ApartmentInfoTab({ apartment }: { apartment: Apartment }
           <div className="font-semibold">Hyresgästinformation</div>
           <dl className="grid gap-3">
             <div className="flex items-center justify-between">
-              <dt className={cn("text-muted", className)} />
+              <dt className={cn('text-muted', className)} />
             </div>
           </dl>
         </div>
