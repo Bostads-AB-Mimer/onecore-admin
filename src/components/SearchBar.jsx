@@ -12,7 +12,6 @@ import {
 import { HomeIcon, BuildingIcon, LayoutPanelLeftIcon } from 'lucide-react'
 
 export default function SearchBar() {
-  const [searchQuery, setSearchQuery] = useState('')
   const properties = getProperties()
   const apartments = getApartments()
 
@@ -33,7 +32,7 @@ export default function SearchBar() {
   }, [searchRef])
 
   return (
-    <Command className="relative rounded-lg border shadow-md w-full max-w-md">
+    <Command className="relative rounded-lg border shadow-md w-full max-w-md align-top">
       <CommandInput
         placeholder="Sök i OneCore..."
         className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
@@ -45,7 +44,7 @@ export default function SearchBar() {
       />
       <CommandList
         ref={searchRef}
-        className={isSearchVisible ? 'block' : 'hidden'}
+        className={isSearchVisible ? 'inline' : 'hidden'}
       >
         <CommandEmpty>Inga sökträffar</CommandEmpty>
         <CommandGroup heading="Lägenheter">
@@ -57,7 +56,7 @@ export default function SearchBar() {
               <CommandItem>
                 <HomeIcon className="mr-2 h-4 w-4" />
                 <span>
-                  {apartment.number} - {apartment.address}, {apartment.city}
+                  {apartment.id} - {apartment.address}, {apartment.city}
                 </span>
               </CommandItem>
             </a>
