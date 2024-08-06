@@ -11,22 +11,10 @@ import {
   LayoutPanelLeftIcon,
 } from 'lucide-react'
 
-export default function Framework({ children }) {
-  const [selectedApartment, setSelectedApartment] = useState<string | null>(
-    null
-  )
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const apartmentId = urlParams.get('apartment')
-    if (apartmentId) {
-      setSelectedApartment(apartmentId)
-    }
-  }, [])
-
+export default function Framework({ children, selectedApartment }) {
   return (
     <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
-      <Sidebar selectedApartment={selectedApartment} setSelectedApartment={setSelectedApartment} />
+      <Sidebar selectedApartment={selectedApartment} />
       <Header />
       <div
         className={cn(
@@ -80,7 +68,7 @@ export default function Framework({ children }) {
                     'flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'
                   )}
                 >
-                  <HomeIcon className="h-4 w-4 mr-2' />
+                  <HomeIcon className="h-4 w-4 mr-2" />
                   Lägenheter
                 </a>
               </nav>
