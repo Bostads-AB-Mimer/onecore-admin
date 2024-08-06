@@ -6,7 +6,15 @@ import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import React, { useState } from 'react'
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from '@/components/ui/command'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -181,7 +189,8 @@ export default function Framework({ children }) {
                       <CommandItem key={apartment.id}>
                         <HomeIcon className="mr-2 h-4 w-4" />
                         <span>
-                          {apartment.number} - {apartment.address}, {apartment.city}
+                          {apartment.number} - {apartment.address},{' '}
+                          {apartment.city}
                         </span>
                       </CommandItem>
                     ))}
@@ -204,7 +213,6 @@ export default function Framework({ children }) {
                       </CommandItem>
                     ))}
                   </CommandGroup>
-                </CommandList>
                 </CommandList>
               )}
             </Command>
