@@ -58,7 +58,7 @@ export default function ApartmentInfoTab({
           <div className="font-semibold">Hyresgästinformation</div>
           <dl className="grid gap-3">
             <div className="flex items-center justify-between">
-              <dt className={cn('text-muted', className)} />
+              <dt className={cn('text-muted')} />
             </div>
           </dl>
         </div>
