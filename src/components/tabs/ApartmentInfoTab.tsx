@@ -1,7 +1,6 @@
 import { Label } from '@radix-ui/react-dropdown-menu'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import type { Apartment } from '@/types/apartment'
 
 export default function ApartmentInfoTab({ apartment }: { apartment: Apartment }) {
   return (
