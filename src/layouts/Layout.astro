@@ -16,12 +16,9 @@ const { title, themeClass = '' } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class={themeClass}>
-		<ApartmentProvider>
-			<Framework client:load>
-			<slot />
-			<slot />
-			</Framework>
-		</ApartmentProvider>
+		<Framework client:load>
+		<slot />
+		</Framework>
 	</body>
 </html>
 <style is:global>
