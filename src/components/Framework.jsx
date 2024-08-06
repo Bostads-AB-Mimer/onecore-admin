@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Link from 'next/link'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
@@ -27,38 +26,34 @@ export default function Framework({ children }) {
             </SheetTrigger>
             <SheetContent side="left" className="sm:max-w-xs">
               <nav className="grid gap-6 text-lg font-medium">
-                <Link
+                <a
                   href="#"
                   className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
-                  prefetch={false}
                 >
                   <BuildingIcon className="h-5 w-5 transition-all group-hover:scale-110" />
                   <span className="sr-only">Acme Fastigheter</span>
-                </Link>
-                <Link
+                </a>
+                <a
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  prefetch={false}
                 >
                   <HomeIcon className="h-5 w-5" />
                   Fastigheter
-                </Link>
-                <Link
+                </a>
+                <a
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  prefetch={false}
                 >
                   <LayoutPanelLeftIcon className="h-5 w-5" />
                   Våningar
-                </Link>
-                <Link
+                </a>
+                <a
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  prefetch={false}
                 >
                   <HomeIcon className="h-4 w-4 mr-2" />
                   Lägenheter
-                </Link>
+                </a>
               </nav>
             </SheetContent>
           </Sheet>
