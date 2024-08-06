@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { getProperties, getApartments } from '../data/db'
+import { getProperties, getApartments, searchApartments } from '../data/db'
 
 const properties = getProperties()
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import SearchBar from './SearchBar'
+import SearchBar from './SearchBar';
+import { useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -25,6 +26,8 @@ import {
 } from 'lucide-react'
 
 export default function Framework({ children }) {
+
+  const [searchResults, setSearchResults] = useState([]);
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
