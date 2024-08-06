@@ -25,21 +25,23 @@ export default function Sidebar() {
               <AccordionTrigger>{property.address}</AccordionTrigger>
               <AccordionContent>
                 {property.floors.map((floor) => (
-                  <AccordionItem key={floor.id} value={`floor-${floor.id}`}>
-                    <AccordionTrigger>{floor.name}</AccordionTrigger>
-                    <AccordionContent>
-                      {floor.apartments.map((apartment) => (
-                        <a
-                          key={apartment.id}
-                          href={`/apartments/${property.id}-${apartment.id}`}
-                          className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                        >
-                          <HomeIcon className="h-4 w-4" />
-                          <span>{apartment.id}</span>
-                        </a>
-                      ))}
-                    </AccordionContent>
-                  </AccordionItem>
+                  <Accordion key={floor.id} type="single" collapsible>
+                    <AccordionItem value={`floor-${floor.id}`}>
+                      <AccordionTrigger>{floor.name}</AccordionTrigger>
+                      <AccordionContent>
+                        {floor.apartments.map((apartment) => (
+                          <a
+                            key={apartment.id}
+                            href={`/apartments/${property.id}-${apartment.id}`}
+                            className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
+                          >
+                            <HomeIcon className="h-4 w-4" />
+                            <span>{apartment.id}</span>
+                          </a>
+                        ))}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 ))}
               </AccordionContent>
             </AccordionItem>
