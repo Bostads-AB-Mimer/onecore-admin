@@ -44,7 +44,10 @@ export default function Framework({ children }) {
     ],
   }
 
+  const [searchQuery, setSearchQuery] = useState('')
+
   const handleSearch = (query) => {
+    setSearchQuery(query)
     const results = {
       apartments: fakeData.apartments.filter((apartment) =>
         apartment.address.toLowerCase().includes(query.toLowerCase())
@@ -170,7 +173,8 @@ export default function Framework({ children }) {
                 onValueChange={handleSearch}
                 className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
               />
-              <CommandList>
+              {searchQuery && (
+                <CommandList>
                 <CommandEmpty>Inga resultat funna.</CommandEmpty>
                 <CommandGroup heading="Lägenheter">
                   {searchResults.apartments?.map((apartment) => (
@@ -201,6 +205,8 @@ export default function Framework({ children }) {
                   ))}
                 </CommandGroup>
               </CommandList>
+                </CommandList>
+              )}
             </Command>
           </div>
           <DropdownMenu>
