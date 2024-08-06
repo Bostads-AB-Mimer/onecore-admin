@@ -4,6 +4,9 @@ const properties: Property[] = [
   {
     id: 1,
     name: 'Fastighet 1',
+    address: 'Storgatan 1, Västerås',
+    address: 'Kungsgatan 1, Stockholm',
+    address: 'Vasagatan 1, Malmö',
     floors: [
       {
         id: 1,
