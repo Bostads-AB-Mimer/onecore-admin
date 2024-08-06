@@ -115,10 +115,12 @@ export default function Header() {
         <SearchBar />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-full">
-              <CircleUserIcon className="h-5 w-5" />
-              <span className="sr-only">Växla användarmeny</span>
-            </Button>
+            <DropdownMenuTrigger asChild>
+              <Button variant="secondary" size="icon" className="rounded-full">
+                <CircleUserIcon className="h-5 w-5" />
+                <span className="sr-only">Växla användarmeny</span>
+              </Button>
+            </DropdownMenuTrigger>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Mitt konto</DropdownMenuLabel>
