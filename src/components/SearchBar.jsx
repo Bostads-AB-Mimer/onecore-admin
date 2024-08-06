@@ -39,6 +39,11 @@ export default function SearchBar() {
       <CommandInput
         placeholder="Sök i OneCore..."
         className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+        onFocus={() => setIsSearchVisible(true)}
+        onChange={(e) => {
+          setSearchQuery(e.target.value)
+          setIsSearchVisible(true)
+        }}
       />
       <CommandList
         ref={searchRef}
