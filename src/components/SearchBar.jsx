@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Input } from './ui/input'
 import { getApartments, getProperties, searchApartments } from '@/data/db'
 import {
   Command,
@@ -48,6 +47,7 @@ export default function SearchBar() {
         ref={searchRef}
         className={isSearchVisible ? 'block' : 'hidden'}
       >
+        <CommandEmpty>Inga sökträffar</CommandEmpty>
         <CommandGroup heading="Lägenheter">
           {apartments?.map((apartment) => (
             <a
