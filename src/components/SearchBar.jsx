@@ -72,7 +72,7 @@ export default function SearchBar() {
             {properties?.map((property) => (
               <CommandItem key={property.id}>
                 <BuildingIcon className="mr-2 h-4 w-4" />
-                <span>{property.name}</span>
+                <span>{property.name} - {property.address}</span>
               </CommandItem>
             ))}
           </CommandGroup>
