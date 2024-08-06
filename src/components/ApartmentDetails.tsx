@@ -33,7 +33,7 @@ export default function ApartmentDetails({
         </Card>
       </div>
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:grid-cols-2 lg:gap-x-6 lg:gap-y-6">
-        <Tabs defaultValue="details">
+        <Tabs defaultValue="apartmentInfo">
           <TabsList>
             <TabsTrigger value="apartmentInfo">
               Lägenhetsinformation
