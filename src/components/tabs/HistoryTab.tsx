@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import type { Apartment } from '@/types/apartment'
-import type { Apartment } from '@/types/apartment'
 
 export default function HistoryTab({ apartment }: { apartment: Apartment }) {
   return (
