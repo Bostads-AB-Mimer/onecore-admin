@@ -1,4 +1,5 @@
-import { Label } from '@radix-ui/react-dropdown-menu'
+import { Label } from '@/components/ui/label'
+import type { Apartment } from '@/types/apartment'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 
