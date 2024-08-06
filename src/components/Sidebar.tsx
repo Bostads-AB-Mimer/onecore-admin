@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useApartment } from '@/context/ApartmentContext'
 import { BuildingIcon, HomeIcon } from 'lucide-react'
 import { getProperties } from '@/data/db'
 import {
@@ -8,7 +9,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 
-export default function Sidebar({ selectedApartment }) {
+export default function Sidebar() {
+  const { selectedApartment } = useApartment()
   const properties = getProperties()
   const [selectedProperty, setSelectedProperty] = useState<string | null>(null)
 

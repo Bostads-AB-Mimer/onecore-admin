@@ -1,7 +1,7 @@
 ---
 import Framework from '@/components/Framework';
 
-const { title, themeClass = '', selectedApartment } = Astro.props;
+const { title, themeClass = '' } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,7 +15,7 @@ const { title, themeClass = '', selectedApartment } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class={themeClass}>
-		<Framework client:load selectedApartment={selectedApartment}>
+		<Framework client:load>
 			<slot />
 		</Framework>
 	</body>
