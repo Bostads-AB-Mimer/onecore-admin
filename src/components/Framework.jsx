@@ -4,7 +4,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { PanelLeftIcon, BuildingIcon, HomeIcon } from 'lucide-react';
+import { PanelLeftIcon, BuildingIcon, HomeIcon, LayoutPanelLeftIcon } from 'lucide-react';
 
 export default function Framework({ children }) {
 
