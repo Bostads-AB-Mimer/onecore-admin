@@ -5,7 +5,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
+} from '@/components/ui/accordion'
 
 export default function Sidebar() {
   const properties = getProperties()
@@ -26,7 +26,9 @@ export default function Sidebar() {
               <AccordionContent>
                 <Accordion
                   type="multiple"
-                  defaultValue={property.floors.map(floor => `floor-${floor.id}`)}
+                  defaultValue={property.floors.map(
+                    (floor) => `floor-${floor.id}`
+                  )}
                 >
                   {property.floors.map((floor) => (
                     <AccordionItem key={floor.id} value={`floor-${floor.id}`}>
