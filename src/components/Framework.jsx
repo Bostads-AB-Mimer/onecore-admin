@@ -5,7 +5,7 @@ const properties = getProperties()
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   Command,
   CommandEmpty,
@@ -52,7 +52,22 @@ export default function Framework({ children }) {
     ],
   }
 
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchVisible(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [searchRef]);
 
   const handleSearch = (query) => {
     setSearchQuery(query)
@@ -180,44 +195,47 @@ export default function Framework({ children }) {
                 placeholder="Sök i OneCore..."
                 onValueChange={handleSearch}
                 className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+                onFocus={() => setIsSearchVisible(true)}
               />
-              <CommandList>
-                {searchQuery ? (
-                  <>
-                    <CommandGroup heading="Lägenheter">
-                      {searchResults.apartments?.map((apartment) => (
-                        <CommandItem key={apartment.id}>
-                          <HomeIcon className="mr-2 h-4 w-4" />
-                          <span>
-                            {apartment.number} - {apartment.address},{' '}
-                            {apartment.city}
-                          </span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                    <CommandSeparator />
-                    <CommandGroup heading="Fastigheter">
-                      {searchResults.properties?.map((property) => (
-                        <CommandItem key={property.id}>
-                          <BuildingIcon className="mr-2 h-4 w-4" />
-                          <span>{property.name}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                    <CommandSeparator />
-                    <CommandGroup heading="Våningar">
-                      {searchResults.floors?.map((floor) => (
-                        <CommandItem key={floor.id}>
-                          <LayoutPanelLeftIcon className="mr-2 h-4 w-4" />
-                          <span>{floor.name}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </>
-                ) : (
-                  <CommandEmpty>Inga resultat funna.</CommandEmpty>
-                )}
-              </CommandList>
+              {isSearchVisible && (
+                <CommandList ref={searchRef}>
+                  {searchQuery ? (
+                    <>
+                      <CommandGroup heading="Lägenheter">
+                        {searchResults.apartments?.map((apartment) => (
+                          <CommandItem key={apartment.id}>
+                            <HomeIcon className="mr-2 h-4 w-4" />
+                            <span>
+                              {apartment.number} - {apartment.address},{' '}
+                              {apartment.city}
+                            </span>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                      <CommandSeparator />
+                      <CommandGroup heading="Fastigheter">
+                        {searchResults.properties?.map((property) => (
+                          <CommandItem key={property.id}>
+                            <BuildingIcon className="mr-2 h-4 w-4" />
+                            <span>{property.name}</span>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                      <CommandSeparator />
+                      <CommandGroup heading="Våningar">
+                        {searchResults.floors?.map((floor) => (
+                          <CommandItem key={floor.id}>
+                            <LayoutPanelLeftIcon className="mr-2 h-4 w-4" />
+                            <span>{floor.name}</span>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </>
+                  ) : (
+                    <CommandEmpty>Inga resultat funna.</CommandEmpty>
+                  )}
+                </CommandList>
+              )}
             </Command>
           </div>
           <DropdownMenu>
