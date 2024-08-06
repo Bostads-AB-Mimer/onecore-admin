@@ -47,6 +47,7 @@ export default function SearchBar() {
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
+  return (
     <div className="relative w-full max-w-md">
       <Command className="rounded-lg border shadow-md w-full">
         <CommandInput
@@ -93,4 +94,5 @@ export default function SearchBar() {
       </Command>
     </div>
   )
+}
 }
