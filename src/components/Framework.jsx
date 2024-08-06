@@ -72,20 +72,10 @@ export default function Framework({ children }) {
   const handleSearch = (query) => {
     setSearchQuery(query);
     if (query) {
-      const results = {
-        apartments: fakeData.apartments.filter((apartment) =>
-          apartment.address.toLowerCase().includes(query.toLowerCase())
-        ),
-        properties: fakeData.properties.filter((property) =>
-          property.name.toLowerCase().includes(query.toLowerCase())
-        ),
-        floors: fakeData.floors.filter((floor) =>
-          floor.name.toLowerCase().includes(query.toLowerCase())
-        ),
-      };
+      const results = searchApartments(query);
       setSearchResults(results);
     } else {
-      setSearchResults({ apartments: [], properties: [], floors: [] });
+      setSearchResults([]);
     }
   };
 
@@ -206,13 +196,15 @@ export default function Framework({ children }) {
                   <>
                     <CommandGroup heading="Lägenheter">
                       {searchResults.apartments?.map((apartment) => (
-                        <CommandItem key={apartment.id}>
-                          <HomeIcon className="mr-2 h-4 w-4" />
-                          <span>
-                            {apartment.number} - {apartment.address},{' '}
-                            {apartment.city}
-                          </span>
-                        </CommandItem>
+                        <Link key={apartment.id} href={`/apartments/${apartment.propertyId}-${apartment.id}`}>
+                          <CommandItem>
+                            <HomeIcon className="mr-2 h-4 w-4" />
+                            <span>
+                              {apartment.number} - {apartment.address},{' '}
+                              {apartment.city}
+                            </span>
+                          </CommandItem>
+                        </Link>
                       ))}
                     </CommandGroup>
                     <CommandSeparator />
