@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import Header from './Header'
-import Sidebar from './Sidebar'
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import Header from './Header';
+import Sidebar from './Sidebar';
+import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import {
   PanelLeftIcon,
   BuildingIcon,
   HomeIcon,
   LayoutPanelLeftIcon,
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Framework({ children = null }: { children?: React.ReactNode }) {
   return (
