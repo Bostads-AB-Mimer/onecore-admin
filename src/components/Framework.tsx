@@ -23,7 +23,7 @@ export default function Framework({ children }) {
   }, [])
 
   return (
-    <Sidebar selectedApartment={selectedApartment} setSelectedApartment={setSelectedApartment} />
+    <Sidebar selectedApartment={selectedApartment} />
     <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
       <Header />
       <Sidebar />
