@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useApartment } from '@/context/ApartmentContext'
 import {
   Card,
   CardHeader,
@@ -16,6 +18,12 @@ export default function ApartmentDetails({
 }: {
   apartment: Apartment
 }) {
+  const { setSelectedApartment } = useApartment()
+
+  useEffect(() => {
+    setSelectedApartment(apartment)
+  }, [apartment, setSelectedApartment])
+
   return (
     <div>
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
