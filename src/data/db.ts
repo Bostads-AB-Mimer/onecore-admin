@@ -1,36 +1,10 @@
-export type Property = {
-  id: number
-  name: string
-  floors: Floor[]
-}
-
-export type Floor = {
-  id: number
-  name: string
-  apartments: Apartment[]
-}
-
-export type Apartment = {
-  id: number
-  status: string
-  propertyId: string
-  floor: string
-  address: string
-  city: string
-  rooms: number
-  bathrooms: number
-  size: number
-  rent: number
-  images: { id: number; url: string }[]
-  tenants: { id: number; name: string; email: string; leaseStart: Date }[]
-  description: string
-  issues: any[]
-}
+import type { Property } from '@/types/property'
 
 const properties: Property[] = [
   {
     id: 1,
     name: 'Fastighet 1',
+    address: 'Storgatan 1, Västerås',
     floors: [
       {
         id: 1,
@@ -157,6 +131,7 @@ const properties: Property[] = [
   {
     id: 2,
     name: 'Fastighet 2',
+    address: 'Sveavägen 4, Västerås',
     floors: [
       {
         id: 3,
@@ -268,7 +243,7 @@ const properties: Property[] = [
             propertyId: '3',
             floor: 'Våning 1',
             address: 'Vasagatan 1',
-            city: 'Malmö',
+            city: 'Västerås',
             rooms: 3,
             bathrooms: 1,
             size: 85,
@@ -283,7 +258,7 @@ const properties: Property[] = [
               },
             ],
             description:
-              'En rymlig lägenhet på Vasagatan 1 i Malmö. Lägenheten har 3 rum och är 85 kvadratmeter stor. Hyran är 11000 kr per månad.',
+              'En rymlig lägenhet på Vasagatan 1 i Västerås. Lägenheten har 3 rum och är 85 kvadratmeter stor. Hyran är 11000 kr per månad.',
             issues: [],
           },
           {
@@ -292,7 +267,7 @@ const properties: Property[] = [
             propertyId: '3',
             floor: 'Våning 1',
             address: 'Östergatan 2',
-            city: 'Malmö',
+            city: 'Västerås',
             rooms: 2,
             bathrooms: 1,
             size: 70,
@@ -300,7 +275,7 @@ const properties: Property[] = [
             images: [{ id: 6, url: '/ostergatan.jpg' }],
             tenants: [],
             description:
-              'En charmig lägenhet på Östergatan 2 i Malmö. Lägenheten har 2 rum och är 70 kvadratmeter stor. Hyran är 8500 kr per månad.',
+              'En charmig lägenhet på Östergatan 2 i Västerås. Lägenheten har 2 rum och är 70 kvadratmeter stor. Hyran är 8500 kr per månad.',
             issues: [],
           },
         ],
@@ -315,7 +290,7 @@ const properties: Property[] = [
             propertyId: '3',
             floor: 'Våning 2',
             address: 'Vasagatan 1',
-            city: 'Malmö',
+            city: 'Västerås',
             rooms: 3,
             bathrooms: 1,
             size: 85,
@@ -330,7 +305,7 @@ const properties: Property[] = [
               },
             ],
             description:
-              'En rymlig lägenhet på Vasagatan 1 i Malmö. Lägenheten har 3 rum och är 85 kvadratmeter stor. Hyran är 11000 kr per månad.',
+              'En rymlig lägenhet på Vasagatan 1 i Västerås. Lägenheten har 3 rum och är 85 kvadratmeter stor. Hyran är 11000 kr per månad.',
             issues: [],
           },
           {
@@ -339,7 +314,7 @@ const properties: Property[] = [
             propertyId: '3',
             floor: 'Våning 2',
             address: 'Östergatan 2',
-            city: 'Malmö',
+            city: 'Västerås',
             rooms: 2,
             bathrooms: 1,
             size: 70,
@@ -347,12 +322,13 @@ const properties: Property[] = [
             images: [{ id: 6, url: '/ostergatan.jpg' }],
             tenants: [],
             description:
-              'En charmig lägenhet på Östergatan 2 i Malmö. Lägenheten har 2 rum och är 70 kvadratmeter stor. Hyran är 8500 kr per månad.',
+              'En charmig lägenhet på Östergatan 2 i Västerås. Lägenheten har 2 rum och är 70 kvadratmeter stor. Hyran är 8500 kr per månad.',
             issues: [],
           },
         ],
       },
     ],
+    address: 'Östergatan 2, Västerås',
   },
 ]
 
@@ -380,14 +356,4 @@ export function getApartments(propertyId?: number) {
 
 export function getApartment(id: number) {
   return getApartments().find((apartment) => apartment.id === id)
-}
-
-export function searchApartments(query: string) {
-  const lowerCaseQuery = query.toLowerCase()
-  return getApartments().filter(
-    (apartment) =>
-      apartment.address.toLowerCase().includes(lowerCaseQuery) ||
-      apartment.city.toLowerCase().includes(lowerCaseQuery) ||
-      apartment.number.includes(query)
-  )
 }

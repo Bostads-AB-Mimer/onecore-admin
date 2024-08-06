@@ -21,7 +21,7 @@ export default function ApartmentDetails({
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
         <Card className="sm:col-span-2">
           <CardHeader className="pb-3">
-            <CardTitle>Lägenhet {apartment.number}</CardTitle>
+            <CardTitle>Lägenhet {apartment.id}</CardTitle>
             <CardDescription className="max-w-lg text-balance leading-relaxed text-foreground">
               {apartment.description}
             </CardDescription>

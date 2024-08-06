@@ -1,8 +1,10 @@
 export type Apartment = {
   id: number
-  number: string
+  propertyId: string
+  floor: string
   city: string
   address: string
+  status: 'Ledig' | 'Uthyrd'
   size: number
   rooms: number
   bathrooms: number
@@ -12,7 +14,7 @@ export type Apartment = {
     id: number
     url: string
   }[]
-  leaseEndDate: Date
+  leaseEndDate?: Date
   issues: {
     id: number
     title: string

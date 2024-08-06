@@ -3,7 +3,6 @@
  * @see https://v0.dev/t/ZE12fYoVBat
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import Link from 'next/link'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -114,10 +113,10 @@ export function Statistics() {
                 </CardDescription>
               </div>
               <Button asChild size="sm" className="ml-auto gap-1">
-                <Link href="#" prefetch={false}>
+                <a href="#">
                   Visa alla
                   <ArrowUpRightIcon className="h-4 w-4" />
-                </Link>
+                </a>
               </Button>
             </CardHeader>
             <CardContent>
