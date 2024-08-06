@@ -26,8 +26,8 @@ export default function Framework({ children }) {
 
   return (
     <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
+      <Sidebar selectedApartment={selectedApartment} setSelectedApartment={setSelectedApartment} />
       <Header />
-      <Sidebar selectedApartment={selectedApartment} />
       <div
         className={cn(
           'flex flex-col sm:gap-4 sm:py-4 sm:pl-64 bg-content text-content-foreground'
@@ -80,7 +80,7 @@ export default function Framework({ children }) {
                     'flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'
                   )}
                 >
-                  <HomeIcon className="h-4 w-4 mr-2" />
+                  <HomeIcon className="h-4 w-4 mr-2' />
                   Lägenheter
                 </a>
               </nav>
