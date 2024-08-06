@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
-import { PanelLeftIcon, BuildingIcon, HomeIcon, LayoutPanelLeftIcon } from 'lucide-react';
+import React, { useState } from 'react'
+import Link from 'next/link'
+import Header from './Header'
+import Sidebar from './Sidebar'
+import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
+import {
+  PanelLeftIcon,
+  BuildingIcon,
+  HomeIcon,
+  LayoutPanelLeftIcon,
+} from 'lucide-react'
 
 export default function Framework({ children }) {
-
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([])
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">

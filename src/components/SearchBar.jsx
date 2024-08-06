@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Input } from './ui/input';
-import { searchApartments } from '@/data/db';
+import React, { useState, useRef, useEffect } from 'react'
+import { Input } from './ui/input'
+import { searchApartments } from '@/data/db'
 import {
   Command,
   CommandEmpty,
@@ -9,46 +9,46 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@/components/ui/command';
-import { HomeIcon, BuildingIcon, LayoutPanelLeftIcon } from 'lucide-react';
-import Link from 'next/link';
+} from '@/components/ui/command'
+import { HomeIcon, BuildingIcon, LayoutPanelLeftIcon } from 'lucide-react'
+import Link from 'next/link'
 
 export default function SearchBar() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState({
     apartments: [],
     properties: [],
     floors: [],
-  });
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const searchRef = useRef(null);
+  })
+  const [isSearchVisible, setIsSearchVisible] = useState(false)
+  const searchRef = useRef(null)
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setIsSearchVisible(false);
+        setIsSearchVisible(false)
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [searchRef]);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [searchRef])
 
   const handleSearch = (query) => {
-    setSearchQuery(query);
+    setSearchQuery(query)
     if (query) {
-      const results = searchApartments(query);
+      const results = searchApartments(query)
       setSearchResults({
         apartments: results.filter((result) => result.type === 'apartment'),
         properties: results.filter((result) => result.type === 'property'),
         floors: results.filter((result) => result.type === 'floor'),
-      });
+      })
     } else {
-      setSearchResults({ apartments: [], properties: [], floors: [] });
+      setSearchResults({ apartments: [], properties: [], floors: [] })
     }
-  };
+  }
 
   return (
     <Command className="relative rounded-lg border shadow-md">
@@ -58,12 +58,18 @@ export default function SearchBar() {
         className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
         onFocus={() => setIsSearchVisible(true)}
       />
-      <CommandList ref={searchRef} className={isSearchVisible ? 'block' : 'hidden'}>
+      <CommandList
+        ref={searchRef}
+        className={isSearchVisible ? 'block' : 'hidden'}
+      >
         {searchQuery ? (
           <>
             <CommandGroup heading="Lägenheter">
               {searchResults.apartments?.map((apartment) => (
-                <Link key={apartment.id} href={`/apartments/${apartment.propertyId}-${apartment.id}`}>
+                <Link
+                  key={apartment.id}
+                  href={`/apartments/${apartment.propertyId}-${apartment.id}`}
+                >
                   <CommandItem>
                     <HomeIcon className="mr-2 h-4 w-4" />
                     <span>
@@ -97,5 +103,5 @@ export default function SearchBar() {
         )}
       </CommandList>
     </Command>
-  );
+  )
 }

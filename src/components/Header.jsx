@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
-import SearchBar from './SearchBar';
+import Link from 'next/link'
+import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
+import SearchBar from './SearchBar'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -9,12 +9,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from '@/components/ui/dropdown-menu';
-import {
-  CircleUserIcon,
-  MenuIcon,
-  Package2Icon,
-} from 'lucide-react';
+} from '@/components/ui/dropdown-menu'
+import { CircleUserIcon, MenuIcon, Package2Icon } from 'lucide-react'
 
 export default function Header() {
   return (
@@ -66,11 +62,7 @@ export default function Header() {
       </nav>
       <Sheet>
         <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="shrink-0 md:hidden"
-          >
+          <Button variant="outline" size="icon" className="shrink-0 md:hidden">
             <MenuIcon className="h-5 w-5" />
             <span className="sr-only">Växla navigeringsmeny</span>
           </Button>
@@ -139,5 +131,5 @@ export default function Header() {
         </DropdownMenu>
       </div>
     </header>
-  );
+  )
 }
