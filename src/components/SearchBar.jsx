@@ -11,7 +11,6 @@ import {
   CommandSeparator,
 } from '@/components/ui/command'
 import { HomeIcon, BuildingIcon, LayoutPanelLeftIcon } from 'lucide-react'
-import Link from 'next/link'
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -51,7 +50,7 @@ export default function SearchBar() {
       >
         <CommandGroup heading="Lägenheter">
           {apartments?.map((apartment) => (
-            <Link
+            <a
               key={apartment.id}
               href={`/apartments/${apartment.propertyId}-${apartment.id}`}
             >
@@ -61,7 +60,7 @@ export default function SearchBar() {
                   {apartment.number} - {apartment.address}, {apartment.city}
                 </span>
               </CommandItem>
-            </Link>
+            </a>
           ))}
         </CommandGroup>
         <CommandSeparator />
