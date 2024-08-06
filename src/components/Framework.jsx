@@ -6,6 +6,8 @@ import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import React, { useState } from 'react'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command'
+import { BuildingIcon, HomeIcon, LayoutPanelLeftIcon, SearchIcon } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -28,9 +30,33 @@ import {
 export default function Framework({ children }) {
   const [searchResults, setSearchResults] = useState([])
 
-  const handleSearch = (event) => {
-    const query = event.target.value
-    const results = searchApartments(query)
+  const fakeData = {
+    apartments: [
+      { id: 1, number: '101', address: 'Main St', city: 'Stockholm' },
+      { id: 2, number: '102', address: 'Second St', city: 'Gothenburg' },
+    ],
+    properties: [
+      { id: 1, name: 'Property One' },
+      { id: 2, name: 'Property Two' },
+    ],
+    floors: [
+      { id: 1, name: 'Floor One' },
+      { id: 2, name: 'Floor Two' },
+    ],
+  }
+
+  const handleSearch = (query) => {
+    const results = {
+      apartments: fakeData.apartments.filter((apartment) =>
+        apartment.address.toLowerCase().includes(query.toLowerCase())
+      ),
+      properties: fakeData.properties.filter((property) =>
+        property.name.toLowerCase().includes(query.toLowerCase())
+      ),
+      floors: fakeData.floors.filter((floor) =>
+        floor.name.toLowerCase().includes(query.toLowerCase())
+      ),
+    }
     setSearchResults(results)
   }
 
@@ -138,16 +164,46 @@ export default function Framework({ children }) {
           </SheetContent>
         </Sheet>
         <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-          <form className="ml-auto flex-1 sm:flex-initial">
-            <div className="relative">
-              <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
+          <div className="ml-auto flex-1 sm:flex-initial">
+            <Command className="relative rounded-lg border shadow-md">
+              <CommandInput
                 placeholder="Sök i OneCore..."
+                onValueChange={handleSearch}
                 className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
               />
-            </div>
-          </form>
+              <CommandList>
+                <CommandEmpty>Inga resultat funna.</CommandEmpty>
+                <CommandGroup heading="Lägenheter">
+                  {searchResults.apartments?.map((apartment) => (
+                    <CommandItem key={apartment.id}>
+                      <HomeIcon className="mr-2 h-4 w-4" />
+                      <span>
+                        {apartment.number} - {apartment.address}, {apartment.city}
+                      </span>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Fastigheter">
+                  {searchResults.properties?.map((property) => (
+                    <CommandItem key={property.id}>
+                      <BuildingIcon className="mr-2 h-4 w-4" />
+                      <span>{property.name}</span>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+                <CommandSeparator />
+                <CommandGroup heading="Våningar">
+                  {searchResults.floors?.map((floor) => (
+                    <CommandItem key={floor.id}>
+                      <LayoutPanelLeftIcon className="mr-2 h-4 w-4" />
+                      <span>{floor.name}</span>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
