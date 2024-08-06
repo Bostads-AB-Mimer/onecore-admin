@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import SearchBar from './SearchBar'
+import SearchBar from '@/components/SearchBar'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
