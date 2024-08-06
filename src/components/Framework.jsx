@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import React, { useState } from 'react'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command'
-import { BuildingIcon, HomeIcon, LayoutPanelLeftIcon, SearchIcon } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
