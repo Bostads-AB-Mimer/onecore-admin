@@ -73,9 +73,13 @@ export default function Framework({ children }) {
     setSearchQuery(query);
     if (query) {
       const results = searchApartments(query);
-      setSearchResults(results);
+      setSearchResults({
+        apartments: results.filter((result) => result.type === 'apartment'),
+        properties: results.filter((result) => result.type === 'property'),
+        floors: results.filter((result) => result.type === 'floor'),
+      });
     } else {
-      setSearchResults([]);
+      setSearchResults({ apartments: [], properties: [], floors: [] });
     }
   };
 
@@ -191,7 +195,7 @@ export default function Framework({ children }) {
                 className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
                 onFocus={() => setIsSearchVisible(true)}
               />
-              <CommandList ref={searchRef}>
+              <CommandList ref={searchRef} className={isSearchVisible ? 'block' : 'hidden'}>
                 {searchQuery ? (
                   <>
                     <CommandGroup heading="Lägenheter">
