@@ -175,36 +175,36 @@ export default function Framework({ children }) {
               />
               {searchQuery && (
                 <CommandList>
-                <CommandEmpty>Inga resultat funna.</CommandEmpty>
-                <CommandGroup heading="Lägenheter">
-                  {searchResults.apartments?.map((apartment) => (
-                    <CommandItem key={apartment.id}>
-                      <HomeIcon className="mr-2 h-4 w-4" />
-                      <span>
-                        {apartment.number} - {apartment.address}, {apartment.city}
-                      </span>
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-                <CommandSeparator />
-                <CommandGroup heading="Fastigheter">
-                  {searchResults.properties?.map((property) => (
-                    <CommandItem key={property.id}>
-                      <BuildingIcon className="mr-2 h-4 w-4" />
-                      <span>{property.name}</span>
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-                <CommandSeparator />
-                <CommandGroup heading="Våningar">
-                  {searchResults.floors?.map((floor) => (
-                    <CommandItem key={floor.id}>
-                      <LayoutPanelLeftIcon className="mr-2 h-4 w-4" />
-                      <span>{floor.name}</span>
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </CommandList>
+                  <CommandEmpty>Inga resultat funna.</CommandEmpty>
+                  <CommandGroup heading="Lägenheter">
+                    {searchResults.apartments?.map((apartment) => (
+                      <CommandItem key={apartment.id}>
+                        <HomeIcon className="mr-2 h-4 w-4" />
+                        <span>
+                          {apartment.number} - {apartment.address}, {apartment.city}
+                        </span>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                  <CommandSeparator />
+                  <CommandGroup heading="Fastigheter">
+                    {searchResults.properties?.map((property) => (
+                      <CommandItem key={property.id}>
+                        <BuildingIcon className="mr-2 h-4 w-4" />
+                        <span>{property.name}</span>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                  <CommandSeparator />
+                  <CommandGroup heading="Våningar">
+                    {searchResults.floors?.map((floor) => (
+                      <CommandItem key={floor.id}>
+                        <LayoutPanelLeftIcon className="mr-2 h-4 w-4" />
+                        <span>{floor.name}</span>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
                 </CommandList>
               )}
             </Command>
