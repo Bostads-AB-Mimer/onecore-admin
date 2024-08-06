@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
@@ -14,7 +14,7 @@ import {
 export default function Framework({ children }) {
   return (
     <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
-      <Sidebar selectedApartment={selectedApartment} />
+      <Sidebar />
       <Header />
       <div
         className={cn(
