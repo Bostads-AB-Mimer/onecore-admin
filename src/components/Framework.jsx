@@ -1,20 +1,10 @@
 import Link from 'next/link'
-import { getProperties, getApartments, searchApartments } from '../data/db'
+import { getProperties, getApartments } from '../data/db'
 
 const properties = getProperties()
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import React, { useState, useRef, useEffect } from 'react'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from '@/components/ui/command'
+import SearchBar from './SearchBar'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -35,53 +25,6 @@ import {
 } from 'lucide-react'
 
 export default function Framework({ children }) {
-  const [searchResults, setSearchResults] = useState([])
-
-  const fakeData = {
-    apartments: [
-      { id: 1, number: '101', address: 'Main St', city: 'Stockholm' },
-      { id: 2, number: '102', address: 'Second St', city: 'Gothenburg' },
-    ],
-    properties: [
-      { id: 1, name: 'Property One' },
-      { id: 2, name: 'Property Two' },
-    ],
-    floors: [
-      { id: 1, name: 'Floor One' },
-      { id: 2, name: 'Floor Two' },
-    ],
-  }
-
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const searchRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setIsSearchVisible(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [searchRef]);
-
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    if (query) {
-      const results = searchApartments(query);
-      setSearchResults({
-        apartments: results.filter((result) => result.type === 'apartment'),
-        properties: results.filter((result) => result.type === 'property'),
-        floors: results.filter((result) => result.type === 'floor'),
-      });
-    } else {
-      setSearchResults({ apartments: [], properties: [], floors: [] });
-    }
-  };
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
@@ -187,55 +130,7 @@ export default function Framework({ children }) {
           </SheetContent>
         </Sheet>
         <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-          <div className="ml-auto flex-1 sm:flex-initial">
-            <Command className="relative rounded-lg border shadow-md">
-              <CommandInput
-                placeholder="Sök i OneCore..."
-                onValueChange={handleSearch}
-                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
-                onFocus={() => setIsSearchVisible(true)}
-              />
-              <CommandList ref={searchRef} className={isSearchVisible ? 'block' : 'hidden'}>
-                {searchQuery ? (
-                  <>
-                    <CommandGroup heading="Lägenheter">
-                      {searchResults.apartments?.map((apartment) => (
-                        <Link key={apartment.id} href={`/apartments/${apartment.propertyId}-${apartment.id}`}>
-                          <CommandItem>
-                            <HomeIcon className="mr-2 h-4 w-4" />
-                            <span>
-                              {apartment.number} - {apartment.address},{' '}
-                              {apartment.city}
-                            </span>
-                          </CommandItem>
-                        </Link>
-                      ))}
-                    </CommandGroup>
-                    <CommandSeparator />
-                    <CommandGroup heading="Fastigheter">
-                      {searchResults.properties?.map((property) => (
-                        <CommandItem key={property.id}>
-                          <BuildingIcon className="mr-2 h-4 w-4" />
-                          <span>{property.name}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                    <CommandSeparator />
-                    <CommandGroup heading="Våningar">
-                      {searchResults.floors?.map((floor) => (
-                        <CommandItem key={floor.id}>
-                          <LayoutPanelLeftIcon className="mr-2 h-4 w-4" />
-                          <span>{floor.name}</span>
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </>
-                ) : (
-                  <CommandEmpty>Inga resultat funna.</CommandEmpty>
-                )}
-              </CommandList>
-            </Command>
-          </div>
+          <SearchBar />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
