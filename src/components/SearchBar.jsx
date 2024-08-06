@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { getApartments, getProperties } from '@/data/db'
+import { Apartment, Property } from '@/types/property'
 import {
   Command,
   CommandEmpty,
