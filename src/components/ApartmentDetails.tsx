@@ -10,6 +10,10 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import type { Apartment } from '@/types/apartment'
 import { Label } from '@radix-ui/react-dropdown-menu'
+import ApartmentInfoTab from './tabs/ApartmentInfoTab'
+import IssuesTab from './tabs/IssuesTab'
+import EconomyTab from './tabs/EconomyTab'
+import HistoryTab from './tabs/HistoryTab'
 
 export default function ApartmentDetails({
   apartment,
@@ -78,85 +82,22 @@ export default function ApartmentDetails({
             <TabsList>
               <TabsTrigger value="details">Detaljer</TabsTrigger>
               <TabsTrigger value="issues">Ärenden</TabsTrigger>
-              <TabsTrigger value="tenants">Hyresgäster</TabsTrigger>
+              <TabsTrigger value="apartmentInfo">Lägenhetsinformation</TabsTrigger>
+              <TabsTrigger value="issues">Ärenden</TabsTrigger>
+              <TabsTrigger value="economy">Ekonomi</TabsTrigger>
+              <TabsTrigger value="history">Historik</TabsTrigger>
             </TabsList>
-            <TabsContent value="details">
-              <div className="grid gap-4 p-5">
-                <div className="grid grid-cols-2 gap-4 lg:gap-x-6 lg:gap-y-6">
-                  <div>
-                    <Label>Adress</Label>
-                    <div>
-                      {apartment.address}, {apartment.city}
-                    </div>
-                  </div>
-                  <div>
-                    <Label>Storlek</Label>
-                    <div>{apartment.size} m²</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 lg:gap-x-6 lg:gap-y-6">
-                  <div>
-                    <Label>Antal rum</Label>
-                    <div>{apartment.rooms}</div>
-                  </div>
-                  <div>
-                    <Label>Antal badrum</Label>
-                    <div>{apartment.bathrooms}</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 lg:gap-x-6 lg:gap-y-6">
-                  <div>
-                    <Label>Hyra</Label>
-                    <div>{apartment.rent} kr/månad</div>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-muted-foreground">
-                      Deposition
-                    </div>
-                    <div>20 000 kr</div>
-                  </div>
-                </div>
-              </div>
+            <TabsContent value="apartmentInfo">
+              <ApartmentInfoTab apartment={apartment} />
             </TabsContent>
             <TabsContent value="issues">
-              <div className="grid gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="font-medium">Läckande kran</div>
-                  <Badge variant="secondary" className="text-xs">
-                    Öppen
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="font-medium">Trasigt fönster</div>
-                  <Badge variant="secondary" className="text-xs">
-                    Öppen
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="font-medium">Igensatt avlopp</div>
-                  <Badge variant="outline" className="text-xs">
-                    Stängd
-                  </Badge>
-                </div>
-              </div>
+              <IssuesTab apartment={apartment} />
             </TabsContent>
-            <TabsContent value="tenants">
-              <div className="grid gap-4">
-                {apartment.tenants.map((tenant) => (
-                  <div
-                    key={tenant.id}
-                    className="flex items-center justify-between"
-                  >
-                    <div className="font-medium">{tenant.name}</div>
-                    <div className="text-sm text-muted">
-                      Hyresavtal utgår:{' '}
-                      {tenant.leaseEnd
-                        ? new Date(tenant.leaseEnd).toLocaleDateString('sv-SE')
-                        : 'Ingen slutdatum'}
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <TabsContent value="economy">
+              <EconomyTab apartment={apartment} />
+            </TabsContent>
+            <TabsContent value="history">
+              <HistoryTab apartment={apartment} />
             </TabsContent>
           </Tabs>
         </Card>
