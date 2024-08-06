@@ -70,20 +70,24 @@ export default function Framework({ children }) {
   }, [searchRef]);
 
   const handleSearch = (query) => {
-    setSearchQuery(query)
-    const results = {
-      apartments: fakeData.apartments.filter((apartment) =>
-        apartment.address.toLowerCase().includes(query.toLowerCase())
-      ),
-      properties: fakeData.properties.filter((property) =>
-        property.name.toLowerCase().includes(query.toLowerCase())
-      ),
-      floors: fakeData.floors.filter((floor) =>
-        floor.name.toLowerCase().includes(query.toLowerCase())
-      ),
+    setSearchQuery(query);
+    if (query) {
+      const results = {
+        apartments: fakeData.apartments.filter((apartment) =>
+          apartment.address.toLowerCase().includes(query.toLowerCase())
+        ),
+        properties: fakeData.properties.filter((property) =>
+          property.name.toLowerCase().includes(query.toLowerCase())
+        ),
+        floors: fakeData.floors.filter((floor) =>
+          floor.name.toLowerCase().includes(query.toLowerCase())
+        ),
+      };
+      setSearchResults(results);
+    } else {
+      setSearchResults({ apartments: [], properties: [], floors: [] });
     }
-    setSearchResults(results)
-  }
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted">
@@ -197,45 +201,43 @@ export default function Framework({ children }) {
                 className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
                 onFocus={() => setIsSearchVisible(true)}
               />
-              {isSearchVisible && (
-                <CommandList ref={searchRef}>
-                  {searchQuery ? (
-                    <>
-                      <CommandGroup heading="Lägenheter">
-                        {searchResults.apartments?.map((apartment) => (
-                          <CommandItem key={apartment.id}>
-                            <HomeIcon className="mr-2 h-4 w-4" />
-                            <span>
-                              {apartment.number} - {apartment.address},{' '}
-                              {apartment.city}
-                            </span>
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                      <CommandSeparator />
-                      <CommandGroup heading="Fastigheter">
-                        {searchResults.properties?.map((property) => (
-                          <CommandItem key={property.id}>
-                            <BuildingIcon className="mr-2 h-4 w-4" />
-                            <span>{property.name}</span>
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                      <CommandSeparator />
-                      <CommandGroup heading="Våningar">
-                        {searchResults.floors?.map((floor) => (
-                          <CommandItem key={floor.id}>
-                            <LayoutPanelLeftIcon className="mr-2 h-4 w-4" />
-                            <span>{floor.name}</span>
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </>
-                  ) : (
-                    <CommandEmpty>Inga resultat funna.</CommandEmpty>
-                  )}
-                </CommandList>
-              )}
+              <CommandList ref={searchRef}>
+                {searchQuery ? (
+                  <>
+                    <CommandGroup heading="Lägenheter">
+                      {searchResults.apartments?.map((apartment) => (
+                        <CommandItem key={apartment.id}>
+                          <HomeIcon className="mr-2 h-4 w-4" />
+                          <span>
+                            {apartment.number} - {apartment.address},{' '}
+                            {apartment.city}
+                          </span>
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                    <CommandSeparator />
+                    <CommandGroup heading="Fastigheter">
+                      {searchResults.properties?.map((property) => (
+                        <CommandItem key={property.id}>
+                          <BuildingIcon className="mr-2 h-4 w-4" />
+                          <span>{property.name}</span>
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                    <CommandSeparator />
+                    <CommandGroup heading="Våningar">
+                      {searchResults.floors?.map((floor) => (
+                        <CommandItem key={floor.id}>
+                          <LayoutPanelLeftIcon className="mr-2 h-4 w-4" />
+                          <span>{floor.name}</span>
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </>
+                ) : (
+                  <CommandEmpty>Inga resultat funna.</CommandEmpty>
+                )}
+              </CommandList>
             </Command>
           </div>
           <DropdownMenu>
