@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { getApartments, getProperties } from '@/data/db'
-import { Apartment, Property } from '@/types/property'
 import {
   Command,
   CommandEmpty,
@@ -55,8 +54,8 @@ export default function SearchBar() {
           placeholder="Sök i OneCore... (⌘K)"
           className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
           onFocus={() => setIsSearchVisible(true)}
-          onChange={(e) => {
-            setSearchQuery(e.target.value)
+          onValueChange={(query) => {
+            setSearchQuery(query)
             setIsSearchVisible(true)
           }}
         />

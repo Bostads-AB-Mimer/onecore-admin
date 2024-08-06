@@ -1,4 +1,4 @@
-import { Property, Apartment } from '@/types/property'
+import type { Property } from '@/types/property'
 
 const properties: Property[] = [
   {
@@ -356,14 +356,4 @@ export function getApartments(propertyId?: number) {
 
 export function getApartment(id: number) {
   return getApartments().find((apartment) => apartment.id === id)
-}
-
-export function searchApartments(query: string) {
-  const lowerCaseQuery = query.toLowerCase()
-  return getApartments().filter(
-    (apartment) =>
-      apartment.address.toLowerCase().includes(lowerCaseQuery) ||
-      apartment.city.toLowerCase().includes(lowerCaseQuery) ||
-      apartment.number.includes(query)
-  )
 }

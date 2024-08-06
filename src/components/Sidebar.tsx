@@ -1,9 +1,8 @@
 import { BuildingIcon, HomeIcon } from 'lucide-react'
 import { getProperties } from '@/data/db'
 
-const properties = getProperties()
-
 export default function Sidebar() {
+  const properties = getProperties()
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">
       <nav className="flex flex-col gap-4 px-4 py-6">
@@ -16,10 +15,10 @@ export default function Sidebar() {
         </a>
         <div className="flex-1 overflow-auto">
           <div className="grid gap-2">
-            {properties.map((property) => (
+            {properties?.map((property) => (
               <div key={property.id}>
                 <div className="text-sm font-medium text-muted-foreground">
-                  å{property.address}
+                  {property.address}
                 </div>
                 {property.floors.map((floor) => (
                   <div key={floor.id} className="ml-4">
