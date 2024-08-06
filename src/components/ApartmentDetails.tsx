@@ -5,7 +5,14 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
+  CardContent,
 } from '@/components/ui/card'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import type { Apartment } from '@/types/apartment'
+import ApartmentInfoTab from './tabs/ApartmentInfoTab'
+import IssuesTab from './tabs/IssuesTab'
+import EconomyTab from './tabs/EconomyTab'
+import HistoryTab from './tabs/HistoryTab'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import type { Apartment } from '@/types/apartment'
 import ApartmentInfoTab from './tabs/ApartmentInfoTab'
@@ -18,6 +25,12 @@ export default function ApartmentDetails({
 }: {
   apartment: Apartment
 }) {
+  const { setSelectedApartment } = useApartment()
+
+  useEffect(() => {
+    setSelectedApartment(apartment)
+  }, [apartment, setSelectedApartment])
+
   const { setSelectedApartment } = useApartment()
 
   useEffect(() => {
