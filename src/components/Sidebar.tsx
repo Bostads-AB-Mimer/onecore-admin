@@ -1,5 +1,11 @@
 import { BuildingIcon, HomeIcon } from 'lucide-react'
 import { getProperties } from '@/data/db'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export default function Sidebar() {
   const properties = getProperties()
@@ -13,37 +19,34 @@ export default function Sidebar() {
           <BuildingIcon className="h-4 w-4 transition-all group-hover:scale-110" />
           <span className="sr-only">Mimer</span>
         </a>
-        <div className="flex-1 overflow-auto">
-          <div className="grid gap-2">
-            {properties?.map((property) => (
-              <div key={property.id}>
-                <div className="text-sm font-medium text-muted-foreground">
-                  {property.address}
-                </div>
+        <Accordion type="single" collapsible className="w-full">
+          {properties?.map((property) => (
+            <AccordionItem key={property.id} value={`property-${property.id}`}>
+              <AccordionTrigger>{property.address}</AccordionTrigger>
+              <AccordionContent>
                 {property.floors.map((floor) => (
-                  <div key={floor.id} className="ml-4">
-                    <div
-                      key={floor.id}
-                      className="text-sm font-medium text-muted-foreground"
-                    >
-                      {floor.name}
-                    </div>
-                    {floor.apartments.map((apartment) => (
-                      <a
-                        key={apartment.id}
-                        href={`/apartments/${property.id}-${apartment.id}`}
-                        className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
-                      >
-                        <HomeIcon className="h-4 w-4" />
-                        <span>{apartment.id}</span>
-                      </a>
-                    ))}
-                  </div>
+                  <Accordion key={floor.id} type="single" collapsible>
+                    <AccordionItem value={`floor-${floor.id}`}>
+                      <AccordionTrigger>{floor.name}</AccordionTrigger>
+                      <AccordionContent>
+                        {floor.apartments.map((apartment) => (
+                          <a
+                            key={apartment.id}
+                            href={`/apartments/${property.id}-${apartment.id}`}
+                            className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
+                          >
+                            <HomeIcon className="h-4 w-4" />
+                            <span>{apartment.id}</span>
+                          </a>
+                        ))}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 ))}
-              </div>
-            ))}
-          </div>
-        </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </nav>
     </aside>
   )
