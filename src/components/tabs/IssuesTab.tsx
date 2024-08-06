@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/badge'
+import type { Apartment } from '@/types/apartment'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import type { Apartment } from '@/types/apartment'
 

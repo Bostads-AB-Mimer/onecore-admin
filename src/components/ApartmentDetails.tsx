@@ -80,10 +80,7 @@ export default function ApartmentDetails({
         <Card className="w-full p-6" x-chunk="dashboard-05-chunk-0">
           <Tabs defaultValue="details">
             <TabsList>
-              <TabsTrigger value="details">Detaljer</TabsTrigger>
-              <TabsTrigger value="issues">Ärenden</TabsTrigger>
               <TabsTrigger value="apartmentInfo">Lägenhetsinformation</TabsTrigger>
-              <TabsTrigger value="issues">Ärenden</TabsTrigger>
               <TabsTrigger value="economy">Ekonomi</TabsTrigger>
               <TabsTrigger value="history">Historik</TabsTrigger>
             </TabsList>
