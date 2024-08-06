@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { BuildingIcon, HomeIcon } from 'lucide-react'
 import { getProperties } from '@/data/db'
 import {
@@ -9,6 +10,14 @@ import {
 
 export default function Sidebar() {
   const properties = getProperties()
+  const [selectedProperty, setSelectedProperty] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (properties.length > 0) {
+      setSelectedProperty(`property-${properties[0].id}`)
+    }
+  }, [properties])
+
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">
       <nav className="flex flex-col gap-4 px-4 py-6">
@@ -19,7 +28,7 @@ export default function Sidebar() {
           <BuildingIcon className="h-4 w-4 transition-all group-hover:scale-110" />
           <span className="sr-only">Mimer</span>
         </a>
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible className="w-full" value={selectedProperty} onValueChange={setSelectedProperty}>
           {properties?.map((property) => (
             <AccordionItem key={property.id} value={`property-${property.id}`}>
               <AccordionTrigger>{property.address}</AccordionTrigger>
@@ -39,6 +48,7 @@ export default function Sidebar() {
                             key={apartment.id}
                             href={`/apartments/${property.id}-${apartment.id}`}
                             className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
+                            onClick={() => setSelectedProperty(`property-${property.id}`)}
                           >
                             <HomeIcon className="h-4 w-4" />
                             <span>{apartment.id}</span>
