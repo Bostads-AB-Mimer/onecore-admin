@@ -11,10 +11,10 @@ import {
   LayoutPanelLeftIcon,
 } from 'lucide-react'
 
-export default function Framework({ children }) {
+export default function Framework({ children, apartment }) {
   return (
     <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
-      <Sidebar />
+      <Sidebar selectedApartment={apartment} />
       <Header />
       <div
         className={cn(

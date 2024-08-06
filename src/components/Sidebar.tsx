@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useApartment } from '@/context/ApartmentContext'
 import { BuildingIcon, HomeIcon } from 'lucide-react'
 import { getProperties } from '@/data/db'
 import {
@@ -9,18 +8,17 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 
-export default function Sidebar() {
-  const { selectedApartment } = useApartment()
+export default function Sidebar({ selectedApartment }) {
   const properties = getProperties()
-  const [selectedProperty, setSelectedProperty] = useState<string | null>(null)
+  const [selectedProperty, setSelectedProperty] = useState<string | null>(
+    'property-' + selectedApartment?.propertyId
+  )
 
   useEffect(() => {
-    if (selectedApartment)
-      setSelectedProperty('property-' + selectedApartment.propertyId)
-    else if (properties.length > 0) {
+    if (properties.length > 0) {
       setSelectedProperty(`property-${properties[0].id}`)
     }
-  }, [properties, selectedApartment])
+  }, [properties])
 
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">
