@@ -12,7 +12,9 @@ import {
 } from 'lucide-react'
 
 export default function Framework({ children }) {
-  const [selectedApartment, setSelectedApartment] = useState<string | null>(null)
+  const [selectedApartment, setSelectedApartment] = useState<string | null>(
+    null
+  )
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
@@ -23,10 +25,9 @@ export default function Framework({ children }) {
   }, [])
 
   return (
-    <Sidebar selectedApartment={selectedApartment} />
     <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
       <Header />
-      <Sidebar />
+      <Sidebar selectedApartment={selectedApartment} />
       <div
         className={cn(
           'flex flex-col sm:gap-4 sm:py-4 sm:pl-64 bg-content text-content-foreground'
