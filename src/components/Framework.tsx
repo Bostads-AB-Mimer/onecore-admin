@@ -3,6 +3,7 @@ import Header from './Header'
 import Sidebar from './Sidebar'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import {
   PanelLeftIcon,
   BuildingIcon,
