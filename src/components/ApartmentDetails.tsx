@@ -30,7 +30,7 @@ export default function ApartmentDetails({
       </div>
       <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:gap-x-6 lg:gap-y-6 lg:col-span-2">
         <Tabs defaultValue="apartmentInfo" className="w-full">
-          <TabsList className="w-full">
+          <TabsList className="w-full justify-start">
             <TabsTrigger value="apartmentInfo">
               Lägenhetsinformation
             </TabsTrigger>
