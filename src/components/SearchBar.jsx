@@ -47,6 +47,7 @@ export default function SearchBar() {
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
+
   return (
     <div className="relative w-full max-w-md">
       <Command className="rounded-lg border shadow-md w-full">
@@ -86,7 +87,9 @@ export default function SearchBar() {
             {properties?.map((property) => (
               <CommandItem key={property.id}>
                 <BuildingIcon className="mr-2 h-4 w-4" />
-                <span>{property.name} - {property.address}</span>
+                <span>
+                  {property.name} - {property.address}
+                </span>
               </CommandItem>
             ))}
           </CommandGroup>
@@ -94,5 +97,4 @@ export default function SearchBar() {
       </Command>
     </div>
   )
-}
 }
