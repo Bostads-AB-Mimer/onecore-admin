@@ -21,7 +21,7 @@ const properties: Property[] = [
             bathrooms: 1,
             size: 75,
             rent: 10000,
-            images: [{ id: 1, url: '/storgatan.jpg' }],
+            images: [{ id: 1, url: '/storgatan.jpg' }, { id: 7, url: '/new-image.jpg' }],
             tenants: [
               {
                 id: 1,

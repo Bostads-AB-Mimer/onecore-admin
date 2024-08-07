@@ -21,6 +21,7 @@ export async function getStaticPaths() {
       <div class="lg:col-span-4">
       {apartment ? (
           <ApartmentDetails client:load apartment={apartment} />
+          <img src="/new-image.jpg" alt="Ny bild på lägenheten" />
       ) : (
         <p>Lägenhet ej hittad</p>
       )}
