@@ -35,7 +35,7 @@ export default function ApartmentDetails({
 }: {
   apartment: Apartment
 }) {
-  const tenant = apartment.tenants[0] // För enkelhetens skull, vi antar att det finns en hyresgäst
+  const tenant = apartment.tenants.length > 0 ? apartment.tenants[0] : null; // Hantera fallet där det inte finns några hyresgäster
 
   return (
     <div className="">
@@ -71,7 +71,7 @@ export default function ApartmentDetails({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
         <div className="lg:col-span-2">
-          <img src={apartment.images[1].url} alt="Ny bild på lägenheten" className="mb-4 w-full h-auto object-cover" />
+          <img src={apartment.images.length > 1 ? apartment.images[1].url : apartment.images[0].url} alt="Ny bild på lägenheten" className="mb-4 w-full h-auto object-cover" />
           <div className="text-xl font-bold mb-2">
             {apartment.rooms} rum och kök, {apartment.id}
           </div>
@@ -85,26 +85,30 @@ export default function ApartmentDetails({
           </div>
         </div>
         <Card className="p-4">
-          <div className="flex items-center justify-between mb-2">
-            <div className="text-lg font-semibold">{tenant.name}</div>
-            <a href={`/tenant/${tenant.id}`} className="text-blue-600">
-              Gå till kund
-            </a>
-          </div>
-          <div className="text-sm text-muted-foreground mb-2">
-            Nyttjare / Gällande kontrakt
-          </div>
-          <div className="text-sm mb-2">ID: {tenant.id}</div>
-          <div className="text-sm mb-2">{tenant.email}</div>
-          <div className="text-sm mb-2">
-            {tenant.leaseStart.toLocaleDateString()} -{' '}
-            {tenant.leaseEnd
-              ? tenant.leaseEnd.toLocaleDateString()
-              : 'Pågående'}
-          </div>
-          <button className="mt-2 border rounded-md px-4 py-1">
-            Förvaltare
-          </button>
+          {tenant && (
+            <>
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-lg font-semibold">{tenant.name}</div>
+                <a href={`/tenant/${tenant.id}`} className="text-blue-600">
+                  Gå till kund
+                </a>
+              </div>
+              <div className="text-sm text-muted-foreground mb-2">
+                Nyttjare / Gällande kontrakt
+              </div>
+              <div className="text-sm mb-2">ID: {tenant.id}</div>
+              <div className="text-sm mb-2">{tenant.email}</div>
+              <div className="text-sm mb-2">
+                {tenant.leaseStart.toLocaleDateString()} -{' '}
+                {tenant.leaseEnd
+                  ? tenant.leaseEnd.toLocaleDateString()
+                  : 'Pågående'}
+              </div>
+              <button className="mt-2 border rounded-md px-4 py-1">
+                Förvaltare
+              </button>
+            </>
+          )}
         </Card>
       </div>
 
