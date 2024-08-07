@@ -29,7 +29,7 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 1,
-                name: 'Alice',
+                name: 'Alice Teodoresco',
                 email: 'alice@example.com',
                 leases: [
                   {
@@ -62,7 +62,7 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 2,
-                name: 'Bob',
+                name: 'Bob Hund',
                 email: 'bob@example.com',
                 leases: [
                   {
@@ -100,7 +100,7 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 1,
-                name: 'Alice',
+                name: 'Alice Bah Kunke',
                 email: 'alice@example.com',
 
                 leases: [
@@ -115,7 +115,7 @@ const properties: Property[] = [
               },
               {
                 id: 3,
-                name: 'Charlie',
+                name: 'Charlie Ruth',
                 email: 'charlie@example.com',
 
                 leases: [
@@ -148,7 +148,7 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 2,
-                name: 'Bob',
+                name: 'Bob Dylan',
                 email: 'bob@example.com',
 
                 leases: [
@@ -194,7 +194,7 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 4,
-                name: 'David',
+                name: 'David Batra',
                 email: 'david@example.com',
 
                 leases: [
@@ -250,8 +250,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 4,
-                name: 'David',
-                email: 'david@example.com',
+                name: 'Henrik Dorsin',
+                email: 'henrik@example.com',
 
                 leases: [
                   {
@@ -312,7 +312,7 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 5,
-                name: 'Eva',
+                name: 'Eva Rööse',
                 email: 'eva@example.com',
                 leaseStart: new Date('2019-07-01'),
               },
@@ -359,7 +359,7 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 5,
-                name: 'Eva',
+                name: 'Eva Nilsson',
                 email: 'eva@example.com',
 
                 leases: [

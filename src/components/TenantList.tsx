@@ -30,11 +30,7 @@ import {
   DropdownMenuRadioItem,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import type { Tenant } from '@/types/tenant'
 
 export default function TenantList({ tenants }: { tenants: Tenant[] }) {
@@ -74,7 +70,12 @@ export default function TenantList({ tenants }: { tenants: Tenant[] }) {
                 <TableCell className="hidden sm:table-cell">
                   <Avatar>
                     <AvatarImage src="/new-avatar.svg" alt="Hyresgästbild" />
-                    <AvatarFallback>NA</AvatarFallback>
+                    <AvatarFallback>
+                      {tenant.name
+                        .split(' ')
+                        .map((n) => n[0])
+                        .join('')}
+                    </AvatarFallback>
                   </Avatar>
                 </TableCell>
                 <TableCell className="font-medium">{tenant.name}</TableCell>
