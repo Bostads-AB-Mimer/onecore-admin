@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import { BuildingIcon, HomeIcon } from 'lucide-react'
 import { getProperties } from '@/data/db'
 import { cn } from '@/lib/utils'
+import { BuildingIcon, HomeIcon } from 'lucide-react'
+import { getProperties } from '@/data/db'
+import { cn } from '@/lib/utils'
 import {
   Accordion,
   AccordionContent,
@@ -24,11 +27,11 @@ export default function Sidebar({ selectedApartment }) {
   }, [properties, selectedApartment])
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-gray-100 lg:flex">
-      <nav className="flex flex-col gap-4 px-4 py-6">
+    <aside className={cn("fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-gray-100 lg:flex")}>
+      <nav className={cn("flex flex-col gap-4 px-4 py-6")}>
         <a
           href="/#"
-          className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+          className={cn("group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base")}
         >
           <BuildingIcon className="h-4 w-4 transition-all group-hover:scale-110" />
           <span className="sr-only">Mimer</span>
@@ -36,7 +39,7 @@ export default function Sidebar({ selectedApartment }) {
         <Accordion
           type="single"
           collapsible
-          className="w-full"
+          className={cn("w-full")}
           value={selectedProperty}
           onValueChange={setSelectedProperty}
         >
