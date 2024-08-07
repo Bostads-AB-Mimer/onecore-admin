@@ -76,6 +76,51 @@ const properties: Property[] = [
                     pdfUrl: '/leases/eva_lease.pdf',
                   },
                 ],
+                leases: [
+                  {
+                    id: 1,
+                    status: 'Gällande',
+                    address: 'Storgatan 1, Västerås',
+                    leaseStart: new Date('2021-01-01'),
+                    pdfUrl: '/leases/alice_lease.pdf',
+                  },
+                ],
+                leases: [
+                  {
+                    id: 2,
+                    status: 'Gällande',
+                    address: 'Lillgatan 2, Västerås',
+                    leaseStart: new Date('2022-02-01'),
+                    pdfUrl: '/leases/bob_lease.pdf',
+                  },
+                ],
+                leases: [
+                  {
+                    id: 3,
+                    status: 'Gällande',
+                    address: 'Storgatan 1, Västerås',
+                    leaseStart: new Date('2023-03-01'),
+                    pdfUrl: '/leases/charlie_lease.pdf',
+                  },
+                ],
+                leases: [
+                  {
+                    id: 4,
+                    status: 'Gällande',
+                    address: 'Kungsgatan 1, Stockholm',
+                    leaseStart: new Date('2020-05-01'),
+                    pdfUrl: '/leases/david_lease.pdf',
+                  },
+                ],
+                leases: [
+                  {
+                    id: 5,
+                    status: 'Gällande',
+                    address: 'Vasagatan 1, Västerås',
+                    leaseStart: new Date('2019-07-01'),
+                    pdfUrl: '/leases/eva_lease.pdf',
+                  },
+                ],
               },
               {
                 id: 3,
