@@ -57,7 +57,7 @@ export default function Sidebar({ selectedApartment }) {
                           <a
                             key={apartment.id}
                             href={`/apartments/${property.id}-${apartment.id}`}
-                            className="flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted"
+                            className={`flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted ${selectedApartment?.id === apartment.id ? 'bg-primary text-primary-foreground' : ''}`}
                           >
                             <HomeIcon className="h-4 w-4" />
                             <span>{apartment.id}</span>
