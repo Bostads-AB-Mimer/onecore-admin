@@ -21,7 +21,7 @@ export default function Header() {
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
           <Package2Icon className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          <span className="font-bold">OneCore</span>
         </a>
         <a
           href="#"
@@ -68,7 +68,7 @@ export default function Header() {
               className="flex items-center gap-2 text-lg font-semibold"
             >
               <Package2Icon className="h-6 w-6" />
-              <span className="sr-only">Acme Inc</span>
+              <span className="font-bold">OneCore</span>
             </a>
             <a href="#" className="hover:text-foreground">
               Lägenheter
