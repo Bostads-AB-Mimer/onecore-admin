@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet'
@@ -11,11 +11,11 @@ import {
   LayoutPanelLeftIcon,
 } from 'lucide-react'
 
-export default function Framework({ children }) {
+export default function Framework({ children, selectedApartment }) {
   return (
     <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
+      <Sidebar selectedApartment={selectedApartment} />
       <Header />
-      <Sidebar />
       <div
         className={cn(
           'flex flex-col sm:gap-4 sm:py-4 sm:pl-64 bg-content text-content-foreground'

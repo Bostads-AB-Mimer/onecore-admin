@@ -49,7 +49,7 @@ export default function SearchBar() {
 
   return (
     <div className="relative w-full max-w-md">
-      <Command className="rounded-lg border shadow-md w-full">
+      <Command className="rounded-lg border  w-full">
         <CommandInput
           placeholder="Sök i OneCore... (⌘K)"
           className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
