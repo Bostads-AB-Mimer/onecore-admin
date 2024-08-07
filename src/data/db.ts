@@ -21,7 +21,10 @@ const properties: Property[] = [
             bathrooms: 1,
             size: 75,
             rent: 10000,
-            images: [{ id: 1, url: '/storgatan.jpg' }, { id: 7, url: '/new-image.jpg' }],
+            images: [
+              { id: 1, url: '/storgatan.jpg' },
+              { id: 7, url: '/new-image.jpg' },
+            ],
             tenants: [
               {
                 id: 1,
@@ -356,4 +359,14 @@ export function getApartments(propertyId?: number) {
 
 export function getApartment(id: number) {
   return getApartments().find((apartment) => apartment.id === id)
+}
+
+export function getTenant(id: number) {
+  return properties
+    .flatMap((property) =>
+      property.floors.flatMap((floor) =>
+        floor.apartments.flatMap((apartment) => apartment.tenants)
+      )
+    )
+    .find((tenant) => tenant.id === id)
 }
