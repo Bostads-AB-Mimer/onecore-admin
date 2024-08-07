@@ -1,4 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { UserIcon } from 'lucide-react';
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import type { Apartment } from '@/types/apartment';
+import ApartmentInfoTab from './tabs/ApartmentInfoTab';
+import IssuesTab from './tabs/IssuesTab';
+import EconomyTab from './tabs/EconomyTab';
+import HistoryTab from './tabs/HistoryTab';
+import { cn } from '@/lib/utils';
 import {
   Card,
   CardHeader,
@@ -107,9 +118,9 @@ export default function ApartmentDetails({
               <div className="text-sm mb-2">ID: {tenant.id}</div>
               <div className="text-sm mb-2">{tenant.email}</div>
               <div className="text-sm mb-2">
-                {tenant.leaseStart.toLocaleDateString()} -{' '}
+                {new Date(tenant.leaseStart).toLocaleDateString()} -{' '}
                 {tenant.leaseEnd
-                  ? tenant.leaseEnd.toLocaleDateString()
+                  ? new Date(tenant.leaseEnd).toLocaleDateString()
                   : 'Pågående'}
               </div>
               <button className="mt-2 border rounded-md px-4 py-1">
