@@ -30,6 +30,11 @@ import {
   DropdownMenuRadioItem,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
 import type { Tenant } from '@/types/tenant'
 
 export default function TenantList({ tenants }: { tenants: Tenant[] }) {
@@ -67,13 +72,10 @@ export default function TenantList({ tenants }: { tenants: Tenant[] }) {
             {tenants.map((tenant) => (
               <TableRow key={tenant.id}>
                 <TableCell className="hidden sm:table-cell">
-                  <img
-                    alt="Hyresgästbild"
-                    className="aspect-square rounded-full object-cover"
-                    height="64"
-                    src="/new-avatar.svg"
-                    width="64"
-                  />
+                  <Avatar>
+                    <AvatarImage src="/new-avatar.svg" alt="Hyresgästbild" />
+                    <AvatarFallback>NA</AvatarFallback>
+                  </Avatar>
                 </TableCell>
                 <TableCell className="font-medium">{tenant.name}</TableCell>
                 <TableCell>{tenant.email}</TableCell>
