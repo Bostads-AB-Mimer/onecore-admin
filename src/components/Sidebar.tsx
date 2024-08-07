@@ -59,7 +59,7 @@ export default function Sidebar({ selectedApartment }) {
                             key={apartment.id}
                             href={`/apartments/${property.id}-${apartment.id}`}
                             className={cn(
-                              'flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-muted',
+                              'flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium hover:bg-primary hover:text-primary-foreground',
                               selectedApartment?.id === apartment.id ? 'bg-primary text-primary-foreground' : ''
                             )}
                           >
