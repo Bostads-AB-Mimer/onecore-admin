@@ -64,170 +64,51 @@ export default function TenantList({ tenants }: { tenants: Tenant[] }) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell className="hidden sm:table-cell">
-                <img
-                  alt="Hyresgästbild"
-                  className="aspect-square rounded-md object-cover"
-                  height="64"
-                  src="/placeholder.svg"
-                  width="64"
-                />
-              </TableCell>
-              <TableCell className="font-medium">John Andersson</TableCell>
-              <TableCell>john@example.com</TableCell>
-              <TableCell className="hidden md:table-cell">
-                (021) 123-4567
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                Kungsgatan 12
-              </TableCell>
-              <TableCell className="hidden md:table-cell">201</TableCell>
-              <TableCell className="hidden md:table-cell">
-                <Badge className="text-xs" variant="secondary">
-                  Betald
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button aria-haspopup="true" size="icon" variant="ghost">
-                      <MoveHorizontalIcon className="h-4 w-4" />
-                      <span className="sr-only">Öppna meny</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Åtgärder</DropdownMenuLabel>
-                    <DropdownMenuItem>Visa</DropdownMenuItem>
-                    <DropdownMenuItem>Redigera</DropdownMenuItem>
-                    <DropdownMenuItem>Säg upp hyresavtal</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="hidden sm:table-cell">
-                <img
-                  alt="Hyresgästbild"
-                  className="aspect-square rounded-md object-cover"
-                  height="64"
-                  src="/placeholder.svg"
-                  width="64"
-                />
-              </TableCell>
-              <TableCell className="font-medium">Emma Johansson</TableCell>
-              <TableCell>emma@example.com</TableCell>
-              <TableCell className="hidden md:table-cell">
-                (021) 987-6543
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                Vasagatan 34
-              </TableCell>
-              <TableCell className="hidden md:table-cell">301</TableCell>
-              <TableCell className="hidden md:table-cell">
-                <Badge className="text-xs" variant="outline">
-                  Försenad
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button aria-haspopup="true" size="icon" variant="ghost">
-                      <MoveHorizontalIcon className="h-4 w-4" />
-                      <span className="sr-only">Öppna meny</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Åtgärder</DropdownMenuLabel>
-                    <DropdownMenuItem>Visa</DropdownMenuItem>
-                    <DropdownMenuItem>Redigera</DropdownMenuItem>
-                    <DropdownMenuItem>Säg upp hyresavtal</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="hidden sm:table-cell">
-                <img
-                  alt="Hyresgästbild"
-                  className="aspect-square rounded-md object-cover"
-                  height="64"
-                  src="/placeholder.svg"
-                  width="64"
-                />
-              </TableCell>
-              <TableCell className="font-medium">Lina Eriksson</TableCell>
-              <TableCell>lina@example.com</TableCell>
-              <TableCell className="hidden md:table-cell">
-                (021) 555-1234
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                Drottninggatan 56
-              </TableCell>
-              <TableCell className="hidden md:table-cell">401</TableCell>
-              <TableCell className="hidden md:table-cell">
-                <Badge className="text-xs" variant="secondary">
-                  Betald
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button aria-haspopup="true" size="icon" variant="ghost">
-                      <MoveHorizontalIcon className="h-4 w-4" />
-                      <span className="sr-only">Öppna meny</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Åtgärder</DropdownMenuLabel>
-                    <DropdownMenuItem>Visa</DropdownMenuItem>
-                    <DropdownMenuItem>Redigera</DropdownMenuItem>
-                    <DropdownMenuItem>Säg upp hyresavtal</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="hidden sm:table-cell">
-                <img
-                  alt="Hyresgästbild"
-                  className="aspect-square rounded-md object-cover"
-                  height="64"
-                  src="/placeholder.svg"
-                  width="64"
-                />
-              </TableCell>
-              <TableCell className="font-medium">Karin Nilsson</TableCell>
-              <TableCell>karin@example.com</TableCell>
-              <TableCell className="hidden md:table-cell">
-                (021) 777-8888
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                Stora Gatan 78
-              </TableCell>
-              <TableCell className="hidden md:table-cell">501</TableCell>
-              <TableCell className="hidden md:table-cell">
-                <Badge className="text-xs" variant="secondary">
-                  Betald
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button aria-haspopup="true" size="icon" variant="ghost">
-                      <MoveHorizontalIcon className="h-4 w-4" />
-                      <span className="sr-only">Öppna meny</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Åtgärder</DropdownMenuLabel>
-                    <DropdownMenuItem>Visa</DropdownMenuItem>
-                    <DropdownMenuItem>Redigera</DropdownMenuItem>
-                    <DropdownMenuItem>Säg upp hyresavtal</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow>
+            {tenants.map((tenant) => (
+              <TableRow key={tenant.id}>
+                <TableCell className="hidden sm:table-cell">
+                  <img
+                    alt="Hyresgästbild"
+                    className="aspect-square rounded-md object-cover"
+                    height="64"
+                    src="/placeholder.svg"
+                    width="64"
+                  />
+                </TableCell>
+                <TableCell className="font-medium">{tenant.name}</TableCell>
+                <TableCell>{tenant.email}</TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {tenant.phoneNumber}
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {tenant.leases[0]?.address || 'Ingen adress'}
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {tenant.leases[0]?.id || 'Ingen lägenhetsnummer'}
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  <Badge className="text-xs" variant="secondary">
+                    {tenant.leases[0]?.status || 'Ingen status'}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button aria-haspopup="true" size="icon" variant="ghost">
+                        <MoveHorizontalIcon className="h-4 w-4" />
+                        <span className="sr-only">Öppna meny</span>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuLabel>Åtgärder</DropdownMenuLabel>
+                      <DropdownMenuItem>Visa</DropdownMenuItem>
+                      <DropdownMenuItem>Redigera</DropdownMenuItem>
+                      <DropdownMenuItem>Säg upp hyresavtal</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </CardContent>
