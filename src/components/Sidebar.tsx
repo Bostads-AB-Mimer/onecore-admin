@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BuildingIcon, HomeIcon } from 'lucide-react'
 import { getProperties } from '@/data/db'
+import { cn } from '@/lib/utils'
 import {
   Accordion,
   AccordionContent,
