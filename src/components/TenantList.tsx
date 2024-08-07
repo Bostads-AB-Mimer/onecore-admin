@@ -80,17 +80,25 @@ export default function TenantList({ tenants }: { tenants: Tenant[] }) {
                 <TableCell className="hidden md:table-cell">
                   {tenant.phoneNumber}
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  {tenant.leases[0]?.address || 'Ingen adress'}
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  {tenant.leases[0]?.id || 'Ingen lägenhetsnummer'}
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  <Badge className="text-xs" variant="secondary">
-                    {tenant.leases[0]?.status || 'Ingen status'}
-                  </Badge>
-                </TableCell>
+                {!tenant.leases?.length ? (
+                  <TableCell colSpan={3} className="text-muted-foreground">
+                    Ingen aktivt hyresavtal
+                  </TableCell>
+                ) : (
+                  <>
+                    <TableCell className="hidden md:table-cell">
+                      {tenant.leases[0]?.address || 'Ingen adress'}
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      {tenant.leases[0]?.id || 'Ingen lägenhetsnummer'}
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      <Badge className="text-xs" variant="secondary">
+                        {tenant.leases[0]?.status || 'Ingen status'}
+                      </Badge>
+                    </TableCell>
+                  </>
+                )}
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
