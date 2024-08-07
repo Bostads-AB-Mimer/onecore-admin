@@ -7,7 +7,7 @@ import { getApartment } from '@/data/db';
 import { ApartmentProvider } from '@/context/ApartmentContext';
 
 const { propId, apartmentId } = Astro.params;
-const apartment = getApartment(parseInt(apartmentId))
+const apartment = await getApartment(parseInt(apartmentId))
 
 export async function getStaticPaths() {
   const properties = getProperties();
@@ -19,12 +19,11 @@ export async function getStaticPaths() {
 <Layout title="Lägenhetshantering Dashboard" selectedApartment={apartment}>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-x-6 lg:gap-y-6">
       <div class="lg:col-span-4">
-      {apartment ? (
+        {apartment ? (
           <ApartmentDetails client:load apartment={apartment} />
-      ) : (
-        <p>Lägenhet ej hittad</p>
-      )}
+        ) : (
+          <p>Lägenhet ej hittad</p>
+        )}
       </div>
     </div>
-  </body>
 </Layout>
