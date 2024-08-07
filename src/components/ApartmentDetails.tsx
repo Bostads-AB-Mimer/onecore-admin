@@ -89,7 +89,7 @@ export default function ApartmentDetails({
           </div>
           <div className="flex gap-4">
             <div>{apartment.size} m²</div>
-            <div>{apartment.rent} kr/mån</div>
+            <div>{apartment.rent} kr/månad</div>
           </div>
         </div>
         <Card className="p-4">
