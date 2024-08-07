@@ -4,7 +4,6 @@ import ApartmentDetails from '@/components/ApartmentDetails.tsx';
 import { getProperties } from '@/data/db';
 import '@/styles/globals.css';
 import { getApartment } from '@/data/db';
-import { ApartmentProvider } from '@/context/ApartmentContext';
 
 const { propId, apartmentId } = Astro.params;
 const apartment = await getApartment(parseInt(apartmentId))
