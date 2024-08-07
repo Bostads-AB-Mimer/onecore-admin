@@ -69,9 +69,9 @@ export default function TenantList({ tenants }: { tenants: Tenant[] }) {
                 <TableCell className="hidden sm:table-cell">
                   <img
                     alt="Hyresgästbild"
-                    className="aspect-square rounded-md object-cover"
+                    className="aspect-square rounded-full object-cover"
                     height="64"
-                    src="/placeholder.svg"
+                    src="/new-avatar.svg"
                     width="64"
                   />
                 </TableCell>
