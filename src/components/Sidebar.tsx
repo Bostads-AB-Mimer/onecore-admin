@@ -23,7 +23,7 @@ export default function Sidebar({ selectedApartment }) {
   }, [properties, selectedApartment])
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">
+    <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-gray-100 lg:flex">
       <nav className="flex flex-col gap-4 px-4 py-6">
         <a
           href="/#"
