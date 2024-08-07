@@ -428,11 +428,13 @@ export function getApartment(id: number) {
 }
 
 export function getTenant(id: number): Tenant | undefined {
-  return properties
-    .flatMap((property) =>
-      property.floors.flatMap((floor) =>
-        floor.apartments.flatMap((apartment) => apartment.tenants)
-      )
+  return getTenants().find((tenant) => tenant.id === id)
+}
+
+export function getTenants(): Tenant[] {
+  return properties.flatMap((property) =>
+    property.floors.flatMap((floor) =>
+      floor.apartments.flatMap((apartment) => apartment.tenants)
     )
-    .find((tenant) => tenant.id === id)
+  )
 }
