@@ -1,0 +1,16 @@
+---
+import TenantList from '@/components/TenantList';
+import { getTenants } from '@/data/db';
+import Layout from '@/layouts/Layout.astro';
+import '@/styles/globals.css';
+
+const tenants = getTenants();
+
+---
+<Layout title="OneCore startsida">
+    <main class="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-x-6 lg:gap-y-6">
+      <div class="lg:col-span-4">
+        <TenantList tenants={tenants} client:load />
+      </div>
+    </main>
+</Layout>
