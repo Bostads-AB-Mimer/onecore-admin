@@ -71,6 +71,7 @@ export default function ApartmentDetails({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
         <div className="lg:col-span-2">
+          <img src={apartment.images[1].url} alt="Ny bild på lägenheten" className="mb-4 w-full h-auto object-cover" />
           <div className="text-xl font-bold mb-2">
             {apartment.rooms} rum och kök, {apartment.id}
           </div>
