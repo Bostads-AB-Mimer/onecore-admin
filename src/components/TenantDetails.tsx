@@ -103,7 +103,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
               </TableHeader>
               <TableBody>
                 <TableRow>
-                  <TableCell></TableCell>
+                  <TableCell>
                     <HomeIcon className="h-4 w-4" /> Gällande
                   </TableCell>
                   <TableCell>Brynäsgatan 45</TableCell>
@@ -142,6 +142,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                   </TableCell>
                   <TableCell>Adressgatan 1</TableCell>
                   <TableCell>Sista dag för debitering: 2024-05-30</TableCell>
+                  <TableCell></TableCell>
                   <TableCell></TableCell>
                   <TableCell>
                     <Link href="#" prefetch={false}>
