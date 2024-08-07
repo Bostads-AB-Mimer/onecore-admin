@@ -13,7 +13,7 @@ import {
 
 export default function Framework({ children, selectedApartment }) {
   return (
-    <div className={cn('flex min-h-screen w-full flex-col bg-muted')}>
+    <div className={cn('flex min-h-screen w-full flex-col bg-gray-200')}>
       <Sidebar selectedApartment={selectedApartment} />
       <Header />
       <div
@@ -77,7 +77,7 @@ export default function Framework({ children, selectedApartment }) {
         </header>
         <main
           className={cn(
-            'grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-2 xl:grid-cols-2 bg-main'
+            'grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-2 xl:grid-cols-2  bg-gray-200'
           )}
         >
           <div

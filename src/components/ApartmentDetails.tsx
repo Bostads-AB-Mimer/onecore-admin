@@ -1,52 +1,28 @@
-import { useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { UserIcon } from 'lucide-react';
-import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import type { Apartment } from '@/types/apartment';
-import ApartmentInfoTab from './tabs/ApartmentInfoTab';
-import IssuesTab from './tabs/IssuesTab';
-import EconomyTab from './tabs/EconomyTab';
-import HistoryTab from './tabs/HistoryTab';
-import { cn } from '@/lib/utils';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from '@/components/ui/card'
+import { useEffect } from 'react'
+import { Card } from '@/components/ui/card'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { UserIcon } from 'lucide-react'
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import type { Apartment } from '@/types/apartment'
 import ApartmentInfoTab from './tabs/ApartmentInfoTab'
 import IssuesTab from './tabs/IssuesTab'
 import EconomyTab from './tabs/EconomyTab'
 import HistoryTab from './tabs/HistoryTab'
+import { cn } from '@/lib/utils'
 
 export default function ApartmentDetails({
   apartment,
 }: {
   apartment: Apartment
 }) {
-  const tenant = apartment.tenants.length > 0 ? apartment.tenants[0] : null; // Hantera fallet där det inte finns några hyresgäster
+  const tenant = apartment.tenants.length > 0 ? apartment.tenants[0] : null // Hantera fallet där det inte finns några hyresgäster
 
   return (
     <div className="">
@@ -82,15 +58,6 @@ export default function ApartmentDetails({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
         <div className="lg:col-span-2">
-          <img
-            src={
-              apartment.images.length > 1
-                ? apartment.images[1].url
-                : apartment.images[0].url
-            }
-            alt="Ny bild på lägenheten"
-            className="mb-4 w-full h-auto object-cover"
-          />
           <div className="text-xl font-bold mb-2">
             {apartment.rooms} rum och kök, {apartment.id}
           </div>
@@ -108,7 +75,7 @@ export default function ApartmentDetails({
             <>
               <div className="flex items-center justify-between mb-2">
                 <div className="text-lg font-semibold">{tenant.name}</div>
-                <a href={`/tenant/${tenant.id}`} className="text-blue-600">
+                <a href={`/tenants/${tenant.id}`} className="text-blue-600">
                   Gå till kund
                 </a>
               </div>
@@ -118,9 +85,9 @@ export default function ApartmentDetails({
               <div className="text-sm mb-2">ID: {tenant.id}</div>
               <div className="text-sm mb-2">{tenant.email}</div>
               <div className="text-sm mb-2">
-                {new Date(tenant.leaseStart).toLocaleDateString()} -{' '}
-                {tenant.leaseEnd
-                  ? new Date(tenant.leaseEnd).toLocaleDateString()
+                {new Date(tenant.leases[0]?.leaseStart).toLocaleDateString()} -{' '}
+                {tenant.leases[0]?.leaseEnd
+                  ? new Date(tenant.leases[0]?.leaseEnd).toLocaleDateString()
                   : 'Pågående'}
               </div>
               <button className="mt-2 border rounded-md px-4 py-1">

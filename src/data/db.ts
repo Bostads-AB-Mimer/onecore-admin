@@ -1,4 +1,5 @@
 import type { Property } from '@/types/property'
+import type { Tenant } from '@/types/tenant'
 
 const properties: Property[] = [
   {
@@ -30,7 +31,6 @@ const properties: Property[] = [
                 id: 1,
                 name: 'Alice',
                 email: 'alice@example.com',
-                leaseStart: new Date('2021-01-01'),
                 leases: [
                   {
                     id: 1,
@@ -40,93 +40,7 @@ const properties: Property[] = [
                     pdfUrl: '/leases/alice_lease.pdf',
                   },
                 ],
-                leases: [
-                  {
-                    id: 2,
-                    status: 'Gällande',
-                    address: 'Lillgatan 2, Västerås',
-                    leaseStart: new Date('2022-02-01'),
-                    pdfUrl: '/leases/bob_lease.pdf',
-                  },
-                ],
-                leases: [
-                  {
-                    id: 3,
-                    status: 'Gällande',
-                    address: 'Storgatan 1, Västerås',
-                    leaseStart: new Date('2023-03-01'),
-                    pdfUrl: '/leases/charlie_lease.pdf',
-                  },
-                ],
-                leases: [
-                  {
-                    id: 4,
-                    status: 'Gällande',
-                    address: 'Kungsgatan 1, Stockholm',
-                    leaseStart: new Date('2020-05-01'),
-                    pdfUrl: '/leases/david_lease.pdf',
-                  },
-                ],
-                leases: [
-                  {
-                    id: 5,
-                    status: 'Gällande',
-                    address: 'Vasagatan 1, Västerås',
-                    leaseStart: new Date('2019-07-01'),
-                    pdfUrl: '/leases/eva_lease.pdf',
-                  },
-                ],
-                leases: [
-                  {
-                    id: 1,
-                    status: 'Gällande',
-                    address: 'Storgatan 1, Västerås',
-                    leaseStart: new Date('2021-01-01'),
-                    pdfUrl: '/leases/alice_lease.pdf',
-                  },
-                ],
-                leases: [
-                  {
-                    id: 2,
-                    status: 'Gällande',
-                    address: 'Lillgatan 2, Västerås',
-                    leaseStart: new Date('2022-02-01'),
-                    pdfUrl: '/leases/bob_lease.pdf',
-                  },
-                ],
-                leases: [
-                  {
-                    id: 3,
-                    status: 'Gällande',
-                    address: 'Storgatan 1, Västerås',
-                    leaseStart: new Date('2023-03-01'),
-                    pdfUrl: '/leases/charlie_lease.pdf',
-                  },
-                ],
-                leases: [
-                  {
-                    id: 4,
-                    status: 'Gällande',
-                    address: 'Kungsgatan 1, Stockholm',
-                    leaseStart: new Date('2020-05-01'),
-                    pdfUrl: '/leases/david_lease.pdf',
-                  },
-                ],
-                leases: [
-                  {
-                    id: 5,
-                    status: 'Gällande',
-                    address: 'Vasagatan 1, Västerås',
-                    leaseStart: new Date('2019-07-01'),
-                    pdfUrl: '/leases/eva_lease.pdf',
-                  },
-                ],
-              },
-              {
-                id: 3,
-                name: 'Charlie',
-                email: 'charlie@example.com',
-                leaseStart: new Date('2023-03-01'),
+                issues: [],
               },
             ],
             description:
@@ -150,7 +64,15 @@ const properties: Property[] = [
                 id: 2,
                 name: 'Bob',
                 email: 'bob@example.com',
-                leaseStart: new Date('2022-02-01'),
+                leases: [
+                  {
+                    id: 2,
+                    status: 'Gällande',
+                    address: 'Lillgatan 2, Västerås',
+                    leaseStart: new Date('2022-02-01'),
+                    pdfUrl: '/leases/bob_lease.pdf',
+                  },
+                ],
               },
             ],
             description:
@@ -180,13 +102,31 @@ const properties: Property[] = [
                 id: 1,
                 name: 'Alice',
                 email: 'alice@example.com',
-                leaseStart: new Date('2021-01-01'),
+
+                leases: [
+                  {
+                    id: 3,
+                    status: 'Gällande',
+                    address: 'Storgatan 1, Västerås',
+                    leaseStart: new Date('2023-03-01'),
+                    pdfUrl: '/leases/charlie_lease.pdf',
+                  },
+                ],
               },
               {
                 id: 3,
                 name: 'Charlie',
                 email: 'charlie@example.com',
-                leaseStart: new Date('2023-03-01'),
+
+                leases: [
+                  {
+                    id: 4,
+                    status: 'Gällande',
+                    address: 'Kungsgatan 1, Stockholm',
+                    leaseStart: new Date('2020-05-01'),
+                    pdfUrl: '/leases/david_lease.pdf',
+                  },
+                ],
               },
             ],
             description:
@@ -210,7 +150,16 @@ const properties: Property[] = [
                 id: 2,
                 name: 'Bob',
                 email: 'bob@example.com',
-                leaseStart: new Date('2022-02-01'),
+
+                leases: [
+                  {
+                    id: 5,
+                    status: 'Gällande',
+                    address: 'Vasagatan 1, Västerås',
+                    leaseStart: new Date('2019-07-01'),
+                    pdfUrl: '/leases/eva_lease.pdf',
+                  },
+                ],
               },
             ],
             description:
@@ -247,7 +196,16 @@ const properties: Property[] = [
                 id: 4,
                 name: 'David',
                 email: 'david@example.com',
-                leaseStart: new Date('2020-05-01'),
+
+                leases: [
+                  {
+                    id: 1,
+                    status: 'Gällande',
+                    address: 'Storgatan 1, Västerås',
+                    leaseStart: new Date('2021-01-01'),
+                    pdfUrl: '/leases/alice_lease.pdf',
+                  },
+                ],
               },
             ],
             description:
@@ -294,7 +252,16 @@ const properties: Property[] = [
                 id: 4,
                 name: 'David',
                 email: 'david@example.com',
-                leaseStart: new Date('2020-05-01'),
+
+                leases: [
+                  {
+                    id: 2,
+                    status: 'Gällande',
+                    address: 'Lillgatan 2, Västerås',
+                    leaseStart: new Date('2022-02-01'),
+                    pdfUrl: '/leases/bob_lease.pdf',
+                  },
+                ],
               },
             ],
             description:
@@ -394,7 +361,16 @@ const properties: Property[] = [
                 id: 5,
                 name: 'Eva',
                 email: 'eva@example.com',
-                leaseStart: new Date('2019-07-01'),
+
+                leases: [
+                  {
+                    id: 3,
+                    status: 'Gällande',
+                    address: 'Storgatan 1, Västerås',
+                    leaseStart: new Date('2023-03-01'),
+                    pdfUrl: '/leases/charlie_lease.pdf',
+                  },
+                ],
               },
             ],
             description:
@@ -451,7 +427,7 @@ export function getApartment(id: number) {
   return getApartments().find((apartment) => apartment.id === id)
 }
 
-export function getTenant(id: number) {
+export function getTenant(id: number): Tenant | undefined {
   return properties
     .flatMap((property) =>
       property.floors.flatMap((floor) =>

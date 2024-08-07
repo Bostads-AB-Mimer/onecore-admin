@@ -1,0 +1,28 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getProperties } from '@/data/db';
+import '@/styles/globals.css';
+import { getTenant } from '@/data/db';
+import { TenantDetails } from '@/components/TenantDetails';
+
+const { tenantId } = Astro.params;
+const tenant = await getTenant(parseInt(tenantId))
+
+export async function getStaticPaths() {
+  const properties = getProperties();
+  return properties.flatMap(property => property.floors.flatMap(floor => floor.apartments)).flatMap(apartment => apartment.tenants).map( tenant => ({
+    params: { tenantId: tenant.id.toString() }
+  }));
+}
+---
+<Layout title="Lägenhetshantering Dashboard" selectedtenant={tenant}>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-x-6 lg:gap-y-6">
+      <div class="lg:col-span-4">
+        {tenant ? (
+          <TenantDetails client:load tenant={tenant} />
+        ) : (
+          <p>Lägenhet ej hittad</p>
+        )}
+      </div>
+    </div>
+</Layout>
