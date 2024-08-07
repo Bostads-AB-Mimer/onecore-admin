@@ -15,10 +15,12 @@ export default function Sidebar({ selectedApartment }) {
   )
 
   useEffect(() => {
-    if (properties.length > 0) {
+    if (selectedApartment)
+      setSelectedProperty(`property-${selectedApartment.propertyId}`)
+    else if (properties.length > 0) {
       setSelectedProperty(`property-${properties[0].id}`)
     }
-  }, [properties])
+  }, [properties, selectedApartment])
 
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-sidebar lg:flex">

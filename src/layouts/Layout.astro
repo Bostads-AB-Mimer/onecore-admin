@@ -1,8 +1,7 @@
 ---
 import Framework from '@/components/Framework';
-import { ApartmentProvider } from '@/context/ApartmentContext';
 
-const { title, themeClass = '' } = Astro.props;
+const { title, themeClass = '', selectedApartment } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,7 +15,7 @@ const { title, themeClass = '' } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class={themeClass}>
-		<Framework client:load>
+		<Framework client:load selectedApartment={selectedApartment}>
 		<slot />
 		</Framework>
 	</body>
