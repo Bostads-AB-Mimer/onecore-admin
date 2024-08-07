@@ -1,3 +1,5 @@
+import type { Tenant } from './tenant'
+
 export type Apartment = {
   id: number
   propertyId: string
@@ -20,11 +22,5 @@ export type Apartment = {
     title: string
     status: 'open' | 'closed'
   }[]
-  tenants: {
-    id: number
-    name: string
-    email: string
-    leaseStart: Date
-    leaseEnd?: Date
-  }[]
+  tenants: Tenant[]
 }
