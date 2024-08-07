@@ -38,38 +38,46 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
       <section className="mb-8">
         <div className="flex justify-between items-start">
           <div>
-            <p className="text-muted-foreground">19600101-0001</p>
-            <h1 className="text-2xl font-bold">Sven Svensson, 1023863</h1>
-            <p className="text-muted-foreground">Kundnummer: 83839</p>
+            <p className="text-muted-foreground">{tenant.id}</p>
+            <h1 className="text-2xl font-bold">{tenant.name}, {tenant.customerNumber}</h1>
+            <p className="text-muted-foreground">Kundnummer: {tenant.customerNumber}</p>
             <p className="text-muted-foreground">
-              Senaste inloggning på mina sidor: 2024-03-20
+              Senaste inloggning på mina sidor: {tenant.lastLogin}
             </p>
             <div className="mt-4">
-              <Badge variant="default">Ej ensamarbete</Badge>
-              <Badge variant="default" className="ml-2">
-                Spärr för erbjudanden
-              </Badge>
-              <Badge variant="default" className="ml-2">
-                Avliden den: 2023-11-13
-              </Badge>
-              <Badge variant="default" className="ml-2">
-                God man : Kalle Förvaltare 7381893
-              </Badge>
+              {tenant.gdprBlocked && (
+                <Badge variant="default" className="ml-2">
+                  Spärrad från GDPR rensning: Ja
+                </Badge>
+              )}
+              {tenant.phoneNumber && (
+                <Badge variant="default" className="ml-2">
+                  Telefon: {tenant.phoneNumber}
+                </Badge>
+              )}
+              {tenant.email && (
+                <Badge variant="default" className="ml-2">
+                  Email: {tenant.email}
+                </Badge>
+              )}
             </div>
             <div className="mt-6">
               <p className="font-bold">GDPR</p>
               <p className="text-muted-foreground">
-                Spärrad från GDPR rensning: Ja
+                Spärrad från GDPR rensning: {tenant.gdprBlocked ? 'Ja' : 'Nej'}
               </p>
-              <p className="text-muted-foreground">
-                Rensning spärr t. o. m. 2099-12-31
+              {tenant.gdprBlocked && (
+                <p className="text-muted-foreground">
+                  Rensning spärr t. o. m. {tenant.gdprBlocked.toISOString().split('T')[0]}
+                </p>
+              )}
               </p>
             </div>
           </div>
           <div className="bg-muted p-4 rounded-md">
             <p className="font-bold">Kontaktuppgifter</p>
-            <p className="mt-2">0701 23 45 67</p>
-            <p className="mt-2">sven.svensson@epost.se</p>
+            <p className="mt-2">{tenant.phoneNumber}</p>
+            <p className="mt-2">{tenant.email}</p>
             <Button variant="outline" className="mt-4">
               Föredraget kontaktsätt
             </Button>
@@ -102,77 +110,34 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <HomeIcon className="h-4 w-4" /> Gällande
-                  </TableCell>
-                  <TableCell>Brynäsgatan 45</TableCell>
-                  <TableCell>
-                    <Link href="#" prefetch={false}>
-                      Avtal.pdf
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline">
-                      Till hyressystem{' '}
-                      <ArrowRightIcon className="ml-2 h-4 w-4" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <HomeIcon className="h-4 w-4" /> Gällande
-                  </TableCell>
-                  <TableCell>Brynäsgatan 46 Andrahand</TableCell>
-                  <TableCell>
-                    <Link href="#" prefetch={false}>
-                      Avtal.pdf
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline">
-                      Till hyressystem{' '}
-                      <ArrowRightIcon className="ml-2 h-4 w-4" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <CarIcon className="h-4 w-4" /> Uppsagt
-                  </TableCell>
-                  <TableCell>Adressgatan 1</TableCell>
-                  <TableCell>Sista dag för debitering: 2024-05-30</TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell>
-                    <Link href="#" prefetch={false}>
-                      Avtal.pdf
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline">
-                      Till hyressystem{' '}
-                      <ArrowRightIcon className="ml-2 h-4 w-4" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <CarIcon className="h-4 w-4" /> Uppsagt
-                  </TableCell>
-                  <TableCell>Adressgatan 1</TableCell>
-                  <TableCell>
-                    <Link href="#" prefetch={false}>
-                      Avtal.pdf
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    <Button variant="outline">
-                      Till hyressystem{' '}
-                      <ArrowRightIcon className="ml-2 h-4 w-4" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                {tenant.leases.map((lease) => (
+                  <TableRow key={lease.id}>
+                    <TableCell>
+                      {lease.status === 'Gällande' ? (
+                        <HomeIcon className="h-4 w-4" />
+                      ) : (
+                        <CarIcon className="h-4 w-4" />
+                      )}{' '}
+                      {lease.status}
+                    </TableCell>
+                    <TableCell>{lease.address}</TableCell>
+                    <TableCell>
+                      {lease.pdfUrl ? (
+                        <Link href={lease.pdfUrl} prefetch={false}>
+                          Avtal.pdf
+                        </Link>
+                      ) : (
+                        'Ingen PDF'
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <Button variant="outline">
+                        Till hyressystem{' '}
+                        <ArrowRightIcon className="ml-2 h-4 w-4" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </CardContent>
@@ -206,42 +171,20 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow>
-                  <TableCell>2023-01-31</TableCell>
-                  <TableCell>Kök</TableCell>
-                  <TableCell>Spis</TableCell>
-                  <TableCell>Påbörjad</TableCell>
-                  <TableCell>av AIC439 – Tobias Mattson</TableCell>
-                  <TableCell>
-                    <Button variant="outline">
-                      <ChevronDownIcon className="ml-2 h-4 w-4" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>2023-01-31</TableCell>
-                  <TableCell>Kök</TableCell>
-                  <TableCell>Spis</TableCell>
-                  <TableCell>Påbörjad</TableCell>
-                  <TableCell>av AIC439 – Tobias Mattson</TableCell>
-                  <TableCell>
-                    <Button variant="outline">
-                      <ChevronDownIcon className="ml-2 h-4 w-4" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>2023-01-31</TableCell>
-                  <TableCell>Kök</TableCell>
-                  <TableCell>Flera fel</TableCell>
-                  <TableCell>Påbörjad</TableCell>
-                  <TableCell>av AIC439 – Tobias Mattson</TableCell>
-                  <TableCell>
-                    <Button variant="outline">
-                      <ChevronDownIcon className="ml-2 h-4 w-4" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                {tenant.issues?.map((issue) => (
+                  <TableRow key={issue.id}>
+                    <TableCell>{issue.date}</TableCell>
+                    <TableCell>{issue.room}</TableCell>
+                    <TableCell>{issue.description}</TableCell>
+                    <TableCell>Påbörjad</TableCell>
+                    <TableCell>av AIC439 – Tobias Mattson</TableCell>
+                    <TableCell>
+                      <Button variant="outline">
+                        <ChevronDownIcon className="ml-2 h-4 w-4" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </CardContent>
