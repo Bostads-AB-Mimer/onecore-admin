@@ -17,6 +17,7 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select'
+import ApartmentMap from '@/components/ApartmentMap';
 import type { Tenant } from '@/types/tenant'
 
 export function TenantDetails({ tenant }: { tenant: Tenant }) {
@@ -112,6 +113,11 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                 {tenant.leases.map((lease) => (
                   <TableRow key={lease.id}>
                     <TableCell>
+                      <ApartmentMap
+                        address={lease.address || 'Ingen adress'}
+                        latitude={59.3293}  // Exempelkoordinater, ersätt med riktiga data
+                        longitude={18.0686} // Exempelkoordinater, ersätt med riktiga data
+                      />
                       {lease.status === 'Gällande' ? (
                         <HomeIcon className="h-4 w-4" />
                       ) : (
