@@ -8,6 +8,10 @@ type ApartmentMapProps = {
 };
 
 export default function ApartmentMap({ address, latitude, longitude }: ApartmentMapProps) {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
   return (
     <MapContainer center={[latitude, longitude]} zoom={13} style={{ height: '400px', width: '100%' }}>
       <TileLayer
