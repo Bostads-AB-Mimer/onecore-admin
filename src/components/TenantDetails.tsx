@@ -16,8 +16,15 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select'
-import ApartmentMap from '@/components/ApartmentMap';
+import ApartmentMap from '@/components/ApartmentMap'
 import type { Tenant } from '@/types/tenant'
+import {
+  ArrowRightIcon,
+  CarIcon,
+  ChevronDownIcon,
+  ExternalLinkIcon,
+  HomeIcon,
+} from 'lucide-react'
 
 export function TenantDetails({ tenant }: { tenant: Tenant }) {
   return (
@@ -39,8 +46,12 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         <div className="flex justify-between items-start">
           <div>
             <p className="text-muted-foreground">{tenant.id}</p>
-            <h1 className="text-2xl font-bold">{tenant.name}, {tenant.customerNumber}</h1>
-            <p className="text-muted-foreground">Kundnummer: {tenant.customerNumber}</p>
+            <h1 className="text-2xl font-bold">
+              {tenant.name}, {tenant.customerNumber}
+            </h1>
+            <p className="text-muted-foreground">
+              Kundnummer: {tenant.customerNumber}
+            </p>
             <p className="text-muted-foreground">
               Senaste inloggning på mina sidor: {tenant.lastLogin}
             </p>
@@ -65,11 +76,12 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
               <p className="font-bold">GDPR</p>
               <p className="text-muted-foreground">
                 Spärrad från GDPR rensning: {tenant.gdprBlocked ? 'Ja' : 'Nej'}
-              {tenant.gdprBlocked && (
-                <p className="text-muted-foreground">
-                  Rensning spärr t. o. m. {tenant.gdprBlocked.toISOString().split('T')[0]}
-                </p>
-              )}
+                {tenant.gdprBlocked && (
+                  <p className="text-muted-foreground">
+                    Rensning spärr t. o. m.{' '}
+                    {tenant.gdprBlocked.toISOString().split('T')[0]}
+                  </p>
+                )}
               </p>
             </div>
           </div>
@@ -114,7 +126,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                     <TableCell>
                       <ApartmentMap
                         address={lease.address || 'Ingen adress'}
-                        latitude={59.3293}  // Exempelkoordinater, ersätt med riktiga data
+                        latitude={59.3293} // Exempelkoordinater, ersätt med riktiga data
                         longitude={18.0686} // Exempelkoordinater, ersätt med riktiga data
                       />
                       {lease.status === 'Gällande' ? (
@@ -127,9 +139,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                     <TableCell>{lease.address}</TableCell>
                     <TableCell>
                       {lease.pdfUrl ? (
-                        <a href={lease.pdfUrl}>
-                          Avtal.pdf
-                        </a>
+                        <a href={lease.pdfUrl}>Avtal.pdf</a>
                       ) : (
                         'Ingen PDF'
                       )}
@@ -195,107 +205,5 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         </Card>
       </section>
     </div>
-  )
-}
-
-function ArrowRightIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  )
-}
-
-function CarIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
-      <circle cx="7" cy="17" r="2" />
-      <path d="M9 17h6" />
-      <circle cx="17" cy="17" r="2" />
-    </svg>
-  )
-}
-
-function ChevronDownIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  )
-}
-
-function ExternalLinkIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M15 3h6v6" />
-      <path d="M10 14 21 3" />
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-    </svg>
-  )
-}
-
-function HomeIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
   )
 }
