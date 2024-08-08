@@ -17,7 +17,7 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
   }
 
   return (
-    <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+    <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={{ lat: latitude, lng: longitude }}
