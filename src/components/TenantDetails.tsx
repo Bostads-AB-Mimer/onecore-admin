@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
@@ -25,15 +24,15 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
     <div className="p-6">
       <header className="flex items-center justify-between border-b pb-4 mb-6">
         <nav className="flex gap-6">
-          <Link href="#" className="text-lg font-medium" prefetch={false}>
+          <a href="#" className="text-lg font-medium">
             Översikt
-          </Link>
-          <Link href="#" className="text-lg font-medium" prefetch={false}>
+          </a>
+          <a href="#" className="text-lg font-medium">
             Kösystem
-          </Link>
-          <Link href="#" className="text-lg font-medium" prefetch={false}>
+          </a>
+          <a href="#" className="text-lg font-medium">
             Ekonomi
-          </Link>
+          </a>
         </nav>
       </header>
       <section className="mb-8">
@@ -128,9 +127,9 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                     <TableCell>{lease.address}</TableCell>
                     <TableCell>
                       {lease.pdfUrl ? (
-                        <Link href={lease.pdfUrl} prefetch={false}>
+                        <a href={lease.pdfUrl}>
                           Avtal.pdf
-                        </Link>
+                        </a>
                       ) : (
                         'Ingen PDF'
                       )}
