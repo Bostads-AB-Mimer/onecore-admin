@@ -1,10 +1,14 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 type ApartmentMapProps = {
   address: string;
   latitude: number;
   longitude: number;
+};
+
+const containerStyle = {
+  width: '100%',
+  height: '400px'
 };
 
 export default function ApartmentMap({ address, latitude, longitude }: ApartmentMapProps) {
@@ -13,14 +17,14 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
   }
 
   return (
-    <MapContainer center={[latitude, longitude]} zoom={13} style={{ height: '400px', width: '100%' }}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      <Marker position={[latitude, longitude]}>
-        <Popup>{address}</Popup>
-      </Marker>
-    </MapContainer>
+    <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={{ lat: latitude, lng: longitude }}
+        zoom={13}
+      >
+        <Marker position={{ lat: latitude, lng: longitude }} />
+      </GoogleMap>
+    </LoadScript>
   );
 }
