@@ -79,10 +79,10 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
               <p className="text-muted-foreground">
                 Spärrad från GDPR rensning: {tenant.gdprBlocked ? 'Ja' : 'Nej'}
                 {tenant.gdprBlocked && (
-                  <p className="text-muted-foreground">
+                  <span className="text-muted-foreground">
                     Rensning spärr t. o. m.{' '}
                     {tenant.gdprBlocked.toISOString().split('T')[0]}
-                  </p>
+                  </span>
                 )}
               </p>
             </div>
