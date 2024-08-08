@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
@@ -16,6 +17,7 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import ApartmentMap from '@/components/ApartmentMap'
 import type { Tenant } from '@/types/tenant'
 import {
@@ -106,56 +108,76 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         </div>
       </section>
       <section className="mb-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Hyreskontrakt</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Adress</TableHead>
-                  <TableHead />
-                  <TableHead />
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+        <Tabs defaultValue="leases">
+          <TabsList>
+            <TabsTrigger value="leases">Hyreskontrakt</TabsTrigger>
+            <TabsTrigger value="map">Karta</TabsTrigger>
+          </TabsList>
+          <TabsContent value="leases">
+            <Card>
+              <CardHeader>
+                <CardTitle>Hyreskontrakt</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Adress</TableHead>
+                      <TableHead />
+                      <TableHead />
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {tenant.leases.map((lease) => (
+                      <TableRow key={lease.id}>
+                        <TableCell>
+                          {lease.status === 'Gällande' ? (
+                            <HomeIcon className="h-4 w-4" />
+                          ) : (
+                            <CarIcon className="h-4 w-4" />
+                          )}{' '}
+                          {lease.status}
+                        </TableCell>
+                        <TableCell>{lease.address}</TableCell>
+                        <TableCell>
+                          {lease.pdfUrl ? (
+                            <a href={lease.pdfUrl}>Avtal.pdf</a>
+                          ) : (
+                            'Ingen PDF'
+                          )}
+                        </TableCell>
+                        <TableCell>
+                          <Button variant="outline">
+                            Till hyressystem{' '}
+                            <ArrowRightIcon className="ml-2 h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="map">
+            <Card>
+              <CardHeader>
+                <CardTitle>Karta</CardTitle>
+              </CardHeader>
+              <CardContent>
                 {tenant.leases.map((lease) => (
-                  <TableRow key={lease.id}>
-                    <TableCell>
-                      <ApartmentMap
-                        address={lease.address || 'Ingen adress'}
-                        latitude={59.3293} // Exempelkoordinater, ersätt med riktiga data
-                        longitude={18.0686} // Exempelkoordinater, ersätt med riktiga data
-                      />
-                      {lease.status === 'Gällande' ? (
-                        <HomeIcon className="h-4 w-4" />
-                      ) : (
-                        <CarIcon className="h-4 w-4" />
-                      )}{' '}
-                      {lease.status}
-                    </TableCell>
-                    <TableCell>{lease.address}</TableCell>
-                    <TableCell>
-                      {lease.pdfUrl ? (
-                        <a href={lease.pdfUrl}>Avtal.pdf</a>
-                      ) : (
-                        'Ingen PDF'
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      <Button variant="outline">
-                        Till hyressystem{' '}
-                        <ArrowRightIcon className="ml-2 h-4 w-4" />
-                      </Button>
-                    </TableCell>
-                  </TableRow>
+                  <ApartmentMap
+                    key={lease.id}
+                    address={lease.address || 'Ingen adress'}
+                    latitude={59.3293} // Exempelkoordinater, ersätt med riktiga data
+                    longitude={18.0686} // Exempelkoordinater, ersätt med riktiga data
+                  />
                 ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </section>
       <section>
         <Card>
