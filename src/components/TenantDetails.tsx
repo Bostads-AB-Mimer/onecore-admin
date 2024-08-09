@@ -68,21 +68,21 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
     }
   }
 
-  const PaymentChart = (chartData) => (
+  const PaymentChart = ({ invoices = [] }) => (
     <Card>
       <CardHeader>
         <CardTitle>Senaste Fakturor</CardTitle>
         <CardDescription>Belopp och betalningsstatus</CardDescription>
       </CardHeader>
       <CardContent>
-        <BarChart width={600} height={300} data={chartData}>
+        <BarChart width={600} height={300} data={invoices}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
           <Legend />
           <Bar dataKey="amount" fill="#8884d8" />
-          {chartData.map((entry, index) => (
+          {invoices.map((entry, index) => (
             <Bar
               key={`bar-${index}`}
               dataKey="amount"
