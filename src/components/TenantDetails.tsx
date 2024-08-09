@@ -290,5 +290,4 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
       </section>
     </div>
   )
-  )
 }
