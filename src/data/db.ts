@@ -39,10 +39,8 @@ const properties: Property[] = [
                     leaseStart: new Date('2021-01-01'),
                     pdfUrl: '/leases/alice_lease.pdf',
                   },
-                ],
-                issues: [],
-              }
-              invoices: [
+                ]
+              },
                 {
                   id: 1,
                   date: '2023-08-01',
