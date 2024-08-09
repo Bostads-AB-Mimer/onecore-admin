@@ -58,6 +58,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
   };
 
   return (
+  return (
     <div className="p-6">
       <Card>
         <CardHeader>
