@@ -14,10 +14,17 @@ export type Tenant = {
     leaseEnd?: Date
     pdfUrl?: string
   }[]
+  creditCheck?: CreditCheck
   issues?: {
     id: number
     date: string
     room: string
     description: string
   }[]
+}
+
+export type CreditCheck = {
+  date: Date
+  score: number
+  provider: string
 }
