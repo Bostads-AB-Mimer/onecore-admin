@@ -54,7 +54,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
     tenant.lastInvoiceStatus
   )
   const [creditCheck, setCreditCheck] = useState(tenant.creditCheck)
-  const chartData = tenant.invoices.map((invoice) => ({
+  const chartData = tenant.invoices?.map((invoice) => ({
     date: new Date(invoice.date).toLocaleDateString(),
     amount: invoice.amount,
     status: invoice.status,
