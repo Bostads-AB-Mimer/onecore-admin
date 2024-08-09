@@ -30,44 +30,45 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
       center: [16.544, 59.616], // Central Västerås coordinates
       zoom: 15,
       pitch: 60, // Tilt the map to 60 degrees
-      bearing: -20 // Rotate the map to -20 degrees
-      map.current.on('click', '3d-buildings', (e) => {
-        if (e.features.length > 0) {
-          const feature = e.features[0];
-          const coordinates = feature.geometry.coordinates.slice();
-          const description = feature.properties.name || 'Ingen information';
+      bearing: -20, // Rotate the map to -20 degrees
+    });
 
-          // Ensure that if the map is zoomed out such that multiple
-          // copies of the feature are visible, the popup appears
-          // over the copy being pointed to.
-          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-          }
+    map.current.on('click', '3d-buildings', (e) => {
+      if (e.features.length > 0) {
+        const feature = e.features[0];
+        const coordinates = feature.geometry.coordinates.slice();
+        const description = feature.properties.name || 'Ingen information';
 
-          new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(`<strong>Byggnad:</strong> ${description}`)
-            .addTo(map.current);
-
-          // Highlight the clicked building
-          map.current.setPaintProperty('3d-buildings', 'fill-extrusion-color', [
-            'case',
-            ['==', ['get', 'name'], description],
-            '#f00', // Highlight color
-            '#000' // Default color
-          ]);
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
-      });
 
-      // Change the cursor to a pointer when the mouse is over the buildings layer.
-      map.current.on('mouseenter', '3d-buildings', () => {
-        map.current.getCanvas().style.cursor = 'pointer';
-      });
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(`<strong>Byggnad:</strong> ${description}`)
+          .addTo(map.current);
 
-      // Change it back to a pointer when it leaves.
-      map.current.on('mouseleave', '3d-buildings', () => {
-        map.current.getCanvas().style.cursor = '';
-      });
+        // Highlight the clicked building
+        map.current.setPaintProperty('3d-buildings', 'fill-extrusion-color', [
+          'case',
+          ['==', ['get', 'name'], description],
+          '#f00', // Highlight color
+          '#000' // Default color
+        ]);
+      }
+    });
+
+    // Change the cursor to a pointer when the mouse is over the buildings layer.
+    map.current.on('mouseenter', '3d-buildings', () => {
+      map.current.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.current.on('mouseleave', '3d-buildings', () => {
+      map.current.getCanvas().style.cursor = '';
     });
 
     map.current.on('load', () => {
@@ -103,5 +104,5 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
       .addTo(map.current);
   }, [latitude, longitude]);
 
-  return <div ref={mapContainer} style={containerStyle} />;
+  return <div ref={mapContainer} style={containerStyle} />
 }
