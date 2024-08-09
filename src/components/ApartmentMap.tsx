@@ -61,6 +61,9 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
     new mapboxgl.Marker()
       .setLngLat([longitude, latitude])
       .addTo(map.current);
+    new mapboxgl.Marker()
+      .setLngLat([16.544, 59.616]) // Central Västerås coordinates
+      .addTo(map.current);
   }, [latitude, longitude]);
 
   return <div ref={mapContainer} style={containerStyle} />;
