@@ -15,7 +15,7 @@ const containerStyle = {
 };
 
 export default function ApartmentMap({ address, latitude, longitude }: ApartmentMapProps) {
-  const mapContainer = useRef(null);
+  const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef(null);
 
   useEffect(() => {
