@@ -7,7 +7,11 @@ type ApartmentMapProps = {
   longitude: number;
 };
 
-mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+if (mapboxgl) {
+  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+} else {
+  console.error("mapboxgl is not defined");
+}
 
 const containerStyle = {
   width: '100%',
