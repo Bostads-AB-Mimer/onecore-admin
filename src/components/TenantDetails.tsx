@@ -34,6 +34,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
   const [employer, setEmployer] = useState(tenant.employer);
   const [paymentRemarks, setPaymentRemarks] = useState(tenant.paymentRemarks);
   const [lastInvoiceStatus, setLastInvoiceStatus] = useState(tenant.lastInvoiceStatus);
+  const [creditCheck, setCreditCheck] = useState(tenant.creditCheck);
   return (
     <div className="p-6">
       <header className="flex items-center justify-between border-b pb-4 mb-6">
@@ -236,6 +237,20 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                     />
                   </div>
                 </div>
+                {creditCheck && (
+                  <div className="mt-6">
+                    <p className="font-bold">Kreditupplysning</p>
+                    <p className="text-muted-foreground">
+                      Datum: {new Date(creditCheck.date).toLocaleDateString()}
+                    </p>
+                    <p className="text-muted-foreground">
+                      Score: {creditCheck.score}
+                    </p>
+                    <p className="text-muted-foreground">
+                      Leverantör: {creditCheck.provider}
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
