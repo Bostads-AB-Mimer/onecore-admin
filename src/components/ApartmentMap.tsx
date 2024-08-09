@@ -26,8 +26,8 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [longitude, latitude],
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [16.544, 59.616],
       zoom: 13
     });
 
@@ -40,7 +40,7 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
         'type': 'fill-extrusion',
         'minzoom': 15,
         'paint': {
-          'fill-extrusion-color': '#aaa',
+          'fill-extrusion-color': '#000',
           'fill-extrusion-height': [
             'interpolate', ['linear'], ['zoom'],
             15, 0,
