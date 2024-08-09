@@ -58,7 +58,6 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
   };
 
   return (
-  return (
     <div className="p-6">
       <Card>
         <CardHeader>
@@ -80,7 +79,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         </CardContent>
       </Card>
     </div>
-    <div className="p-6">
+  );
       <header className="flex items-center justify-between border-b pb-4 mb-6">
         <nav className="flex gap-6">
           <a href="#" className="text-lg font-medium">
