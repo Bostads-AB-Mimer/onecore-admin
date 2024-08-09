@@ -1,7 +1,24 @@
-import Link from 'next/link'
+'use client'
+
+import { useState } from 'react'
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from 'recharts'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from '@/components/ui/card'
 import {
   Table,
   TableHeader,
@@ -17,30 +34,91 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import ApartmentMap from '@/components/ApartmentMap'
 import type { Tenant } from '@/types/tenant'
+import {
+  ArrowRightIcon,
+  CarIcon,
+  ChevronDownIcon,
+  ExternalLinkIcon,
+  HomeIcon,
+} from 'lucide-react'
 
 export function TenantDetails({ tenant }: { tenant: Tenant }) {
+  const [taxIncome, setTaxIncome] = useState(tenant.taxIncome)
+  const [lastEmployment, setLastEmployment] = useState(tenant.lastEmployment)
+  const [employer, setEmployer] = useState(tenant.employer)
+  const [paymentRemarks, setPaymentRemarks] = useState(tenant.paymentRemarks)
+  const [lastInvoiceStatus, setLastInvoiceStatus] = useState(
+    tenant.lastInvoiceStatus
+  )
+  const [creditCheck, setCreditCheck] = useState(tenant.creditCheck)
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Betald':
+        return 'green'
+      case 'Skickad':
+        return 'black'
+      case 'Obetald':
+        return 'red'
+      default:
+        return 'gray'
+    }
+  }
+
+  const PaymentChart = ({ invoices = [] }) => (
+    <Card>
+      <CardHeader>
+        <CardTitle>Senaste Fakturor</CardTitle>
+        <CardDescription>Belopp och betalningsstatus</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <BarChart width={600} height={300} data={invoices}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="amount" fill="#8884d8" />
+          {invoices.map((entry, index) => (
+            <Bar
+              key={`bar-${index}`}
+              dataKey="amount"
+              fill={getStatusColor(entry.status)}
+            />
+          ))}
+        </BarChart>
+      </CardContent>
+    </Card>
+  )
+
   return (
-    <div className="p-6">
+    <div>
       <header className="flex items-center justify-between border-b pb-4 mb-6">
         <nav className="flex gap-6">
-          <Link href="#" className="text-lg font-medium" prefetch={false}>
+          <a href="#" className="text-lg font-medium">
             Översikt
-          </Link>
-          <Link href="#" className="text-lg font-medium" prefetch={false}>
+          </a>
+          <a href="#" className="text-lg font-medium">
             Kösystem
-          </Link>
-          <Link href="#" className="text-lg font-medium" prefetch={false}>
+          </a>
+          <a href="#" className="text-lg font-medium">
             Ekonomi
-          </Link>
+          </a>
         </nav>
       </header>
       <section className="mb-8">
         <div className="flex justify-between items-start">
           <div>
             <p className="text-muted-foreground">{tenant.id}</p>
-            <h1 className="text-2xl font-bold">{tenant.name}, {tenant.customerNumber}</h1>
-            <p className="text-muted-foreground">Kundnummer: {tenant.customerNumber}</p>
+            <h1 className="text-2xl font-bold">
+              {tenant.name}, {tenant.customerNumber}
+            </h1>
+            <p className="text-muted-foreground">
+              Kundnummer: {tenant.customerNumber}
+            </p>
             <p className="text-muted-foreground">
               Senaste inloggning på mina sidor: {tenant.lastLogin}
             </p>
@@ -65,11 +143,12 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
               <p className="font-bold">GDPR</p>
               <p className="text-muted-foreground">
                 Spärrad från GDPR rensning: {tenant.gdprBlocked ? 'Ja' : 'Nej'}
-              {tenant.gdprBlocked && (
-                <p className="text-muted-foreground">
-                  Rensning spärr t. o. m. {tenant.gdprBlocked.toISOString().split('T')[0]}
-                </p>
-              )}
+                {tenant.gdprBlocked && (
+                  <span className="text-muted-foreground">
+                    Rensning spärr t. o. m.{' '}
+                    {tenant.gdprBlocked.toISOString().split('T')[0]}
+                  </span>
+                )}
               </p>
             </div>
           </div>
@@ -94,53 +173,154 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         </div>
       </section>
       <section className="mb-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Hyreskontrakt</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Adress</TableHead>
-                  <TableHead />
-                  <TableHead />
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+        <Tabs defaultValue="leases">
+          <TabsList>
+            <TabsTrigger value="leases">Hyreskontrakt</TabsTrigger>
+            <TabsTrigger value="map">Karta</TabsTrigger>
+            <TabsTrigger value="credit">Kreditupplysning</TabsTrigger>
+          </TabsList>
+          <TabsContent value="leases">
+            <Card>
+              <CardHeader>
+                <CardTitle>Hyreskontrakt</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Adress</TableHead>
+                      <TableHead />
+                      <TableHead />
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {tenant.leases.map((lease) => (
+                      <TableRow key={lease.id}>
+                        <TableCell>
+                          {lease.status === 'Gällande' ? (
+                            <HomeIcon className="h-4 w-4" />
+                          ) : (
+                            <CarIcon className="h-4 w-4" />
+                          )}{' '}
+                          {lease.status}
+                        </TableCell>
+                        <TableCell>{lease.address}</TableCell>
+                        <TableCell>
+                          {lease.pdfUrl ? (
+                            <a href={lease.pdfUrl}>Avtal.pdf</a>
+                          ) : (
+                            'Ingen PDF'
+                          )}
+                        </TableCell>
+                        <TableCell>
+                          <Button variant="outline">
+                            Till hyressystem{' '}
+                            <ArrowRightIcon className="ml-2 h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="map">
+            <Card>
+              <CardHeader>
+                <CardTitle>Karta</CardTitle>
+              </CardHeader>
+              <CardContent>
                 {tenant.leases.map((lease) => (
-                  <TableRow key={lease.id}>
-                    <TableCell>
-                      {lease.status === 'Gällande' ? (
-                        <HomeIcon className="h-4 w-4" />
-                      ) : (
-                        <CarIcon className="h-4 w-4" />
-                      )}{' '}
-                      {lease.status}
-                    </TableCell>
-                    <TableCell>{lease.address}</TableCell>
-                    <TableCell>
-                      {lease.pdfUrl ? (
-                        <Link href={lease.pdfUrl} prefetch={false}>
-                          Avtal.pdf
-                        </Link>
-                      ) : (
-                        'Ingen PDF'
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      <Button variant="outline">
-                        Till hyressystem{' '}
-                        <ArrowRightIcon className="ml-2 h-4 w-4" />
-                      </Button>
-                    </TableCell>
-                  </TableRow>
+                  <ApartmentMap
+                    key={lease.id}
+                    address={lease.address || 'Ingen adress'}
+                    latitude={59.3293} // Exempelkoordinater, ersätt med riktiga data
+                    longitude={18.0686} // Exempelkoordinater, ersätt med riktiga data
+                  />
                 ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="credit">
+            <div className="flex flex-col lg:flex-row gap-4">
+              <Card className="flex-1">
+                <CardHeader>
+                  <CardTitle>Kreditupplysning</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="font-bold">Taxerad lön:</p>
+                      <input
+                        type="text"
+                        value={taxIncome}
+                        onChange={(e) => setTaxIncome(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold">Senaste anställning:</p>
+                      <input
+                        type="text"
+                        value={lastEmployment}
+                        onChange={(e) => setLastEmployment(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold">Arbetsgivare:</p>
+                      <input
+                        type="text"
+                        value={employer}
+                        onChange={(e) => setEmployer(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold">
+                        Eventuella betalningsanmärkningar:
+                      </p>
+                      <input
+                        type="text"
+                        value={paymentRemarks}
+                        onChange={(e) => setPaymentRemarks(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold">
+                        Senaste fakturans betalningsstatus:
+                      </p>
+                      <input
+                        type="text"
+                        value={lastInvoiceStatus}
+                        onChange={(e) => setLastInvoiceStatus(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                  </div>
+                  {creditCheck && (
+                    <div className="mt-6">
+                      <p className="font-bold">Kreditupplysning</p>
+                      <p className="text-muted-foreground">
+                        Datum: {new Date(creditCheck.date).toLocaleDateString()}
+                      </p>
+                      <p className="text-muted-foreground">
+                        Score: {creditCheck.score}
+                      </p>
+                      <p className="text-muted-foreground">
+                        Leverantör: {creditCheck.provider}
+                      </p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+              <PaymentChart invoices={tenant.invoices} />
+            </div>
+          </TabsContent>
+        </Tabs>
       </section>
       <section>
         <Card>
@@ -190,107 +370,5 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         </Card>
       </section>
     </div>
-  )
-}
-
-function ArrowRightIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  )
-}
-
-function CarIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
-      <circle cx="7" cy="17" r="2" />
-      <path d="M9 17h6" />
-      <circle cx="17" cy="17" r="2" />
-    </svg>
-  )
-}
-
-function ChevronDownIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  )
-}
-
-function ExternalLinkIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M15 3h6v6" />
-      <path d="M10 14 21 3" />
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-    </svg>
-  )
-}
-
-function HomeIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
   )
 }
