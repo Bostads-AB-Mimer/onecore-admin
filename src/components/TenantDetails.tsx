@@ -1,10 +1,24 @@
-"use client"
+'use client'
 
-import { useState } from 'react';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { useState } from 'react'
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from 'recharts'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from '@/components/ui/card'
 import {
   Table,
   TableHeader,
@@ -32,54 +46,61 @@ import {
 } from 'lucide-react'
 
 export function TenantDetails({ tenant }: { tenant: Tenant }) {
-  const [taxIncome, setTaxIncome] = useState(tenant.taxIncome);
-  const [lastEmployment, setLastEmployment] = useState(tenant.lastEmployment);
-  const [employer, setEmployer] = useState(tenant.employer);
-  const [paymentRemarks, setPaymentRemarks] = useState(tenant.paymentRemarks);
-  const [lastInvoiceStatus, setLastInvoiceStatus] = useState(tenant.lastInvoiceStatus);
-  const [creditCheck, setCreditCheck] = useState(tenant.creditCheck);
-  const chartData = tenant.invoices.map(invoice => ({
+  const [taxIncome, setTaxIncome] = useState(tenant.taxIncome)
+  const [lastEmployment, setLastEmployment] = useState(tenant.lastEmployment)
+  const [employer, setEmployer] = useState(tenant.employer)
+  const [paymentRemarks, setPaymentRemarks] = useState(tenant.paymentRemarks)
+  const [lastInvoiceStatus, setLastInvoiceStatus] = useState(
+    tenant.lastInvoiceStatus
+  )
+  const [creditCheck, setCreditCheck] = useState(tenant.creditCheck)
+  const chartData = tenant.invoices.map((invoice) => ({
     date: new Date(invoice.date).toLocaleDateString(),
     amount: invoice.amount,
     status: invoice.status,
-  }));
+  }))
 
   const getStatusColor = (status) => {
     switch (status) {
       case 'Betald':
-        return 'green';
+        return 'green'
       case 'Skickad':
-        return 'black';
+        return 'black'
       case 'Obetald':
-        return 'red';
+        return 'red'
       default:
-        return 'gray';
+        return 'gray'
     }
-  };
+  }
+
+  const PaymentChart = () => (
+    <Card>
+      <CardHeader>
+        <CardTitle>Senaste Fakturor</CardTitle>
+        <CardDescription>Belopp och betalningsstatus</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <BarChart width={600} height={300} data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="amount" fill="#8884d8" />
+          {chartData.map((entry, index) => (
+            <Bar
+              key={`bar-${index}`}
+              dataKey="amount"
+              fill={getStatusColor(entry.status)}
+            />
+          ))}
+        </BarChart>
+      </CardContent>
+    </Card>
+  )
 
   return (
-    <div className="p-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Senaste Fakturor</CardTitle>
-          <CardDescription>Belopp och betalningsstatus</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <BarChart width={600} height={300} data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="amount" fill="#8884d8" />
-            {chartData.map((entry, index) => (
-              <Bar key={`bar-${index}`} dataKey="amount" fill={getStatusColor(entry.status)} />
-            ))}
-          </BarChart>
-        </CardContent>
-      </Card>
-    </div>
-  );
+    <div>
       <header className="flex items-center justify-between border-b pb-4 mb-6">
         <nav className="flex gap-6">
           <a href="#" className="text-lg font-medium">
@@ -262,7 +283,9 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                     />
                   </div>
                   <div>
-                    <p className="font-bold">Eventuella betalningsanmärkningar:</p>
+                    <p className="font-bold">
+                      Eventuella betalningsanmärkningar:
+                    </p>
                     <input
                       type="text"
                       value={paymentRemarks}
@@ -271,7 +294,9 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                     />
                   </div>
                   <div>
-                    <p className="font-bold">Senaste fakturans betalningsstatus:</p>
+                    <p className="font-bold">
+                      Senaste fakturans betalningsstatus:
+                    </p>
                     <input
                       type="text"
                       value={lastInvoiceStatus}
@@ -296,6 +321,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                 )}
               </CardContent>
             </Card>
+            <PaymentChart />
           </TabsContent>
         </Tabs>
       </section>
@@ -347,5 +373,5 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         </Card>
       </section>
     </div>
-  );
+  )
 }
