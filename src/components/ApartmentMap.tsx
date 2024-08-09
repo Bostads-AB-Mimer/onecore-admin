@@ -8,7 +8,7 @@ type ApartmentMapProps = {
 };
 
 if (mapboxgl) {
-  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+  mapboxgl.accessToken = 'pk.eyJ1IjoibGFuZGdyZW4iLCJhIjoiY2lmdG9jcmJjMDF5OHQwbTd3N25rcjhhcyJ9.qpVIAJhkz3i8_VGYSbu3Yw';
 } else {
   console.error("mapboxgl is not defined");
 }
