@@ -1,4 +1,5 @@
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React, { useEffect, useRef } from 'react';
+import mapboxgl from 'mapbox-gl';
 
 type ApartmentMapProps = {
   address: string;
@@ -6,25 +7,30 @@ type ApartmentMapProps = {
   longitude: number;
 };
 
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
+
 const containerStyle = {
   width: '100%',
   height: '400px'
 };
 
 export default function ApartmentMap({ address, latitude, longitude }: ApartmentMapProps) {
-  if (typeof window === 'undefined') {
-    return null;
-  }
+  const mapContainer = useRef(null);
+  const map = useRef(null);
 
-  return (
-    <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={{ lat: latitude, lng: longitude }}
-        zoom={13}
-      >
-        <Marker position={{ lat: latitude, lng: longitude }} />
-      </GoogleMap>
-    </LoadScript>
-  );
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [longitude, latitude],
+      zoom: 13
+    });
+
+    new mapboxgl.Marker()
+      .setLngLat([longitude, latitude])
+      .addTo(map.current);
+  }, [latitude, longitude]);
+
+  return <div ref={mapContainer} style={containerStyle} />;
 }
