@@ -112,6 +112,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
           <TabsList>
             <TabsTrigger value="leases">Hyreskontrakt</TabsTrigger>
             <TabsTrigger value="map">Karta</TabsTrigger>
+            <TabsTrigger value="credit">Kreditupplysning</TabsTrigger>
           </TabsList>
           <TabsContent value="leases">
             <Card>
@@ -174,6 +175,16 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                     longitude={18.0686} // Exempelkoordinater, ersätt med riktiga data
                   />
                 ))}
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="credit">
+            <Card>
+              <CardHeader>
+                <CardTitle>Kreditupplysning</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>Här kan du visa information om kreditupplysning.</p>
               </CardContent>
             </Card>
           </TabsContent>
