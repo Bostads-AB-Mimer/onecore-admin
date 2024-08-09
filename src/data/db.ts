@@ -42,6 +42,62 @@ const properties: Property[] = [
                 ],
                 issues: [],
               },
+              invoices: [
+                {
+                  id: 1,
+                  date: '2023-08-01',
+                  amount: 4500,
+                  status: 'Betald',
+                },
+                {
+                  id: 2,
+                  date: '2023-09-01',
+                  amount: 4500,
+                  status: 'Obetald',
+                },
+              ],
+              invoices: [
+                {
+                  id: 1,
+                  date: '2023-08-01',
+                  amount: 4500,
+                  status: 'Betald',
+                },
+                {
+                  id: 2,
+                  date: '2023-09-01',
+                  amount: 4500,
+                  status: 'Obetald',
+                },
+              ],
+              invoices: [
+                {
+                  id: 1,
+                  date: '2023-08-01',
+                  amount: 4500,
+                  status: 'Betald',
+                },
+                {
+                  id: 2,
+                  date: '2023-09-01',
+                  amount: 4500,
+                  status: 'Obetald',
+                },
+              ],
+              invoices: [
+                {
+                  id: 1,
+                  date: '2023-08-01',
+                  amount: 4500,
+                  status: 'Betald',
+                },
+                {
+                  id: 2,
+                  date: '2023-09-01',
+                  amount: 4500,
+                  status: 'Obetald',
+                },
+              ],
             ],
             description:
               'En fin lägenhet på Storgatan 1 i Stockholm. Lägenheten har 3 rum och är 75 kvadratmeter stor. Hyran är 10000 kr per månad.',

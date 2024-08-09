@@ -15,12 +15,20 @@ export type Tenant = {
     pdfUrl?: string
   }[]
   creditCheck?: CreditCheck
+  invoices?: Invoice[]
   issues?: {
     id: number
     date: string
     room: string
     description: string
   }[]
+}
+
+export type Invoice = {
+  id: number
+  date: string
+  amount: number
+  status: 'Betald' | 'Skickad' | 'Obetald'
 }
 
 export type CreditCheck = {
