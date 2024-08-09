@@ -41,21 +41,7 @@ const properties: Property[] = [
                   },
                 ],
                 issues: [],
-              },
-              invoices: [
-                {
-                  id: 1,
-                  date: '2023-08-01',
-                  amount: 4500,
-                  status: 'Betald',
-                },
-                {
-                  id: 2,
-                  date: '2023-09-01',
-                  amount: 4500,
-                  status: 'Obetald',
-                },
-              ],
+              }
               invoices: [
                 {
                   id: 1,
