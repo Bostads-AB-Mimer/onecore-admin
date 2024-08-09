@@ -34,6 +34,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
   const [employer, setEmployer] = useState(tenant.employer);
   const [paymentRemarks, setPaymentRemarks] = useState(tenant.paymentRemarks);
   const [lastInvoiceStatus, setLastInvoiceStatus] = useState(tenant.lastInvoiceStatus);
+  return (
     <div className="p-6">
       <header className="flex items-center justify-between border-b pb-4 mb-6">
         <nav className="flex gap-6">
@@ -288,5 +289,6 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         </Card>
       </section>
     </div>
+  )
   )
 }
