@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import {
   Table,
   TableHeader,
@@ -79,6 +79,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
         </CardContent>
       </Card>
     </div>
+  )
     <div className="p-6">
       <header className="flex items-center justify-between border-b pb-4 mb-6">
         <nav className="flex gap-6">
