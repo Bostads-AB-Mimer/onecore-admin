@@ -184,7 +184,28 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                 <CardTitle>Kreditupplysning</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Här kan du visa information om kreditupplysning.</p>
+                <div className="space-y-4">
+                  <div>
+                    <p className="font-bold">Taxerad lön:</p>
+                    <p className="text-muted-foreground">{tenant.taxIncome}</p>
+                  </div>
+                  <div>
+                    <p className="font-bold">Senaste anställning:</p>
+                    <p className="text-muted-foreground">{tenant.lastEmployment}</p>
+                  </div>
+                  <div>
+                    <p className="font-bold">Arbetsgivare:</p>
+                    <p className="text-muted-foreground">{tenant.employer}</p>
+                  </div>
+                  <div>
+                    <p className="font-bold">Eventuella betalningsanmärkningar:</p>
+                    <p className="text-muted-foreground">{tenant.paymentRemarks}</p>
+                  </div>
+                  <div>
+                    <p className="font-bold">Senaste fakturans betalningsstatus:</p>
+                    <p className="text-muted-foreground">{tenant.lastInvoiceStatus}</p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
