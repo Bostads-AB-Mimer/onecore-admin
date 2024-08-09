@@ -54,11 +54,6 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
     tenant.lastInvoiceStatus
   )
   const [creditCheck, setCreditCheck] = useState(tenant.creditCheck)
-  const chartData = tenant.invoices?.map((invoice) => ({
-    date: new Date(invoice.date).toLocaleDateString(),
-    amount: invoice.amount,
-    status: invoice.status,
-  }))
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -73,7 +68,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
     }
   }
 
-  const PaymentChart = () => (
+  const PaymentChart = (chartData) => (
     <Card>
       <CardHeader>
         <CardTitle>Senaste Fakturor</CardTitle>
@@ -321,7 +316,7 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                 )}
               </CardContent>
             </Card>
-            <PaymentChart />
+            <PaymentChart invoices={tenant.invoices} />
           </TabsContent>
         </Tabs>
       </section>
