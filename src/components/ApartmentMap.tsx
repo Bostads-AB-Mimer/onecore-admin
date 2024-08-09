@@ -27,8 +27,8 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/light-v10',
-      center: [16.544, 59.616],
-      zoom: 13,
+      center: [longitude, latitude],
+      zoom: 15,
       pitch: 60, // Tilt the map to 60 degrees
       bearing: -20 // Rotate the map to -20 degrees
     });
