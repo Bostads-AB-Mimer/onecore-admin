@@ -29,7 +29,11 @@ import {
 } from 'lucide-react'
 
 export function TenantDetails({ tenant }: { tenant: Tenant }) {
-  return (
+  const [taxIncome, setTaxIncome] = useState(tenant.taxIncome);
+  const [lastEmployment, setLastEmployment] = useState(tenant.lastEmployment);
+  const [employer, setEmployer] = useState(tenant.employer);
+  const [paymentRemarks, setPaymentRemarks] = useState(tenant.paymentRemarks);
+  const [lastInvoiceStatus, setLastInvoiceStatus] = useState(tenant.lastInvoiceStatus);
     <div className="p-6">
       <header className="flex items-center justify-between border-b pb-4 mb-6">
         <nav className="flex gap-6">
@@ -187,23 +191,48 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
                 <div className="space-y-4">
                   <div>
                     <p className="font-bold">Taxerad lön:</p>
-                    <p className="text-muted-foreground">{tenant.taxIncome}</p>
+                    <input
+                      type="text"
+                      value={taxIncome}
+                      onChange={(e) => setTaxIncome(e.target.value)}
+                      className="border p-2 rounded-md w-full"
+                    />
                   </div>
                   <div>
                     <p className="font-bold">Senaste anställning:</p>
-                    <p className="text-muted-foreground">{tenant.lastEmployment}</p>
+                    <input
+                      type="text"
+                      value={lastEmployment}
+                      onChange={(e) => setLastEmployment(e.target.value)}
+                      className="border p-2 rounded-md w-full"
+                    />
                   </div>
                   <div>
                     <p className="font-bold">Arbetsgivare:</p>
-                    <p className="text-muted-foreground">{tenant.employer}</p>
+                    <input
+                      type="text"
+                      value={employer}
+                      onChange={(e) => setEmployer(e.target.value)}
+                      className="border p-2 rounded-md w-full"
+                    />
                   </div>
                   <div>
                     <p className="font-bold">Eventuella betalningsanmärkningar:</p>
-                    <p className="text-muted-foreground">{tenant.paymentRemarks}</p>
+                    <input
+                      type="text"
+                      value={paymentRemarks}
+                      onChange={(e) => setPaymentRemarks(e.target.value)}
+                      className="border p-2 rounded-md w-full"
+                    />
                   </div>
                   <div>
                     <p className="font-bold">Senaste fakturans betalningsstatus:</p>
-                    <p className="text-muted-foreground">{tenant.lastInvoiceStatus}</p>
+                    <input
+                      type="text"
+                      value={lastInvoiceStatus}
+                      onChange={(e) => setLastInvoiceStatus(e.target.value)}
+                      className="border p-2 rounded-md w-full"
+                    />
                   </div>
                 </div>
               </CardContent>
