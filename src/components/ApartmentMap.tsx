@@ -28,7 +28,9 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/light-v10',
       center: [16.544, 59.616],
-      zoom: 13
+      zoom: 13,
+      pitch: 60, // Tilt the map to 60 degrees
+      bearing: -20 // Rotate the map to -20 degrees
     });
 
     map.current.on('load', () => {
