@@ -244,79 +244,81 @@ export function TenantDetails({ tenant }: { tenant: Tenant }) {
             </Card>
           </TabsContent>
           <TabsContent value="credit">
-            <Card>
-              <CardHeader>
-                <CardTitle>Kreditupplysning</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <p className="font-bold">Taxerad lön:</p>
-                    <input
-                      type="text"
-                      value={taxIncome}
-                      onChange={(e) => setTaxIncome(e.target.value)}
-                      className="border p-2 rounded-md w-full"
-                    />
+            <div className="flex flex-col lg:flex-row gap-4">
+              <Card className="flex-1">
+                <CardHeader>
+                  <CardTitle>Kreditupplysning</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="font-bold">Taxerad lön:</p>
+                      <input
+                        type="text"
+                        value={taxIncome}
+                        onChange={(e) => setTaxIncome(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold">Senaste anställning:</p>
+                      <input
+                        type="text"
+                        value={lastEmployment}
+                        onChange={(e) => setLastEmployment(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold">Arbetsgivare:</p>
+                      <input
+                        type="text"
+                        value={employer}
+                        onChange={(e) => setEmployer(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold">
+                        Eventuella betalningsanmärkningar:
+                      </p>
+                      <input
+                        type="text"
+                        value={paymentRemarks}
+                        onChange={(e) => setPaymentRemarks(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold">
+                        Senaste fakturans betalningsstatus:
+                      </p>
+                      <input
+                        type="text"
+                        value={lastInvoiceStatus}
+                        onChange={(e) => setLastInvoiceStatus(e.target.value)}
+                        className="border p-2 rounded-md w-full"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-bold">Senaste anställning:</p>
-                    <input
-                      type="text"
-                      value={lastEmployment}
-                      onChange={(e) => setLastEmployment(e.target.value)}
-                      className="border p-2 rounded-md w-full"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-bold">Arbetsgivare:</p>
-                    <input
-                      type="text"
-                      value={employer}
-                      onChange={(e) => setEmployer(e.target.value)}
-                      className="border p-2 rounded-md w-full"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-bold">
-                      Eventuella betalningsanmärkningar:
-                    </p>
-                    <input
-                      type="text"
-                      value={paymentRemarks}
-                      onChange={(e) => setPaymentRemarks(e.target.value)}
-                      className="border p-2 rounded-md w-full"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-bold">
-                      Senaste fakturans betalningsstatus:
-                    </p>
-                    <input
-                      type="text"
-                      value={lastInvoiceStatus}
-                      onChange={(e) => setLastInvoiceStatus(e.target.value)}
-                      className="border p-2 rounded-md w-full"
-                    />
-                  </div>
-                </div>
-                {creditCheck && (
-                  <div className="mt-6">
-                    <p className="font-bold">Kreditupplysning</p>
-                    <p className="text-muted-foreground">
-                      Datum: {new Date(creditCheck.date).toLocaleDateString()}
-                    </p>
-                    <p className="text-muted-foreground">
-                      Score: {creditCheck.score}
-                    </p>
-                    <p className="text-muted-foreground">
-                      Leverantör: {creditCheck.provider}
-                    </p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-            <PaymentChart invoices={tenant.invoices} />
+                  {creditCheck && (
+                    <div className="mt-6">
+                      <p className="font-bold">Kreditupplysning</p>
+                      <p className="text-muted-foreground">
+                        Datum: {new Date(creditCheck.date).toLocaleDateString()}
+                      </p>
+                      <p className="text-muted-foreground">
+                        Score: {creditCheck.score}
+                      </p>
+                      <p className="text-muted-foreground">
+                        Leverantör: {creditCheck.provider}
+                      </p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+              <PaymentChart invoices={tenant.invoices} />
+            </div>
           </TabsContent>
         </Tabs>
       </section>
