@@ -353,7 +353,9 @@ export function Statistics() {
                   <AvatarFallback>IN</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none" />
+                  <p className="text-sm font-medium leading-none">
+                    Ingrid Nilsson
+                  </p>
                 </div>
               </div>
             </CardContent>
