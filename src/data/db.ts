@@ -29,8 +29,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 1,
-                name: 'Alice Teodoresco',
-                email: 'alice@example.com',
+                name: 'Anna Svensson',
+                email: 'anna.svensson@example.com',
                 leases: [
                   {
                     id: 1,
@@ -76,8 +76,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 2,
-                name: 'Bob Hund',
-                email: 'bob@example.com',
+                name: 'Björn Andersson',
+                email: 'bjorn.andersson@example.com',
                 leases: [
                   {
                     id: 2,
@@ -114,8 +114,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 1,
-                name: 'Alice Bah Kunke',
-                email: 'alice@example.com',
+                name: 'Eva Karlsson',
+                email: 'eva.karlsson@example.com',
 
                 leases: [
                   {
@@ -129,8 +129,8 @@ const properties: Property[] = [
               },
               {
                 id: 3,
-                name: 'Charlie Ruth',
-                email: 'charlie@example.com',
+                name: 'Carl Johansson',
+                email: 'carl.johansson@example.com',
 
                 leases: [
                   {
@@ -162,8 +162,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 2,
-                name: 'Bob Dylan',
-                email: 'bob@example.com',
+                name: 'David Eriksson',
+                email: 'david.eriksson@example.com',
 
                 leases: [
                   {
@@ -208,8 +208,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 4,
-                name: 'David Batra',
-                email: 'david@example.com',
+                name: 'Fredrik Nilsson',
+                email: 'fredrik.nilsson@example.com',
 
                 leases: [
                   {
@@ -264,8 +264,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 4,
-                name: 'Henrik Dorsin',
-                email: 'henrik@example.com',
+                name: 'Gustav Larsson',
+                email: 'gustav.larsson@example.com',
 
                 leases: [
                   {
@@ -326,8 +326,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 5,
-                name: 'Eva Rööse',
-                email: 'eva@example.com',
+                name: 'Hanna Persson',
+                email: 'hanna.persson@example.com',
                 leaseStart: new Date('2019-07-01'),
               },
             ],
@@ -373,8 +373,8 @@ const properties: Property[] = [
             tenants: [
               {
                 id: 5,
-                name: 'Eva Nilsson',
-                email: 'eva@example.com',
+                name: 'Ingrid Olsson',
+                email: 'ingrid.olsson@example.com',
 
                 leases: [
                   {
