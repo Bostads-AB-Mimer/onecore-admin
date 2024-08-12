@@ -6,7 +6,7 @@ export type Apartment = {
   floor: string
   city: string
   address: string
-  status: 'Ledig' | 'Uthyrd'
+  status: 'Ledig' | 'Uthyrd' | 'Spärrad'
   size: number
   rooms: number
   bathrooms: number

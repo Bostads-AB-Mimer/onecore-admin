@@ -1,20 +1,24 @@
+import { useState } from 'react'
 import { Label } from '@/components/ui/label'
-import type { Apartment } from '@/types/apartment'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
+import { Switch } from '@/components/ui/switch'
+import type { Apartment } from '@/types/apartment'
 
 export default function ApartmentInfoTab({
   apartment,
 }: {
   apartment: Apartment
 }) {
+  const [apartmentStatus, setApartmentStatus] = useState(apartment.status)
+
+  const handleBlockApartment = () => {
+    setApartmentStatus('Spärrad')
+    setApartmentStatus('Spärrad')
+  }
+
   return (
     <Card className="w-full p-6">
       <CardHeader>
@@ -52,6 +56,16 @@ export default function ApartmentInfoTab({
               <span>20 000 kr</span>
             </li>
           </ul>
+        </div>
+        <div className="flex items-center space-x-2 mt-4">
+          <Switch
+            id="block-apartment"
+            checked={apartmentStatus === 'Spärrad'}
+            onCheckedChange={(checked) => setApartmentStatus(checked ? 'Spärrad' : 'Ej Spärrad')}
+          />
+          <Label htmlFor="block-apartment">
+            {apartmentStatus === 'Spärrad' ? 'Spärrad' : 'Ej Spärrad'}
+          </Label>
         </div>
         <Separator className="my-4" />
         <div className="grid gap-3">

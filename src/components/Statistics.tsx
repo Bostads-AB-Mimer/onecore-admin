@@ -42,12 +42,17 @@ import {
   HomeIcon,
   ArrowUpRightIcon,
 } from 'lucide-react'
+import { getApartments } from '@/data/db'
 
 export function Statistics() {
+  const blockedApartments = getApartments().filter(
+    (apartment) => apartment.status === 'Spärrad'
+  )
+
   return (
     <div className="flex min-h-screen w-full flex-col">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-        <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           <Card x-chunk="dashboard-01-chunk-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
@@ -60,6 +65,9 @@ export function Statistics() {
               <p className="text-xs text-muted-foreground">
                 +20.1% från förra månaden
               </p>
+              <Button asChild size="sm" className="mt-2">
+                <a href="/apartments/latest">Visa senaste lägenheten</a>
+              </Button>
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-1">
@@ -88,7 +96,46 @@ export function Statistics() {
               </p>
             </CardContent>
           </Card>
-          <Card x-chunk="dashboard-01-chunk-3">
+          <Card x-chunk="dashboard-01-chunk-3" className="lg:col-span-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Spärrade lägenheter
+              </CardTitle>
+              <HomeIcon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">50</div>
+              <p className="text-xs text-muted-foreground">
+                +5% från förra månaden
+              </p>
+              <div className="grid gap-8 mt-4">
+                {blockedApartments.map((apartment) => (
+                  <div key={apartment.id} className="flex items-center gap-4">
+                    <Avatar className="hidden h-9 w-9 sm:flex">
+                      <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
+                      <AvatarFallback>
+                        {apartment.tenants[0]?.name[0]}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="grid gap-1">
+                      <p className="text-sm font-medium leading-none">
+                        {apartment.tenants[0]?.name}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {apartment.tenants[0]?.email}
+                      </p>
+                    </div>
+                    <div className="ml-auto font-medium">
+                      <a href={`/apartments/${apartment.propertyId}-${apartment.id}`} className="text-blue-500 hover:underline">
+                        {apartment.address}
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          <Card x-chunk="dashboard-01-chunk-6">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Underhållsförfrågningar
@@ -282,7 +329,9 @@ export function Statistics() {
                   <AvatarFallback>IN</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
-                  <p className="text-sm font-medium leading-none" />
+                  <p className="text-sm font-medium leading-none">
+                    Ingrid Nilsson
+                  </p>
                 </div>
               </div>
             </CardContent>

@@ -17,41 +17,23 @@ export default function Header() {
     <header className="sticky top-0 flex h-16 justify-between border-b bg-background px-4 md:px-6 z-30">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 flex-1">
         <a
-          href="#"
+          href="/"
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
           <Package2Icon className="h-6 w-6" />
           <span className="font-bold">OneCore</span>
         </a>
         <a
-          href="#"
+          href="/"
           className="text-foreground transition-colors hover:text-foreground"
         >
           Lägenheter
         </a>
         <a
-          href="#"
+          href="/stats"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
-          Annonser
-        </a>
-        <a
-          href="#"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Hyresgäster
-        </a>
-        <a
-          href="#"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Underhåll
-        </a>
-        <a
-          href="#"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Analys
+          Statistik
         </a>
       </nav>
       <Sheet>
@@ -70,20 +52,11 @@ export default function Header() {
               <Package2Icon className="h-6 w-6" />
               <span className="font-bold">OneCore</span>
             </a>
-            <a href="#" className="hover:text-foreground">
+            <a href="/" className="text-muted-foreground hover:text-foreground">
               Lägenheter
             </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
-              Annonser
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
-              Hyresgäster
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
-              Underhåll
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
-              Analys
+            <a href="/stats" className="text-muted-foreground hover:text-foreground">
+              Statistik
             </a>
           </nav>
         </SheetContent>
