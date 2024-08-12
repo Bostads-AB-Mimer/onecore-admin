@@ -45,7 +45,9 @@ import {
 import { getApartments } from '@/data/db'
 
 export function Statistics() {
-  const blockedApartments = getApartments().filter(apartment => apartment.status === 'Spärrad')
+  const blockedApartments = getApartments().filter(
+    (apartment) => apartment.status === 'Spärrad'
+  )
 
   return (
     <div className="flex min-h-screen w-full flex-col">
@@ -64,9 +66,7 @@ export function Statistics() {
                 +20.1% från förra månaden
               </p>
               <Button asChild size="sm" className="mt-2">
-                <a href="/apartments/latest">
-                  Visa senaste lägenheten
-                </a>
+                <a href="/apartments/latest">Visa senaste lägenheten</a>
               </Button>
             </CardContent>
           </Card>
@@ -109,11 +109,13 @@ export function Statistics() {
                 +5% från förra månaden
               </p>
               <div className="grid gap-8 mt-4">
-                {blockedApartments.map(apartment => (
+                {blockedApartments.map((apartment) => (
                   <div key={apartment.id} className="flex items-center gap-4">
                     <Avatar className="hidden h-9 w-9 sm:flex">
                       <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
-                      <AvatarFallback>{apartment.tenants[0]?.name[0]}</AvatarFallback>
+                      <AvatarFallback>
+                        {apartment.tenants[0]?.name[0]}
+                      </AvatarFallback>
                     </Avatar>
                     <div className="grid gap-1">
                       <p className="text-sm font-medium leading-none">
@@ -123,7 +125,9 @@ export function Statistics() {
                         {apartment.tenants[0]?.email}
                       </p>
                     </div>
-                    <div className="ml-auto font-medium">{apartment.address}</div>
+                    <div className="ml-auto font-medium">
+                      {apartment.address}
+                    </div>
                   </div>
                 ))}
               </div>
