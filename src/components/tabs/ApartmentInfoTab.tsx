@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
 import type { Apartment } from '@/types/apartment'
 import {
   Card,
@@ -15,6 +17,12 @@ export default function ApartmentInfoTab({
 }: {
   apartment: Apartment
 }) {
+  const [apartmentStatus, setApartmentStatus] = useState(apartment.status)
+
+  const handleBlockApartment = () => {
+    setApartmentStatus('Spärrad')
+  }
+
   return (
     <Card className="w-full p-6">
       <CardHeader>
@@ -52,6 +60,11 @@ export default function ApartmentInfoTab({
               <span>20 000 kr</span>
             </li>
           </ul>
+        </div>
+        <div className="flex justify-end mt-4">
+          <Button onClick={handleBlockApartment} disabled={apartmentStatus === 'Spärrad'}>
+            Spärra Lägenhet
+          </Button>
         </div>
         <Separator className="my-4" />
         <div className="grid gap-3">
