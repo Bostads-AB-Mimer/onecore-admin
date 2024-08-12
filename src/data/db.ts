@@ -13,7 +13,7 @@ const properties: Property[] = [
         apartments: [
           {
             id: 101,
-            status: 'Uthyrd',
+            status: 'Spärrad',
             propertyId: '1',
             floor: 'Våning 1',
             address: 'Storgatan 1',
@@ -63,7 +63,7 @@ const properties: Property[] = [
           },
           {
             id: 102,
-            status: 'Ledig',
+            status: 'Spärrad',
             propertyId: '1',
             floor: 'Våning 1',
             address: 'Lillgatan 2',
@@ -101,7 +101,7 @@ const properties: Property[] = [
         apartments: [
           {
             id: 201,
-            status: 'Uthyrd',
+            status: 'Spärrad',
             propertyId: '1',
             floor: 'Våning 2',
             address: 'Storgatan 1',
