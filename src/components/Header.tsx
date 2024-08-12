@@ -24,7 +24,7 @@ export default function Header() {
           <span className="font-bold">OneCore</span>
         </a>
         <a
-          href="#"
+          href="/"
           className="text-foreground transition-colors hover:text-foreground"
         >
           Lägenheter
@@ -34,30 +34,6 @@ export default function Header() {
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Statistik
-        </a>
-        <a
-          href="#"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Annonser
-        </a>
-        <a
-          href="#"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Hyresgäster
-        </a>
-        <a
-          href="#"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Underhåll
-        </a>
-        <a
-          href="#"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Analys
         </a>
       </nav>
       <Sheet>
@@ -76,20 +52,11 @@ export default function Header() {
               <Package2Icon className="h-6 w-6" />
               <span className="font-bold">OneCore</span>
             </a>
+            <a href="/" className="text-muted-foreground hover:text-foreground">
+              Lägenheter
+            </a>
             <a href="/stats" className="text-muted-foreground hover:text-foreground">
               Statistik
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
-              Annonser
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
-              Hyresgäster
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
-              Underhåll
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
-              Analys
             </a>
           </nav>
         </SheetContent>
