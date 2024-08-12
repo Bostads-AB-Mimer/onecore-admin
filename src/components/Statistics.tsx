@@ -126,7 +126,9 @@ export function Statistics() {
                       </p>
                     </div>
                     <div className="ml-auto font-medium">
-                      {apartment.address}
+                      <a href={`/${apartment.propertyId}/${apartment.id}`} className="text-blue-500 hover:underline">
+                        {apartment.address}
+                      </a>
                     </div>
                   </div>
                 ))}
