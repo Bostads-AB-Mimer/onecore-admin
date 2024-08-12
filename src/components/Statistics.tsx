@@ -60,6 +60,11 @@ export function Statistics() {
               <p className="text-xs text-muted-foreground">
                 +20.1% från förra månaden
               </p>
+              <Button asChild size="sm" className="mt-2">
+                <a href="/apartments/latest">
+                  Visa senaste lägenheten
+                </a>
+              </Button>
             </CardContent>
           </Card>
           <Card x-chunk="dashboard-01-chunk-1">
