@@ -24,12 +24,6 @@ export default function Header() {
           <span className="font-bold">OneCore</span>
         </a>
         <a
-          href="/stats"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Statistik
-        </a>
-        <a
           href="#"
           className="text-foreground transition-colors hover:text-foreground"
         >
