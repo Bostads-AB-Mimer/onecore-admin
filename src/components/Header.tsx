@@ -30,12 +30,6 @@ export default function Header() {
           Lägenheter
         </a>
         <a
-          href="/stats"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          Statistik
-        </a>
-        <a
           href="#"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
