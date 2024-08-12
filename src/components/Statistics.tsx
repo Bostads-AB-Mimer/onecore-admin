@@ -93,7 +93,7 @@ export function Statistics() {
               </p>
             </CardContent>
           </Card>
-          <Card x-chunk="dashboard-01-chunk-3">
+          <Card x-chunk="dashboard-01-chunk-3" className="lg:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Spärrade lägenheter
