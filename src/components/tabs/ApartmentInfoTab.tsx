@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
+import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
 import type { Apartment } from '@/types/apartment'
 import {
   Card,
@@ -20,6 +25,7 @@ export default function ApartmentInfoTab({
   const [apartmentStatus, setApartmentStatus] = useState(apartment.status)
 
   const handleBlockApartment = () => {
+    setApartmentStatus('Spärrad')
     setApartmentStatus('Spärrad')
   }
 
