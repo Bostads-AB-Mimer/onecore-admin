@@ -4,18 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
-import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
+import { Switch } from '@/components/ui/switch'
 import type { Apartment } from '@/types/apartment'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { cn } from '@/lib/utils'
 
 export default function ApartmentInfoTab({
   apartment,
@@ -67,10 +57,15 @@ export default function ApartmentInfoTab({
             </li>
           </ul>
         </div>
-        <div className="flex justify-end mt-4">
-          <Button onClick={handleBlockApartment} disabled={apartmentStatus === 'Spärrad'}>
-            Spärra Lägenhet
-          </Button>
+        <div className="flex items-center space-x-2 mt-4">
+          <Switch
+            id="block-apartment"
+            checked={apartmentStatus === 'Spärrad'}
+            onCheckedChange={(checked) => setApartmentStatus(checked ? 'Spärrad' : 'Ej Spärrad')}
+          />
+          <Label htmlFor="block-apartment">
+            {apartmentStatus === 'Spärrad' ? 'Spärrad' : 'Ej Spärrad'}
+          </Label>
         </div>
         <Separator className="my-4" />
         <div className="grid gap-3">
