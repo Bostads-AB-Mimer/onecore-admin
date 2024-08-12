@@ -107,7 +107,7 @@ export function Statistics() {
               </p>
             </CardContent>
           </Card>
-          <Card x-chunk="dashboard-01-chunk-4">
+          <Card x-chunk="dashboard-01-chunk-6">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Underhållsförfrågningar
@@ -119,6 +119,58 @@ export function Statistics() {
               <p className="text-xs text-muted-foreground">
                 +201 sedan förra timmen
               </p>
+            </CardContent>
+          </Card>
+          <Card x-chunk="dashboard-01-chunk-7">
+            <CardHeader>
+              <CardTitle>Senaste blockerade lägenheter</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-8">
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
+                  <AvatarFallback>OM</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    Olivia Martin
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    olivia.martin@email.com
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">Lägenhet 123</div>
+              </div>
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
+                  <AvatarFallback>JL</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    Jackson Lee
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    jackson.lee@email.com
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">Radhus 456</div>
+              </div>
+              <div className="flex items-center gap-4">
+                <Avatar className="hidden h-9 w-9 sm:flex">
+                  <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
+                  <AvatarFallback>IN</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none">
+                    Ingrid Nilsson
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    ingrid.nilsson@email.com
+                  </p>
+                </div>
+                <div className="ml-auto font-medium">Lägenhet 789</div>
+              </div>
             </CardContent>
           </Card>
         </div>
