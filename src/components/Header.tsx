@@ -24,6 +24,12 @@ export default function Header() {
           <span className="font-bold">OneCore</span>
         </a>
         <a
+          href="/stats"
+          className="text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Statistik
+        </a>
+        <a
           href="#"
           className="text-foreground transition-colors hover:text-foreground"
         >
@@ -69,6 +75,9 @@ export default function Header() {
             >
               <Package2Icon className="h-6 w-6" />
               <span className="font-bold">OneCore</span>
+            </a>
+            <a href="/stats" className="text-muted-foreground hover:text-foreground">
+              Statistik
             </a>
             <a href="#" className="hover:text-foreground">
               Lägenheter
