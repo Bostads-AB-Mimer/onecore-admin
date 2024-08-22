@@ -71,5 +71,5 @@ export default function ApartmentMap({ address, latitude, longitude }: Apartment
       .addTo(map.current);
   }, [address, latitude, longitude]);
 
-  return <div ref={mapContainer} style={containerStyle} />
+  return <div ref={mapContainer} style={containerStyle}></div>
 }
