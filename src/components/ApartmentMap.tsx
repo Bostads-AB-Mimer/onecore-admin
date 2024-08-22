@@ -20,7 +20,7 @@ const containerStyle = {
 
 export default function ApartmentMap({ address, latitude, longitude }: ApartmentMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef(null);
+  const map = useRef<mapboxgl.Map | null>(null);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
