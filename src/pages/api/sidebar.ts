@@ -1,5 +1,7 @@
 import { APIRoute } from 'astro'
-import { prisma } from '@/lib/prisma' // Adjust the import path as necessary
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 export const get: APIRoute = async ({ request }) => {
   try {
