@@ -418,7 +418,8 @@ const properties: Property[] = [
 export function getProperties() {
   return properties;
 }
-  // Mocked data structure similar to the Prisma query result
+
+export function getRealEstateStructure(propertyCode: string) {
   const realEstateStructure = [
     {
       propertyName: 'Fastighet 1',
