@@ -1,8 +1,15 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { APIRoute } from 'astro'
 import { prisma } from '@/lib/prisma' // Adjust the import path as necessary
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export const get: APIRoute = async ({ request }) => {
   try {
+    const url = new URL(request.url);
+    const propertyCode = url.searchParams.get('propertyCode');
+
+    if (!propertyCode) {
+      return new Response(JSON.stringify({ error: 'propertyCode is required' }), { status: 400 });
+    }
+
     const result = await prisma.realEstateStructure.findMany({
       select: {
         propertyName: true,
@@ -17,12 +24,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       },
       where: {
-        buildingCode: '807-030', // Justera efter specifika fastighetskriterier
+        propertyCode, // Use the propertyCode from the request
       },
     });
 
-    res.status(200).json(result);
+    return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), { status: 500 });
   }
 }
