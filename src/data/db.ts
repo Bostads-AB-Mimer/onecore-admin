@@ -415,7 +415,9 @@ const properties: Property[] = [
   },
 ]
 
-export function getRealEstateStructure(propertyCode: string) {
+export function getProperties() {
+  return properties;
+}
   // Mocked data structure similar to the Prisma query result
   const realEstateStructure = [
     {
