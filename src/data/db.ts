@@ -415,7 +415,35 @@ const properties: Property[] = [
   },
 ]
 
-export function getProperties() {
+export function getRealEstateStructure(propertyCode: string) {
+  // Mocked data structure similar to the Prisma query result
+  const realEstateStructure = [
+    {
+      propertyName: 'Fastighet 1',
+      propertyCode: '1',
+      buildingCode: '807-030',
+      buildingName: 'Byggnad 1',
+      component: [
+        { code: 'A101', name: 'Lägenhet 101' },
+        { code: 'A102', name: 'Lägenhet 102' },
+      ],
+    },
+    {
+      propertyName: 'Fastighet 2',
+      propertyCode: '2',
+      buildingCode: '807-031',
+      buildingName: 'Byggnad 2',
+      component: [
+        { code: 'B201', name: 'Lägenhet 201' },
+        { code: 'B202', name: 'Lägenhet 202' },
+      ],
+    },
+  ];
+
+  return realEstateStructure.filter(
+    (structure) => structure.propertyCode === propertyCode
+  );
+}
   return properties
 }
 

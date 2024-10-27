@@ -1,12 +1,13 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import ApartmentDetails from '@/components/ApartmentDetails.tsx';
-import { getProperties } from '@/data/db';
+import { getProperties, getRealEstateStructure } from '@/data/db';
 import '@/styles/globals.css';
 import { getApartment } from '@/data/db';
 
 const { propId, apartmentId } = Astro.params;
-const apartment = await getApartment(parseInt(apartmentId))
+const apartment = await getApartment(parseInt(apartmentId));
+const realEstateStructure = getRealEstateStructure(propId);
 
 export async function getStaticPaths() {
   const properties = getProperties();
