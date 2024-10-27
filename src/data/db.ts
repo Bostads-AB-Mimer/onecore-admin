@@ -444,8 +444,6 @@ export function getRealEstateStructure(propertyCode: string) {
     (structure) => structure.propertyCode === propertyCode
   );
 }
-  return properties
-}
 
 export function getProperty(id: number) {
   return properties.find((property) => property.id === id)
