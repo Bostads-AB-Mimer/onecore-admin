@@ -1,0 +1,237 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+  model ComponentCategory {
+  @@map("bakmc")
+  id String @id(map: "pkbakmc") @map("keybakmc") @db.Char(15)
+  code String @unique(map: "akbakmc") @map("code") @db.VarChar(10)
+  name String @map("caption") @db.VarChar(60)
+  timestamp String @map("timestamp") @db.Char(10) // TODO: Consider renaming the "timestamp" field later
+  
+  components Component[]  // Updated relation from bakmp to Component, using the new model name
+  // ikktp     ikktp[] // TODO: Change ikktp to the new model name when available
+}
+
+model ComponentType {
+  @@map("bakmt")
+  
+  // Fields
+  id String @id(map: "pkbakmt") @map("keybakmt") @db.Char(15)
+  typeTextId String? @map("keycmtyp") @db.Char(15) // TODO: Confirm this relation in a backward pass
+  actionTypeId String? @map("keypuatt") @db.Char(15) // TODO: Confirm this relation in a backward pass
+  componentTypeCode String @unique(map: "akbakmt") @map("code") @db.VarChar(15)
+  name String? @map("caption") @db.VarChar(60)
+  isSystemStandard Int @default(0, map: "DF__bakmt__issystem__0FFEBC23") @map("issystem") @db.TinyInt
+  timestamp String @map("timestamp") @db.Char(10) // TODO: Change timestamp later when knowing more about its usage
+
+  // Relations
+  components Component[]
+  // cmtyp cmtyp? @relation(fields: [typeTextId], references: [keycmtyp], onUpdate: NoAction, map: "fkbakmtkeycmtyp") // TODO: Change cmtyp to the new model name once known
+  // puatt puatt? @relation(fields: [actionTypeId], references: [keypuatt], onUpdate: NoAction, map: "fkbakmtkeypuatt") // TODO: Change puatt to the new model name once known
+  // ikkmp ikkmp[] @relation("ikkmp") // TODO: Change ikkmp to the new model name in the backward pass if needed
+  // ikktp ikktp[] @relation("ikktp") // TODO: Change ikktp to the new model name in the backward pass if needed
+  // tvpdg tvpdg[] @relation("tvpdg") // TODO: Change tvpdg to the new model name in the backward pass if needed
+  
+  @@index([typeTextId], map: "fkbakmtcmtyp")
+  @@index([actionTypeId], map: "fkbakmtpuatt")
+}
+
+model Component {
+  @@map("bakmp")
+
+  id String @id(map: "pkbakmp") @map("keybakmp") @db.Char(15)
+  objectID String @unique(map: "fkbakmpcmobj") @map("keycmobj") @db.Char(15)
+  typeId String? @map("keybakmt") @db.Char(15)
+  categoryId String? @map("keybakmc") @db.Char(15)
+  systemSupplierId String? @map("keycmctc") @db.Char(15)
+  ownerUserId String? @map("keycmctc2") @db.Char(15)
+  constructionPartId String? @map("keyaobdl") @db.Char(15)
+  itemId String? @map("keytvart") @db.Char(15)
+  priceCategoryId String? @map("keytvpca") @db.Char(15)
+  code String @map("code") @db.VarChar(30)
+  name String? @map("caption") @db.VarChar(60)
+  manufacturer String? @map("fabrikat") @db.VarChar(60)
+  typeDesignation String? @map("typbeteckn") @db.VarChar(60)
+  installationDate DateTime? @map("instdatum") @db.DateTime
+  warrantyEndDate DateTime? @map("tdatewarr") @db.DateTime
+  serves String? @map("betjanar") @db.VarChar(60)
+  faultReportingAdministration Int @default(1, map: "DF__bakmp__aoadm__5A029E25") @map("aoadm") @db.TinyInt
+  isArtInventory Int @default(0, map: "DF__bakmp__isai__5AF6C25E") @map("isai") @db.TinyInt
+  deleteMark Int @default(0, map: "DF__bakmp__deletemar__5BEAE697") @map("deletemark") @db.TinyInt
+  fromDate DateTime @map("fdate") @db.DateTime
+  toDate DateTime @map("tdate") @db.DateTime
+  timestamp String @map("timestamp") @db.Char(10) // TODO: change timestamp later when knowing more about its usage
+
+
+  realEstateStructures RealEstateStructure[] // Lägg till relation för att koppla till MaintenanceUnit via RealEstateStructure
+
+  componentCategory ComponentCategory? @relation(fields: [categoryId], references: [id], onUpdate: NoAction, map: "fkbakmpkeybakmc")
+  componentType ComponentType? @relation(fields: [typeId], references: [id], onUpdate: NoAction, map: "fkbakmpkeybakmt")
+  // TODO: Determine new model names and update references for other relations
+  // aobdl                        aobdl?    @relation(fields: [keyaobdl], references: [keyaobdl], onUpdate: NoAction, map: "fkbakmpkeyaobdl")
+  // cmctc_bakmp_keycmctcTocmctc  cmctc?    @relation("bakmp_keycmctcTocmctc", fields: [keycmctc], references: [keycmctc], onDelete: NoAction, onUpdate: NoAction, map: "fkbakmpkeycmctc")
+  // cmctc_bakmp_keycmctc2Tocmctc cmctc?    @relation("bakmp_keycmctc2Tocmctc", fields: [keycmctc2], references: [keycmctc2], onDelete: NoAction, onUpdate: NoAction, map: "fkbakmpkeycmctc2")
+  // cmobj                        cmobj     @relation(fields: [keycmobj], references: [keycmobj], onDelete: Cascade, onUpdate: NoAction, map: "fkbakmpkeycmobj")
+  // tvart                        tvart?    @relation(fields: [keytvart], references: [keytvart], onUpdate: NoAction, map: "fkbakmpkeytvart")
+  // tvpca                        tvpca?    @relation(fields: [keytvpca], references: [keytvpca], onUpdate: NoAction, map: "fkbakmpkeytvpca")
+
+  @@index([constructionPartId], map: "fkbakmpaobdl")
+  @@index([typeId], map: "fkbakmpbakmt")
+  @@index([systemSupplierId], map: "fkbakmpcmctc")
+  @@index([ownerUserId], map: "fkbakmpcmctc2")
+  @@index([itemId], map: "fkbakmptvart")
+  @@index([priceCategoryId], map: "fkbakmptvpca")
+  @@index([fromDate], map: "inbakmp_2KX0I3RLS")
+  @@index([toDate], map: "inbakmp_2KX0I3RMK")
+  @@index([code], map: "inbakmp_2KX0I3RN3")
+  @@index([name], map: "inbakmp_2KX0I3RNI")
+}
+
+model MaintenanceUnit {
+  @@map("bauhe")
+
+  id String @id(map: "pkbauhe") @map("keybauhe") @db.Char(15)
+  objectID String @unique(map: "akbauhe1") @map("keycmobj") @db.Char(15)
+  typeId String? @map("keybauht") @db.Char(15)
+  communityTypeId String? @map("keybacat") @db.Char(15)  // Changed from bacat to communityType; not certain, need further check
+  mainFunctionId String? @map("keybarch") @db.Char(15)  // Changed from barch to mainFunction; not certain, need further check
+  subFunctionId String? @map("keybarcp") @db.Char(15)  // Changed from barcp to subFunction; not certain, need further check
+  roomSpecificationId String? @map("keybarcr") @db.Char(15)  // Changed from barcr to roomSpecification; not certain, need further check
+  areaClassId String? @map("keyvcacl") @db.Char(15)  // Changed from vcacl to areaClass; not certain, need further check
+  code String @map("code") @db.VarChar(30)
+  name String? @map("caption") @db.VarChar(30)
+  stairwell String? @map("uppgang") @db.VarChar(20)
+  usage Int @default(0, map: "DF__bauhe__usage__5550AA1D") @map("usage") @db.TinyInt
+  deleteMark Int @default(0, map: "DF__bauhe__deletemar__5644CE56") @map("deletemark") @db.TinyInt
+  startDate DateTime @map("fdate") @db.DateTime  // Changed from fdate to startDate
+  endDate DateTime @map("tdate") @db.DateTime  // Changed from tdate to endDate
+  timestamp String @map("timestamp") @db.Char(10) // TODO: change timestamp later when knowing more about its usage 
+
+  // TODO: Rename these relations when corresponding model names are available
+  // communityType CommunityType? @relation(fields: [communityTypeId], references: [id], onUpdate: NoAction, map: "fkbauhekeybacat")
+  // mainFunction MainFunction? @relation(fields: [mainFunctionId], references: [id], onUpdate: NoAction, map: "fkbauhekeybarch")
+  // subFunction SubFunction? @relation(fields: [subFunctionId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fkbauhekeybarcp")
+  // roomSpecification RoomSpecification? @relation(fields: [roomSpecificationId], references: [id], onUpdate: NoAction, map: "fkbauhekeybarcr")
+  // type Type? @relation(fields: [typeId], references: [id], onUpdate: NoAction, map: "fkbauhekeybauht")
+  // object Object @relation(fields: [objectID], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fkbauhekeycmobj")
+  // areaClass AreaClass? @relation(fields: [areaClassId], references: [id], onUpdate: NoAction, map: "fkbauhekeyvcacl")
+
+
+  realEstateStructures RealEstateStructure[] // Lägg till relation till RealEstateStructure för att koppla till Component
+
+  @@index([communityTypeId], map: "fkbauhebacat")
+  @@index([mainFunctionId], map: "fkbauhebarch")
+  @@index([subFunctionId], map: "fkbauhebarcp")
+  @@index([roomSpecificationId], map: "fkbauhebarcr")
+  @@index([typeId], map: "fkbauhebauht")
+  @@index([areaClassId], map: "fkbauhevcacl")
+  @@index([code], map: "inbauhe_1A00UDL36")
+  @@index([name], map: "inbauhe_1A00UDL45")
+  @@index([startDate], map: "inbauhe_1A00UDL5F")
+  @@index([endDate], map: "inbauhe_1A00UDL6O")
+}
+
+model RealEstateStructure {
+  @@map("babuf")
+
+  // Fields 
+  realEstateStructureId String @id(map: "pkbabuf") @map("keybabuf") @db.Char(15)
+  objectId String @unique(map: "akbabuf1") @map("keycmobj") @db.Char(15)
+  companyId String? @map("keyobjcmp") @db.Char(15)
+  managementUnitId String? @map("keyobjfen") @db.Char(15)
+  propertyId String? @map("keyobjfst") @db.Char(15)
+  buildingId String? @map("keyobjbyg") @db.Char(15)
+  areaId String? @map("keyobjyta") @db.Char(15)
+  leaseObjectId String? @map("keyobjaob") @db.Char(15)
+  buildingPartId String? @map("keyobjbdl") @db.Char(15)
+  floorId String? @map("keyobjvan") @db.Char(15)
+  systemId String? @map("keyobjsys") @db.Char(15)
+  spaceId String? @map("keyobjlok") @db.Char(15)
+  residenceId String? @map("keyobjlgh") @db.Char(15)
+  parkingSpaceId String? @map("keyobjbps") @db.Char(15)
+  otherLeaseObjectId String? @map("keyobjhyr") @db.Char(15)
+  maintenanceUnitId String? @map("keyobjuhe") @db.Char(15)
+  rentalUnitId String? @map("keyobjprt") @db.Char(15)
+  roomId String? @map("keyobjrum") @db.Char(15)
+  componentId String? @map("keyobjkmp") @db.Char(15)
+  subComponentId String? @map("keyobjkmp2") @db.Char(15)
+  rentalObjectId String? @map("keyobjinf") @db.Char(15)
+  code String? @map("code") @db.VarChar(30)
+  name String? @map("caption") @db.VarChar(60)
+  companyCode String? @map("cmpcode") @db.VarChar(10)
+  companyName String? @map("cmpcaption") @db.VarChar(60)
+  managementUnitCode String? @map("fencode") @db.VarChar(30)
+  managementUnitName String? @map("fencaption") @db.VarChar(60)
+  propertyCode String? @map("fstcode") @db.VarChar(30)
+  propertyName String? @map("fstcaption") @db.VarChar(60)
+  buildingCode String? @map("bygcode") @db.VarChar(30)
+  buildingName String? @map("bygcaption") @db.VarChar(60)
+  areaCode String? @map("ytacode") @db.VarChar(30)
+  areaName String? @map("ytacaption") @db.VarChar(30)
+  leaseObjectCode String? @map("aobcode") @db.VarChar(30)
+  leaseObjectName String? @map("aobcaption") @db.VarChar(30)
+  buildingPartCode String? @map("bdlcode") @db.VarChar(30)
+  buildingPartName String? @map("bdlcaption") @db.VarChar(30)
+  floorCode String? @map("vancode") @db.VarChar(30)
+  floorName String? @map("vancaption") @db.VarChar(30)
+  systemCode String? @map("syscode") @db.VarChar(30)
+  systemName String? @map("syscaption") @db.VarChar(60)
+  spaceCode String? @map("lokcode") @db.VarChar(30)
+  spaceName String? @map("lokcaption") @db.VarChar(30)
+  residenceCode String? @map("lghcode") @db.VarChar(30)
+  residenceName String? @map("lghcaption") @db.VarChar(30)
+  parkingSpaceCode String? @map("bpscode") @db.VarChar(30)
+  parkingSpaceName String? @map("bpscaption") @db.VarChar(30)
+  otherLeaseObjectCode String? @map("hyrcode") @db.VarChar(10)
+  otherLeaseObjectName String? @map("hyrcaption") @db.VarChar(30)
+  maintenanceUnitCode String? @map("uhecode") @db.VarChar(30)
+  maintenanceUnitName String? @map("uhecaption") @db.VarChar(30)
+  rentalUnitCode String? @map("prtcode") @db.VarChar(30)
+  rentalUnitName String? @map("prtcaption") @db.VarChar(30)
+  roomCode String? @map("rumcode") @db.VarChar(30)
+  roomName String? @map("rumcaption") @db.VarChar(30)
+  componentCode String? @map("kmpcode") @db.VarChar(30)
+  componentName String? @map("kmpcaption") @db.VarChar(60)
+  subComponentCode String? @map("kmpcode2") @db.VarChar(30)
+  subComponentName String? @map("kmpcapt2") @db.VarChar(60)
+  rentalContractId String? @map("hyresid") @db.VarChar(30)
+  deleteMark Int @default(0, map: "DF__babuf__deletemar__45FBA578") @map("deletemark") @db.TinyInt
+  fromDate DateTime @map("fdate") @db.DateTime
+  toDate DateTime @map("tdate") @db.DateTime
+  timestamp String @map("timestamp") @db.Char(10) // TODO: change timestamp later when knowing more about its usage
+
+  // TODO: handle cmobj relation when the new model name is available
+  component Component? @relation(fields: [componentId], references: [id], onUpdate: NoAction)
+  maintenanceUnit MaintenanceUnit? @relation(fields: [maintenanceUnitId], references: [id], onUpdate: NoAction)
+
+  // Indexes
+  @@index([leaseObjectId], map: "fkbabufobjaob")
+  @@index([buildingPartId], map: "fkbabufobjbdl")
+  @@index([parkingSpaceId], map: "fkbabufobjbps")
+  @@index([buildingId], map: "fkbabufobjbyg")
+  @@index([companyId], map: "fkbabufobjcmp")
+  @@index([managementUnitId], map: "fkbabufobjfen")
+  @@index([propertyId], map: "fkbabufobjfst")
+  @@index([otherLeaseObjectId], map: "fkbabufobjhyr")
+  @@index([rentalObjectId], map: "fkbabufobjinf")
+  @@index([componentId], map: "fkbabufobjkmp")
+  @@index([residenceId], map: "fkbabufobjlgh")
+  @@index([spaceId], map: "fkbabufobjlok")
+  @@index([rentalUnitId], map: "fkbabufobjprt")
+  @@index([roomId], map: "fkbabufobjrum")
+  @@index([systemId], map: "fkbabufobjsys")
+  @@index([maintenanceUnitId], map: "fkbabufobjuhe")
+  @@index([floorId], map: "fkbabufobjvan")
+  @@index([areaId], map: "fkbabufobjyta")
+  @@index([deleteMark, realEstateStructureId, companyId, objectId], map: "inbabuf1")
+  @@index([managementUnitId, deleteMark, objectId, realEstateStructureId], map: "inbabuf2")
+  @@index([managementUnitId, buildingId, objectId], map: "inbabuf3")
+}
+
